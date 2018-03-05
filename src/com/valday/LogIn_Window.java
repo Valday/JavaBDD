@@ -35,7 +35,7 @@ public class LogIn_Window
 
     //endregion Const Attributes
 
-    public LogIn_Windows() {
+    public LogIn_Window() {
         Cancel.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
