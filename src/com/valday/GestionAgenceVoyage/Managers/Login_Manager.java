@@ -1,5 +1,9 @@
 package com.valday;
 
+import com.valday.GestionAgenceVoyage.AdminWindow;
+import com.valday.GestionAgenceVoyage.CustomerWindow;
+import com.valday.GestionAgenceVoyage.GuideWindow;
+
 import javax.swing.*;
 
 public final class Login_Manager

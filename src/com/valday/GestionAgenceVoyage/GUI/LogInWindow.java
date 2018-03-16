@@ -1,4 +1,6 @@
-package com.valday;
+package com.valday.GestionAgenceVoyage;
+
+import com.valday.Login_Manager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,6 +45,7 @@ public class LogInWindow
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                PanelMain.setVisible(false);
                 connect(txtF_login.getText(),txtF_Passwd.getText());
             }
         });
