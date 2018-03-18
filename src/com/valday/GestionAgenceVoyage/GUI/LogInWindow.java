@@ -1,6 +1,6 @@
-package com.valday.GestionAgenceVoyage;
+package com.valday.GestionAgenceVoyage.GUI;
 
-import com.valday.Login_Manager;
+import com.valday.GestionAgenceVoyage.Managers.Login_Manager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

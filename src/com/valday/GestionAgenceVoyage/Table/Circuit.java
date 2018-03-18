@@ -2,7 +2,7 @@ package com.valday.GestionAgenceVoyage.Table;
 
 import java.util.Date;
 
-public class Circuits
+public class Circuit
 {
 
     //region Private Attributs
@@ -87,12 +87,12 @@ public class Circuits
 
     //region Constructors
 
-    public Circuits()
+    public Circuit()
     {
 
     }
 
-    public Circuits(int id,String name, int nbPlaces, Date dateDepart, Date dateFin, boolean cancel)
+    public Circuit(int id, String name, int nbPlaces, Date dateDepart, Date dateFin, boolean cancel)
     {
         this._id = id;
         this._name = name;
@@ -102,4 +102,15 @@ public class Circuits
         this._cancel = cancel;
     }
     //endregion Constructors
+
+    @Override
+    public String toString()
+    {
+        return new String( "Id : "+this._id+"\n"
+                +"Nom : "+this._name+"\n"
+                +"Places disponnibles : "+this._placesDispo+"\n"
+                +"Date de départ : "+this._dateDepart+"\n"
+                +"Date d'arrive : "+this._dateFin+"\n"
+                +"Resevation annulée : "+this._cancel+"\n");
+    }
 }

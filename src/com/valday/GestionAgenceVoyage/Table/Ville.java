@@ -1,6 +1,6 @@
 package com.valday.GestionAgenceVoyage.Table;
 
-public class Villes
+public class Ville
 {
     //region Private Attributs
 
@@ -37,16 +37,24 @@ public class Villes
 
     //region Constructors
 
-    public Villes()
+    public Ville()
     {
 
     }
 
-    public Villes(int id, String name)
+    public Ville(int id, String name)
     {
         this._id = id;
         this._name = name;
     }
 
     //endregion Constructors
+
+    @Override
+    public String toString()
+    {
+        return new String( "Id : "+this._id+"\n"
+                +"Nom : "+this._name+"\n");
+    }
+
 }

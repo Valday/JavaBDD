@@ -1,8 +1,8 @@
-package com.valday;
+package com.valday.GestionAgenceVoyage.Managers;
 
-import com.valday.GestionAgenceVoyage.AdminWindow;
-import com.valday.GestionAgenceVoyage.CustomerWindow;
-import com.valday.GestionAgenceVoyage.GuideWindow;
+import com.valday.GestionAgenceVoyage.GUI.AdminWindow;
+import com.valday.GestionAgenceVoyage.GUI.CustomerWindow;
+import com.valday.GestionAgenceVoyage.GUI.GuideWindow;
 
 import javax.swing.*;
 

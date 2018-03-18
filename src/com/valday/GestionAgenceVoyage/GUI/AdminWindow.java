@@ -1,4 +1,4 @@
-package com.valday.GestionAgenceVoyage;
+package com.valday.GestionAgenceVoyage.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +13,13 @@ public class AdminWindow {
     public JPanel AdminWindowPanel;
     private JTabbedPane tabbedPane1;
     private JPanel Clients;
+    private JPanel toto;
+    private JToolBar toolBar_menu;
     //endregion Public Attributs
 
-    public AdminWindow() {
+    private JMenu menu;
+
+    public AdminWindow()
+    {
     }
 }

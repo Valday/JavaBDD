@@ -1,4 +1,4 @@
-package com.valday.GestionAgenceVoyage;
+package com.valday.GestionAgenceVoyage.GUI;
 
 import javax.swing.*;
 

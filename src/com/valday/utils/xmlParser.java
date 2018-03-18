@@ -1,6 +1,7 @@
-package com.valday;
+package com.valday.utils;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -22,8 +23,6 @@ public class xmlParser
         try
         {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            //FileInputStream FILE = new FileInputStream("conf\\jdbcConfig.xml");
-            String toto = Path.combine(path,fileName);
             InputSource inputFile = new InputSource(new FileInputStream(Path.combine(path,fileName)));
             doc = documentBuilder.parse(inputFile);
         }catch (Exception e)
@@ -33,8 +32,10 @@ public class xmlParser
         return doc;
     }
 
-    public static String nodeToOracleAddress(NodeList nodes)
+    public static String nodeToOracleAddress(Document doc)
     {
+        Element element = doc.getDocumentElement();
+        NodeList nodes = element.getChildNodes();
         String toReturn = new String();
         String[] strSplit ;
         for (int i = 0; i < nodes.getLength(); i++)
