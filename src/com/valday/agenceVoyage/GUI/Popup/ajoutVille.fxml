@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox prefHeight="80" prefWidth="250" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.Popup.ajoutVilleController">
+    <padding><Insets left="5.0" top="15.0" /></padding>
+    <HBox spacing="5">
+        <VBox spacing="5">
+            <Label prefHeight="25" text="Nom : " />
+        </VBox>
+
+        <VBox spacing="5" prefWidth="150">
+            <TextField fx:id="textField_name" prefHeight="25" prefWidth="100" promptText="name" />
+        </VBox>
+    </HBox>
+
+    <VBox spacing="35">
+        <HBox alignment="CENTER" spacing="5">
+            <Button fx:id="but_Valider" prefHeight="25" prefWidth="75" text="Valider" />
+            <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
+        </HBox>
+    </VBox>
+</VBox>
