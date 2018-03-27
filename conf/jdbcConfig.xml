@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<URL_DATABASE>
+	<DRIVER>jdbc:oracle:thin</DRIVER>
+	<USERNAME></USERNAME>
+	<IP>@localhost</IP>
+	<PORT>1521</PORT>
+	<SID>XE</SID>
+</URL_DATABASE>
