@@ -18,7 +18,20 @@ public class CircuitDAO extends DAO<Circuit>
     @Override
     public boolean Add(Circuit obj)
     {
-        return false;
+        boolean toReturn = false;
+        try
+        {
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Circuits (Codecircuit,Nom,PlaceDisponibles,Datedepart,Datefin,Annulation,CodeAccompagnateur) VALUES ("+obj.get_idCircuit()+",'"+obj.get_nameCircuit()+"',"+obj.get_placesDispo()+",'"+obj.get_dateDepart()+"','"+obj.get_dateFin()+"',0,1)");
+            toReturn = true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 
     @Override
@@ -62,8 +75,8 @@ public class CircuitDAO extends DAO<Circuit>
                         id,
                         resultSet.getString("Nom"),
                         resultSet.getInt("PlaceDisponibles"),
-                        resultSet.getDate("Datedepart"),
-                        resultSet.getDate("Datefin"),
+                        resultSet.getString("Datedepart"),
+                        resultSet.getString("Datefin"),
                         resultSet.getBoolean("Annulation")
                 );
             }
@@ -90,5 +103,28 @@ public class CircuitDAO extends DAO<Circuit>
             e.printStackTrace();
         }
         return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+
+        ResultSet resultSet = null;
+        try
+        {
+            resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Circuits");
+
+            resultSet.first();
+            nb = resultSet.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return nb;
     }
 }

@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-
 public class ajoutAccompagnateurController
 {
     @FXML
@@ -35,12 +33,17 @@ public class ajoutAccompagnateurController
     @FXML
     private void but_ValiderClick()
     {
-        Accompagnateur newAccompagnateur = new Accompagnateur(1, this.textField_name.getText());
         DAO<Accompagnateur> accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
+        Accompagnateur newAccompagnateur = new Accompagnateur(accompagnateurDAO.Count()+1, this.textField_name.getText());
 
         if(accompagnateurDAO.Add(newAccompagnateur))
         {
             System.out.println(" => Accompagnateur successfully add ...");
+            // get a handle to the stage
+            Stage stage = (Stage) but_Valider.getScene().getWindow();
+
+            // do what you have to do
+            stage.close();
         }
 
     }

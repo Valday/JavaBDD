@@ -15,8 +15,22 @@ public class VilleDAO extends DAO<Ville>
     }
 
     @Override
-    public boolean Add(Ville obj) {
-        return false;
+    public boolean Add(Ville obj)
+    {
+        boolean toReturn = false;
+        try
+        {
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Villes (Codeville,Nom,CodeHotel) VALUES ("+obj.get_idVille()+",'"+obj.get_nameVille()+"',1)");
+            toReturn = true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 
     @Override
@@ -81,5 +95,28 @@ public class VilleDAO extends DAO<Ville>
         {
             e.printStackTrace();
         }
-        return resultSet;    }
+        return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+        ResultSet resultSet = null;
+        try
+        {
+            resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Villes");
+
+            resultSet.first();
+            nb = resultSet.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return nb;
+    }
 }

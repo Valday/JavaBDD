@@ -15,8 +15,22 @@ public class ClientDAO extends DAO<Client>
     }
 
     @Override
-    public boolean Add(Client obj) {
-        return false;
+    public boolean Add(Client obj)
+    {
+        boolean toReturn = false;
+        try
+        {
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Clients (Codeclient,Nom) VALUES ("+obj.get_idClient()+",'"+obj.get_nameClient()+"')");
+            toReturn = true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 
     @Override
@@ -43,7 +57,8 @@ public class ClientDAO extends DAO<Client>
     }
 
     @Override
-    public Client find(int id) {
+    public Client find(int id)
+    {
         Client client = new Client();
 
         try
@@ -68,7 +83,8 @@ public class ClientDAO extends DAO<Client>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {
@@ -80,5 +96,29 @@ public class ClientDAO extends DAO<Client>
         {
             e.printStackTrace();
         }
-        return resultSet;    }
+        return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+
+        ResultSet resultSet = null;
+        try
+        {
+            resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Clients");
+
+            resultSet.first();
+            nb = resultSet.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return nb;
+    }
 }

@@ -18,7 +18,9 @@ public abstract class DAO<T>
 
     public abstract boolean Update(T obj);
 
-    public abstract  T find(int id);
+    public abstract T find(int id);
 
-    public  abstract ResultSet selectAll();
+    public abstract ResultSet selectAll();
+
+    public abstract int Count();
 }

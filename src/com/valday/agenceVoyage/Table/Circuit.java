@@ -18,9 +18,9 @@ public class Circuit
 
     private SimpleIntegerProperty _placesDispo;
 
-    private SimpleObjectProperty<Date> _dateDepart;
+    private SimpleStringProperty _dateDepart;
 
-    private  SimpleObjectProperty<Date> _dateFin;
+    private  SimpleStringProperty _dateFin;
 
     private SimpleBooleanProperty _cancelCircuit;
 
@@ -77,27 +77,33 @@ public class Circuit
         this._placesDispo.set(_placesDispo);
     }
 
-    public Date get_dateDepart() {
-        return _dateDepart.get();
+    public String get_dateDepart()
+    {
+        return this._dateDepart.get();
     }
 
-    public SimpleObjectProperty<Date> _dateDepartProperty() {
-        return _dateDepart;
+    public SimpleStringProperty _dateDepartProperty()
+    {
+        return this._dateDepart;
     }
 
-    public void set_dateDepart(Date _dateDepart) {
+    public void set_dateDepart(String _dateDepart)
+    {
         this._dateDepart.set(_dateDepart);
     }
 
-    public Date get_dateFin() {
-        return _dateFin.get();
+    public String get_dateFin()
+    {
+        return this._dateFin.get();
     }
 
-    public SimpleObjectProperty<Date> _dateFinProperty() {
-        return _dateFin;
+    public SimpleStringProperty _dateFinProperty()
+    {
+        return this._dateFin;
     }
 
-    public void set_dateFin(Date _dateFin) {
+    public void set_dateFin(String _dateFin)
+    {
         this._dateFin.set(_dateFin);
     }
 
@@ -110,13 +116,13 @@ public class Circuit
 
     }
 
-    public Circuit(int id, String name, int nbPlaces, Date dateDepart, Date dateFin, boolean cancel)
+    public Circuit(int id, String name, int nbPlaces, String dateDepart, String dateFin, boolean cancel)
     {
         this._idCircuit = new SimpleIntegerProperty(id);
         this._nameCircuit = new SimpleStringProperty(name);
         this._placesDispo = new SimpleIntegerProperty(nbPlaces);
-        this._dateDepart = new SimpleObjectProperty<>(dateDepart);
-        this._dateFin = new SimpleObjectProperty<>(dateFin);
+        this._dateDepart = new SimpleStringProperty(dateDepart);
+        this._dateFin = new SimpleStringProperty(dateFin);
         this._cancelCircuit = new SimpleBooleanProperty(cancel);
     }
     //endregion Constructors

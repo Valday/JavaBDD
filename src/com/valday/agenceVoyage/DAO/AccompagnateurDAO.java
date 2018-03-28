@@ -17,18 +17,20 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
     @Override
     public boolean Add(Accompagnateur obj)
     {
+        boolean toReturn = false;
         try
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Accompagnateur (CodeAccompagnateur,Nom) VALUES ("+obj.get_idAccompagnateur()+",'"+obj.get_nameAccompagnateur()+"');");
+                ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Accompagnateur (CodeAccompagnateur,Nom) VALUES ("+obj.get_idAccompagnateur()+",'"+obj.get_nameAccompagnateur()+"')");
+            toReturn = true;
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
 
-        return false;
+        return toReturn;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Accompagnateur WHERE CodeAccompagnateur = " +obj.get_idAccompagnateur());
-                toReturn = true;
+            toReturn = true;
         }
         catch (SQLException e)
         {
@@ -61,7 +63,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateur WHERE Codecircuit = "+ id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateur WHERE CodeAccompagnateur = "+ id);
 
             if (resultSet.first())
             {
@@ -92,5 +94,27 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
             e.printStackTrace();
         }
         return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+        ResultSet resultSet = null;
+        try
+        {
+            resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Accompagnateur");
+
+            resultSet.first();
+            nb = resultSet.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return nb;
     }
 }

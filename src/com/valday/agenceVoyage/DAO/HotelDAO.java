@@ -15,12 +15,26 @@ public class HotelDAO extends DAO<Hotel>
     }
 
     @Override
-    public boolean Add(Hotel obj) {
-        return false;
-    }
+    public boolean Add(Hotel obj)
+    {
+        boolean toReturn = false;
+        try
+        {
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Hotels (CodeHotel,Nom) VALUES ("+obj.get_idHotel()+",'"+obj.get_nameHotel()+"')");
+            toReturn = true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return toReturn;    }
 
     @Override
-    public boolean Delete(Hotel obj) {
+    public boolean Delete(Hotel obj)
+    {
         boolean toReturn = false;
         try
         {
@@ -81,5 +95,27 @@ public class HotelDAO extends DAO<Hotel>
             e.printStackTrace();
         }
         return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+        ResultSet resultSet = null;
+        try
+        {
+            resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Hotels");
+
+            resultSet.first();
+            nb = resultSet.getInt(1);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return nb;
     }
 }

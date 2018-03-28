@@ -80,5 +80,15 @@ public class VisiteDAO extends DAO<Visite>
         {
             e.printStackTrace();
         }
-        return resultSet;    }
+        return resultSet;
+    }
+
+    @Override
+    public int Count()
+    {
+        int nb = 0;
+
+
+        return nb;
+    }
 }
