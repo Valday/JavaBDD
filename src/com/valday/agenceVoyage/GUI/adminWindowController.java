@@ -1,6 +1,9 @@
 package com.valday.agenceVoyage.GUI;
 
+import com.valday.agenceVoyage.DAO.ClientDAO;
+import com.valday.agenceVoyage.DAO.DAO;
 import com.valday.agenceVoyage.Table.*;
+import com.valday.agenceVoyage.managers.JdbcConnectionManager;
 import com.valday.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +57,21 @@ public class adminWindowController
 
     @FXML void but_SuprClick()
     {
+        switch (selectionModel.getSelectedIndex())
+        {
+            case 0:
+                break;
+
+            case 1 :
+                Client newClient = tableView_Clients.getSelectionModel().getSelectedItem();
+                DAO<Client> clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
+                clientDAO.Delete(newClient);
+                break;
+            case 2 :
+                break;
+
+
+        }
     }
 
     @FXML void but_AjoutClick()

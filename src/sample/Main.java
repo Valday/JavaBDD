@@ -29,7 +29,7 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
-        Document doc = xmlParser.deserializeXML("D:\\Dev\\JavaBDD","conf\\\\jdbcConfig.xml");
+        Document doc = xmlParser.deserializeXML("D:\\Git\\JavaBDD","conf\\\\jdbcConfig.xml");
         String dataBaseUrl = xmlParser.nodeToOracleAddress(doc);
 
         JdbcConnectionManager.Instance().Open(dataBaseUrl);
