@@ -11,6 +11,8 @@ public class Ville
 
     private SimpleStringProperty _nameVille;
 
+    private SimpleIntegerProperty _idHotel;
+
     //endregion Private Attributs
 
     //region Public Attributs
@@ -39,8 +41,19 @@ public class Ville
         this._nameVille.set(_nameVille);
     }
 
+    public int get_idHotel() {
+        return _idHotel.get();
+    }
 
-    //endregion Public Attributs
+    public SimpleIntegerProperty _idHotelProperty() {
+        return _idHotel;
+    }
+
+    public void set_idHotel(int _idHotel) {
+        this._idHotel.set(_idHotel);
+    }
+
+//endregion Public Attributs
 
     //region Constructors
 
@@ -49,10 +62,11 @@ public class Ville
 
     }
 
-    public Ville(int id, String name)
+    public Ville(int id, String name, int idHotel)
     {
         this._idVille = new SimpleIntegerProperty(id);
         this._nameVille = new SimpleStringProperty(name);
+        this._idHotel = new SimpleIntegerProperty(idHotel);
     }
 
     //endregion Constructors

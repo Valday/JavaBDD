@@ -21,10 +21,22 @@ public class CircuitDAO extends DAO<Circuit>
         boolean toReturn = false;
         try
         {
-            this.connect.createStatement(
+            ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Circuits (Codecircuit,Nom,PlaceDisponibles,Datedepart,Datefin,Annulation,CodeAccompagnateur) VALUES ("+obj.get_idCircuit()+",'"+obj.get_nameCircuit()+"',"+obj.get_placesDispo()+",'"+obj.get_dateDepart()+"','"+obj.get_dateFin()+"',0,1)");
-            toReturn = true;
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES ("
+                                                                    +obj.get_idCircuit()+",'"
+                                                                    +obj.get_nameCircuit()+"',"
+                                                                    +obj.get_places()+","
+                                                                    +obj.get_prix()+",'"
+                                                                    +obj.get_dateDepart()+"','"
+                                                                    +obj.get_dateFin()+"',"
+                                                                    +(obj.is_open()? 1 : 0)+","
+                                                                    +obj.get_idAccompagnateur()+")");
+
+            if(resultSet != null)
+            {
+                toReturn = true;
+            }
         }
         catch (SQLException e)
         {
@@ -42,7 +54,7 @@ public class CircuitDAO extends DAO<Circuit>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Circuits WHERE Codecircuit = " +obj.get_idCircuit());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Circuits WHERE idCircuit = " +obj.get_idCircuit());
                 toReturn = true;
         }
         catch (SQLException e)
@@ -67,17 +79,19 @@ public class CircuitDAO extends DAO<Circuit>
         {
             ResultSet resultSet = this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Circuits WHERE Codecircuit = "+ id);
+                ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Circuits WHERE idCircuit = "+ id);
 
             if (resultSet.first())
             {
                 circuit = new Circuit(
                         id,
-                        resultSet.getString("Nom"),
-                        resultSet.getInt("PlaceDisponibles"),
-                        resultSet.getString("Datedepart"),
-                        resultSet.getString("Datefin"),
-                        resultSet.getBoolean("Annulation")
+                        resultSet.getString("nom"),
+                        resultSet.getInt("places"),
+                        resultSet.getInt("prix"),
+                        resultSet.getString("dateDepart"),
+                        resultSet.getString("dateFin"),
+                        resultSet.getBoolean("open"),
+                        resultSet.getInt("idAccompagnateur")
                 );
             }
         }

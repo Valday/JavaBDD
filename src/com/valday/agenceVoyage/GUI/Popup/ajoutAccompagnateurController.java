@@ -21,6 +21,24 @@ public class ajoutAccompagnateurController
     private TextField textField_name;
 
     @FXML
+    private  TextField textField_prenom;
+
+    @FXML
+    private TextField textField_telephone;
+
+    @FXML
+    private TextField textField_numRue;
+
+    @FXML
+    private TextField textField_rue;
+
+    @FXML
+    private  TextField textField_ville;
+
+    @FXML
+    private TextField textField_codePostal;
+
+    @FXML
     private void but_AnnulerClick()
     {
         // get a handle to the stage
@@ -33,8 +51,16 @@ public class ajoutAccompagnateurController
     @FXML
     private void but_ValiderClick()
     {
+
         DAO<Accompagnateur> accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
-        Accompagnateur newAccompagnateur = new Accompagnateur(accompagnateurDAO.Count()+1, this.textField_name.getText());
+        Accompagnateur newAccompagnateur = new Accompagnateur(accompagnateurDAO.Count()+1,
+                this.textField_name.getText(),
+                this.textField_prenom.getText(),
+                this.textField_telephone.getText(),
+                Integer.parseInt(this.textField_numRue.getText()),
+                this.textField_rue.getText(),
+                this.textField_ville.getText(),
+                this.textField_codePostal.getText());
 
         if(accompagnateurDAO.Add(newAccompagnateur))
         {
@@ -45,6 +71,7 @@ public class ajoutAccompagnateurController
             // do what you have to do
             stage.close();
         }
+
 
     }
 }

@@ -63,7 +63,14 @@ public class TableManager
 
             while (allAccompagnateurs.next())
             {
-                Accompagnateur newAccompagnateur = new Accompagnateur(allAccompagnateurs.getInt(1), allAccompagnateurs.getString(2));
+                Accompagnateur newAccompagnateur = new Accompagnateur(allAccompagnateurs.getInt(1),
+                        allAccompagnateurs.getString(2),
+                        allAccompagnateurs.getString(3),
+                        allAccompagnateurs.getString(4),
+                        allAccompagnateurs.getInt(5),
+                        allAccompagnateurs.getString(6),
+                        allAccompagnateurs.getString(7),
+                        allAccompagnateurs.getString(8));
                 accompagnateurObservableList.add(newAccompagnateur);
             }
 
@@ -90,7 +97,15 @@ public class TableManager
 
             while (allCircuits.next())
             {
-                Circuit newCircuit = new Circuit(allCircuits.getInt(1),allCircuits.getString(2),allCircuits.getInt(3),allCircuits.getString(4),allCircuits.getString(5),allCircuits.getBoolean(6));
+                Circuit newCircuit = new Circuit(allCircuits.getInt(1),
+                        allCircuits.getString(2),
+                        allCircuits.getInt(3),
+                        allCircuits.getInt(4),
+                        allCircuits.getString(5),
+                        allCircuits.getString(6),
+                        allCircuits.getBoolean(7),
+                        allCircuits.getInt(8));
+
                 circuitObservableList.add(newCircuit);
             }
 
@@ -116,7 +131,18 @@ public class TableManager
 
             while (allClients.next())
             {
-                Client newClient = new Client(allClients.getInt(1),allClients.getString(2));
+                Client newClient = new Client(allClients.getInt(1),
+                        allClients.getString(2),
+                        allClients.getString(3),
+                        allClients.getString(4),
+                        allClients.getString(5),
+                        allClients.getString(6),
+                        allClients.getString(7),
+                        allClients.getString(8),
+                        allClients.getInt(9),
+                        allClients.getString(10),
+                        allClients.getString(11));
+
                 clientObservableList.add(newClient);
             }
 
@@ -141,7 +167,12 @@ public class TableManager
 
             while(allHotels.next())
             {
-                Hotel newHotel = new Hotel(allHotels.getInt(1), allHotels.getString(2));
+                Hotel newHotel = new Hotel(allHotels.getInt(1),
+                        allHotels.getString(2),
+                        allHotels.getString(3),
+                        allHotels.getString(4),
+                        allHotels.getInt(5));
+
                 hotelObservableList.add(newHotel);
             }
 
@@ -166,7 +197,10 @@ public class TableManager
 
             while(allVilles.next())
             {
-                Ville newVille = new Ville(allVilles.getInt(1), allVilles.getString(2));
+                Ville newVille = new Ville(allVilles.getInt(1),
+                        allVilles.getString(2),
+                        allVilles.getInt(3));
+
                 villeObservableList.add(newVille);
             }
 
@@ -191,7 +225,17 @@ public class TableManager
 
             while (allReservations.next())
             {
-                Reservation newReservation = new Reservation(allReservations.getInt(1),allReservations.getBoolean(2),allReservations.getBoolean(3),allReservations.getInt(4),allReservations.getInt(5),allReservations.getDate(6),allReservations.getDate(7),allReservations.getBoolean(8),allReservations.getInt(9),allReservations.getInt(10));
+                Reservation newReservation = new Reservation(allReservations.getInt(1),
+                        allReservations.getBoolean(2),
+                        allReservations.getBoolean(3),
+                        allReservations.getString(4),
+                        allReservations.getString(5),
+                        allReservations.getBoolean(6),
+                        allReservations.getInt(7),
+                        allReservations.getInt(8),
+                        allReservations.getInt(9),
+                        allReservations.getInt(10));
+
                 reservationObservableList.add(newReservation);
             }
 

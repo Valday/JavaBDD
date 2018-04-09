@@ -21,6 +21,15 @@ public class ajoutHotelController
     private TextField textField_name;
 
     @FXML
+    private TextField textField_phone;
+
+    @FXML
+    private TextField textField_streetNumber;
+
+    @FXML
+    private TextField textField_street;
+
+    @FXML
     private void but_AnnulerClick()
     {
         // get a handle to the stage
@@ -35,7 +44,11 @@ public class ajoutHotelController
     private void but_ValiderClick()
     {
         DAO<Hotel> hotelDAO = new HotelDAO(JdbcConnectionManager.Instance().get_connector());
-        Hotel newHotel = new Hotel(hotelDAO.Count()+1, this.textField_name.getText());
+        Hotel newHotel = new Hotel(hotelDAO.Count()+1,
+                this.textField_name.getText(),
+                this.textField_phone.getText(),
+                this.textField_street.getText(),
+                Integer.parseInt(this.textField_streetNumber.getText()));
 
         if(hotelDAO.Add(newHotel))
         {
@@ -46,6 +59,5 @@ public class ajoutHotelController
             // do what you have to do
             stage.close();
         }
-
     }
 }

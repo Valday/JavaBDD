@@ -22,7 +22,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Accompagnateur (CodeAccompagnateur,Nom) VALUES ("+obj.get_idAccompagnateur()+",'"+obj.get_nameAccompagnateur()+"')");
+                ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES ("+obj.get_idAccompagnateur()+",'"+obj.get_nameAccompagnateur()+"','"+obj.get_prenomAccompagnateur()+"','"+obj.get_telephoneAccompagnateur()+"',"+obj.get_numRueAccompagnateur()+",'"+obj.get_rueAccompagnateur()+"','"+obj.get_villeAccompagnateur()+"',"+obj.get_codePostalAccompagnateur()+")");
             toReturn = true;
         }
         catch (SQLException e)
@@ -40,7 +40,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Accompagnateur WHERE CodeAccompagnateur = " +obj.get_idAccompagnateur());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Accompagnateurs WHERE idAccompagnateur = " +obj.get_idAccompagnateur());
             toReturn = true;
         }
         catch (SQLException e)
@@ -63,13 +63,19 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateur WHERE CodeAccompagnateur = "+ id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateus WHERE idAccompagnateur = "+ id);
 
             if (resultSet.first())
             {
                 accompagnateur = new Accompagnateur(
                         id,
-                        resultSet.getString("Nom")
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("telephone"),
+                        resultSet.getInt("numRue"),
+                        resultSet.getString("rue"),
+                        resultSet.getString("ville"),
+                        resultSet.getString("codePostal")
                 );
             }
         }
@@ -87,7 +93,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateur");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateurs");
         }
         catch (SQLException e)
         {

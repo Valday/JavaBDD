@@ -70,7 +70,8 @@ public class VilleDAO extends DAO<Ville>
             {
                 ville = new Ville(
                         id,
-                        resultSet.getString("Nom")
+                        resultSet.getString("nom"),
+                        resultSet.getInt("idHotel")
                 );
             }
         }

@@ -4,15 +4,21 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<VBox prefHeight="80" prefWidth="250" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.Popup.ajoutHotelController">
+<VBox prefHeight="170" prefWidth="260" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.Popup.ajoutHotelController">
     <padding><Insets left="5.0" top="15.0" /></padding>
     <HBox spacing="5">
         <VBox spacing="5">
-            <Label prefHeight="25" text="Nom : " />
+            <Label prefHeight="25" text="Hotel name : " />
+            <Label prefHeight="25" text="Phone number : " />
+            <Label prefHeight="25" text="Street number : " />
+            <Label prefHeight="25" text="Street : " />
         </VBox>
 
         <VBox spacing="5" prefWidth="150">
-            <TextField fx:id="textField_name" prefHeight="25" prefWidth="100" promptText="name" />
+            <TextField fx:id="textField_name" prefHeight="25" prefWidth="100" promptText="Hotel name" />
+            <TextField fx:id="textField_phone" prefHeight="25" prefWidth="100" promptText="Phone number" />
+            <TextField fx:id="textField_streetNumber" prefHeight="25" prefWidth="100" promptText="Street number" />
+            <TextField fx:id="textField_street" prefHeight="25" prefWidth="100" promptText="Street" />
         </VBox>
     </HBox>
 

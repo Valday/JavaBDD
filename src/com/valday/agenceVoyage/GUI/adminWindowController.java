@@ -100,7 +100,7 @@ public class adminWindowController
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutClient.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
-                    stage.setTitle("Ajout Hotel");
+                    stage.setTitle("Ajout Client");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                     this.LoadTables();
@@ -160,6 +160,19 @@ public class adminWindowController
                 break;
             case 5 :
                 System.out.println(" => Tab Reservations ...");
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutReservation.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Ajout Reservation");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    this.LoadTables();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
                 break;
         }
     }

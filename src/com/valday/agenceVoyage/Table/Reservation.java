@@ -3,6 +3,7 @@ package com.valday.agenceVoyage.Table;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Date;
 
@@ -20,9 +21,9 @@ public class Reservation
 
     private SimpleIntegerProperty _secondPaiementValue;
 
-    private SimpleObjectProperty<Date> _dateLimite;
+    private SimpleStringProperty _dateLimite;
 
-    private SimpleObjectProperty<Date> _dateReservation;
+    private SimpleStringProperty _dateReservation;
 
     private SimpleBooleanProperty _cancelResevation;
 
@@ -94,27 +95,27 @@ public class Reservation
         this._secondPaiementValue.set(_secondPaiementValue);
     }
 
-    public Date get_dateLimite() {
+    public String get_dateLimite() {
         return _dateLimite.get();
     }
 
-    public SimpleObjectProperty<Date> _dateLimiteProperty() {
+    public SimpleStringProperty _dateLimiteProperty() {
         return _dateLimite;
     }
 
-    public void set_dateLimite(Date _dateLimite) {
+    public void set_dateLimite(String _dateLimite) {
         this._dateLimite.set(_dateLimite);
     }
 
-    public Date get_dateReservation() {
+    public String get_dateReservation() {
         return _dateReservation.get();
     }
 
-    public SimpleObjectProperty<Date> _dateReservationProperty() {
+    public SimpleStringProperty _dateReservationProperty() {
         return _dateReservation;
     }
 
-    public void set_dateReservation(Date _dateReservation) {
+    public void set_dateReservation(String _dateReservation) {
         this._dateReservation.set(_dateReservation);
     }
 
@@ -165,15 +166,15 @@ public class Reservation
 
     }
 
-    public Reservation(int id, boolean accompteOk,boolean secondPaiementOK, int accompte, int secondPaiement, Date dateLimite, Date dateReservation, boolean cancel, int idClient, int idCircuit)
+    public Reservation(int id, boolean accompteOk,boolean secondPaiementOK, String dateLimite, String dateReservation, boolean cancel, int accompte, int secondPaiement, int idClient, int idCircuit)
     {
         this._idResevation = new SimpleIntegerProperty(id);
         this._accompte = new SimpleBooleanProperty(accompteOk);
         this._secondPaiement = new SimpleBooleanProperty(secondPaiementOK);
         this._accompteValue = new SimpleIntegerProperty(accompte);
         this._secondPaiementValue = new SimpleIntegerProperty(secondPaiement);
-        this._dateLimite = new SimpleObjectProperty<>(dateLimite);
-        this._dateReservation = new SimpleObjectProperty<>(dateReservation);
+        this._dateLimite = new SimpleStringProperty(dateLimite);
+        this._dateReservation = new SimpleStringProperty(dateReservation);
         this._cancelResevation = new SimpleBooleanProperty(cancel);
         this._idClient = new SimpleIntegerProperty(idClient);
         this._idCircuit = new SimpleIntegerProperty(idCircuit);

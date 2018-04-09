@@ -15,7 +15,34 @@ public class ReservationDAO extends DAO<Reservation>
 
     @Override
     public boolean Add(Reservation obj) {
-        return false;
+        boolean toReturn = false;
+        try
+        {
+            ResultSet resultSet = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Reservations (idReservation,acompteVerse,secondPaiement,dateLimitePaiement,dateReservation,annulation,acompteMontant,secondPaiementMontant,idClient,idCircuit) VALUES ("
+                    +obj.get_idResevation()+","
+                    +(obj.is_accompte()? 1 : 0)+","
+                    +(obj.is_secondPaiement()? 1 : 0)+",'"
+                    +obj.get_dateLimite()+"','"
+                    +obj.get_dateReservation()+"',"
+                    +(obj.is_cancelResevation()? 1 : 0)+","
+                    +obj.get_accompteValue()+","
+                    +obj.get_secondPaiementValue()+","
+                    +obj.get_idClient()+","
+                    +obj.get_idCircuit()+")");
+
+            if(resultSet != null)
+            {
+                toReturn = true;
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 
     @Override
@@ -26,7 +53,7 @@ public class ReservationDAO extends DAO<Reservation>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Reservation WHERE Codereservation = " +obj.get_idResevation());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Reservations WHERE idReservation = " +obj.get_idResevation());
                 toReturn = true;
         }
         catch (SQLException e)
@@ -49,7 +76,7 @@ public class ReservationDAO extends DAO<Reservation>
         {
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Reservation WHERE Codereservation = "+ id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Reservations WHERE idReservation = "+ id);
 
             if (resultSet.first())
             {
@@ -57,11 +84,11 @@ public class ReservationDAO extends DAO<Reservation>
                         id,
                         resultSet.getBoolean("Acccompteverse"),
                         resultSet.getBoolean("SeconPaiement"),
+                        resultSet.getString("Datelimite"),
+                        resultSet.getString("Datereservation"),
+                        resultSet.getBoolean("Annulation"),
                         resultSet.getInt("Montantaccompte"),
                         resultSet.getInt("Montantpaiement"),
-                        resultSet.getDate("Datelimite"),
-                        resultSet.getDate("Datereservation"),
-                        resultSet.getBoolean("Annulation"),
                         resultSet.getInt("Codeclient"),
                         resultSet.getInt("Codecircuit")
                 );
@@ -81,7 +108,7 @@ public class ReservationDAO extends DAO<Reservation>
         {
             resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Reservation");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Reservations");
         }
         catch (SQLException e)
         {
@@ -95,7 +122,7 @@ public class ReservationDAO extends DAO<Reservation>
     {
         int nb = 0;
 
-
+// TODO
         return nb;
     }
 }

@@ -22,7 +22,7 @@ public class ClientDAO extends DAO<Client>
         {
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Clients (Codeclient,Nom) VALUES ("+obj.get_idClient()+",'"+obj.get_nameClient()+"')");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Clients (idClient,nom,userName,mdp,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES ("+obj.get_idClient()+",'"+obj.get_nameClient()+"','"+obj.get_userName()+"','"+obj.get_mdp()+"','"+obj.get_prenomClient()+"','"+obj.get_telephoneClient()+"','"+obj.get_villeClient()+"','"+obj.get_rueClient()+"',"+obj.get_numRueClient()+","+obj.get_codePostalClient()+",'"+obj.get_dateNaissanceClient()+"')");
             toReturn = true;
         }
         catch (SQLException e)
@@ -41,7 +41,7 @@ public class ClientDAO extends DAO<Client>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Clients WHERE Codeclient = " +obj.get_idClient());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Clients WHERE idClient = " +obj.get_idClient());
                 toReturn = true;
         }
         catch (SQLException e)
@@ -65,13 +65,22 @@ public class ClientDAO extends DAO<Client>
         {
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Clients WHERE Codecircuit = "+ id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Clients WHERE idCircuit = "+ id);
 
             if (resultSet.first())
             {
                 client = new Client(
                         id,
-                        resultSet.getString("Nom")
+                        resultSet.getString("nom"),
+                        resultSet.getString("userName"),
+                        resultSet.getString("mdp"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("telephone"),
+                        resultSet.getString("ville"),
+                        resultSet.getString("rue"),
+                        resultSet.getInt("numRue"),
+                        resultSet.getString("codePostal"),
+                        resultSet.getString("dateNaissance")
                 );
             }
         }

@@ -22,7 +22,11 @@ public class HotelDAO extends DAO<Hotel>
         {
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Hotels (CodeHotel,Nom) VALUES ("+obj.get_idHotel()+",'"+obj.get_nameHotel()+"')");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Hotels (idHotel,nom,telephone,rue,numRue) VALUES ("+obj.get_idHotel()+",'"
+                                                                                                                                    +obj.get_nameHotel()+"','"
+                                                                                                                                    +obj.get_telephoneHotel()+"','"
+                                                                                                                                    +obj.get_rueHotel()+"',"
+                                                                                                                                    +obj.get_numRueHotel()+")");
             toReturn = true;
         }
         catch (SQLException e)
@@ -40,7 +44,7 @@ public class HotelDAO extends DAO<Hotel>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Hotels WHERE CodeHotel = " +obj.get_idHotel());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Hotels WHERE idHotel = " +obj.get_idHotel());
                 toReturn = true;
 
         }
@@ -64,13 +68,16 @@ public class HotelDAO extends DAO<Hotel>
         {
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Hotels WHERE CodeHotel = "+ id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Hotels WHERE idHotel = "+ id);
 
             if (resultSet.first())
             {
                 hotel = new Hotel(
                         id,
-                        resultSet.getString("Nom")
+                        resultSet.getString("nom"),
+                        resultSet.getString("telephone"),
+                        resultSet.getString("rue"),
+                        resultSet.getInt("numRue")
                 );
             }
         }

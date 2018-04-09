@@ -34,6 +34,8 @@
                     </Menu>
                 </menus>
             </MenuBar>
+
+            <!--Research area-->
             <HBox spacing="5">
                 <TextField fx:id="textField_requete" promptText="Saisissez une requete">
                     <HBox.margin>
@@ -56,14 +58,17 @@
                     <Tab fx:id="tab_circuits" closable="false" text="Circuits">
                         <TableView fx:id="tableView_Circuits" editable="true">
                             <columns>
-                                <TableColumn prefWidth="75" text="id">
+                                <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Name">
                                     <cellValueFactory><PropertyValueFactory property="_nameCircuit" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="125" text="Place disponnibles">
-                                    <cellValueFactory><PropertyValueFactory property="_placesDispo" /></cellValueFactory>
+                                <TableColumn prefWidth="75" text="Places">
+                                    <cellValueFactory><PropertyValueFactory property="_places" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Prix">
+                                    <cellValueFactory><PropertyValueFactory property="_prix" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Depart">
                                     <cellValueFactory><PropertyValueFactory property="_dateDepart" /></cellValueFactory>
@@ -71,8 +76,11 @@
                                 <TableColumn prefWidth="125" text="Arrivee">
                                     <cellValueFactory><PropertyValueFactory property="_dateFin" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="75" text="Annulation">
-                                    <cellValueFactory><PropertyValueFactory property="_cancelCircuit" /></cellValueFactory>
+                                <TableColumn prefWidth="75" text="Open ?">
+                                    <cellValueFactory><PropertyValueFactory property="_open" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Id accompagnateur">
+                                    <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
@@ -82,11 +90,38 @@
                     <Tab fx:id="tab_clients" closable="false" text="Clients">
                         <TableView fx:id="tableView_Clients" editable="true">
                             <columns>
-                                <TableColumn prefWidth="75" text="id">
+                                <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idClient" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="125" text="Name">
+                                <TableColumn prefWidth="125" text="Last name">
                                     <cellValueFactory><PropertyValueFactory property="_nameClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="User name">
+                                    <cellValueFactory><PropertyValueFactory property="_userName" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Password">
+                                    <cellValueFactory><PropertyValueFactory property="_mdp" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="First name">
+                                    <cellValueFactory><PropertyValueFactory property="_prenomClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="City">
+                                    <cellValueFactory><PropertyValueFactory property="_villeClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Postal code">
+                                    <cellValueFactory><PropertyValueFactory property="_codePostalClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Birth date">
+                                    <cellValueFactory><PropertyValueFactory property="_dateNaissanceClient" /></cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
@@ -96,25 +131,37 @@
                     <Tab fx:id="tab_hotel" closable="false" text="Hotels">
                         <TableView fx:id="tableView_Hotels" editable="true">
                             <columns>
-                                <TableColumn prefWidth="75" text="id">
+                                <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idHotel" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Name">
                                     <cellValueFactory><PropertyValueFactory property="_nameHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueHotel" /></cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
                     </Tab>
 
                     <!-- Tab Visite -->
-                    <Tab fx:id="tab_visite" closable="false" text="Villes">
+                    <Tab fx:id="tab_ville" closable="false" text="Villes">
                         <TableView fx:id="tableView_Villes" editable="true">
                             <columns>
-                                <TableColumn prefWidth="75" text="id">
+                                <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idVille" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Name">
                                     <cellValueFactory><PropertyValueFactory property="_nameVille" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="id hotel">
+                                    <cellValueFactory><PropertyValueFactory property="_idHotel" /></cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
@@ -124,11 +171,29 @@
                     <Tab fx:id="tab_accompagnateur" closable="false" text="Accompagnateurs">
                         <TableView fx:id="tableView_Accompagnateurs" editable="true">
                             <columns>
-                                <TableColumn prefWidth="75" text="id">
+                                <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="125" text="Name">
+                                <TableColumn prefWidth="125" text="Last name">
                                     <cellValueFactory><PropertyValueFactory property="_nameAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="First name">
+                                    <cellValueFactory><PropertyValueFactory property="_prenomAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="City">
+                                    <cellValueFactory><PropertyValueFactory property="_villeAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Postal code">
+                                    <cellValueFactory><PropertyValueFactory property="_codePostalAccompagnateur" /></cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
@@ -144,7 +209,7 @@
                                 <TableColumn prefWidth="75" text="Accompte">
                                     <cellValueFactory><PropertyValueFactory property="_accompte" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="125" text="Second paiement">
+                                <TableColumn prefWidth="75" text="Second paiement">
                                     <cellValueFactory><PropertyValueFactory property="_secondPaiement" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Montant accompte">
@@ -156,7 +221,7 @@
                                 <TableColumn prefWidth="75" text="Date limite">
                                     <cellValueFactory><PropertyValueFactory property="_dateLimite" /></cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="125" text="Date reservation">
+                                <TableColumn prefWidth="75" text="Date reservation">
                                     <cellValueFactory><PropertyValueFactory property="_dateReservation" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="75" text="Annulation">
