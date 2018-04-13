@@ -98,7 +98,6 @@ CREATE TABLE Hotels(
 	telephone  VARCHAR2 (50)  ,
 	rue        VARCHAR2 (50)  ,
 	numRue     NUMBER(10,0)   ,
-	idVille    NUMBER(10,0)   ,
 	CONSTRAINT Hotels_Pk PRIMARY KEY (idHotel)
 );
 

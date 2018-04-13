@@ -1,13 +1,13 @@
 package com.valday.agenceVoyage.GUI.Popup;
 
-import com.valday.agenceVoyage.DAO.AccompagnateurDAO;
-import com.valday.agenceVoyage.DAO.CircuitDAO;
-import com.valday.agenceVoyage.DAO.DAO;
 import com.valday.agenceVoyage.Table.Accompagnateur;
 import com.valday.agenceVoyage.Table.Circuit;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -62,9 +62,7 @@ public class ajoutCircuitController
     @FXML
     private void but_ValiderClick()
     {
-        DAO<Circuit> circuitDAO = new CircuitDAO(JdbcConnectionManager.Instance().get_connector());
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-        Circuit newCircuit = null;
         int idAcc = -1;
         for(int i = 0; i < this._listAccompagnateurs.size();i++)
         {
@@ -75,7 +73,7 @@ public class ajoutCircuitController
             }
         }
 
-        newCircuit = new Circuit(circuitDAO.Count()+1,
+        Circuit newCircuit = new Circuit(TableManager.Instance().get_circuitDAO().Count()+1,
                 this.textField_name.getText(),
                 Integer.parseInt(this.textField_placeDispo.getText()),
                 Integer.parseInt(this.textField_prix.getText()),
@@ -84,7 +82,7 @@ public class ajoutCircuitController
                 this.checkBox_circuitOpen.isSelected(),
                 idAcc);
 
-        if(circuitDAO.Add(newCircuit))
+        if(TableManager.Instance().get_circuitDAO().Add(newCircuit))
         {
             System.out.println(" => Circuit successfully add ...");
             // get a handle to the stage
@@ -96,15 +94,36 @@ public class ajoutCircuitController
     }
 
     @FXML
+    private void but_addAccClick()
+    {
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutAccompagnateur.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Ajout Accompagnateur");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            this.loadComboBoxValues();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     private void initialize()
+    {
+        this.loadComboBoxValues();
+    }
+
+    private void loadComboBoxValues()
     {
         try
         {
             this._listNomAccompagnateurs = this.comboBox_accompagnateurs.getItems();
             this._listAccompagnateurs = new ArrayList<>();
 
-            DAO<Accompagnateur> accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allAccompagnateurs = accompagnateurDAO.selectAll();
+            ResultSet allAccompagnateurs = TableManager.Instance().get_accompagnateurDAO().selectAll();
 
             while (allAccompagnateurs.next())
             {

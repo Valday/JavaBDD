@@ -8,8 +8,12 @@ import com.valday.agenceVoyage.Table.Circuit;
 import com.valday.agenceVoyage.Table.Client;
 import com.valday.agenceVoyage.Table.Reservation;
 import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -72,12 +76,9 @@ public class ajoutReservationController
     @FXML
     private void but_ValiderClick()
     {
-        DAO<Reservation> reservationDAO = new ReservationDAO(JdbcConnectionManager.Instance().get_connector());
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-
-        Reservation newReservation = null;
-
         int idClient = -1;
+        int idCircuit = -1;
 
         for(int i = 0; i < this._listClients.size();i++)
         {
@@ -88,8 +89,6 @@ public class ajoutReservationController
             }
         }
 
-        int idCircuit = -1;
-
         for(int i = 0; i < this._listCircuits.size();i++)
         {
             if(this.comboBox_circuit.getSelectionModel().getSelectedItem().toString().contains(this._listCircuits.get(i).get_nameCircuit()))
@@ -98,7 +97,7 @@ public class ajoutReservationController
             }
         }
 
-        newReservation = new Reservation(reservationDAO.Count()+1,
+        Reservation newReservation = new Reservation(TableManager.Instance().get_reservationDAO().Count()+1,
                 this.checkBox_accompteOk.isSelected(),
                 this.checkBox_secondPaiementOk.isSelected(),
                 simpleDateFormater.format(java.sql.Date.valueOf(this.datePicker_limite.getValue())),
@@ -107,7 +106,7 @@ public class ajoutReservationController
                 Integer.parseInt(this.textField_montantSecondPaiement.getText()),
                 idClient, idCircuit);
 
-        if(reservationDAO.Add(newReservation))
+        if(TableManager.Instance().get_reservationDAO().Add(newReservation))
         {
             System.out.println(" => Reservation successfully add ...");
             // get a handle to the stage
@@ -121,13 +120,17 @@ public class ajoutReservationController
     @FXML
     private void initialize()
     {
+        this.loadComboBoxValues();
+    }
+
+    private void loadComboBoxValues()
+    {
         try
         {
             this._listNomClients = this.comboBox_client.getItems();
             this._listClients = new ArrayList<>();
 
-            DAO<Client> clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allClients = clientDAO.selectAll();
+            ResultSet allClients = TableManager.Instance().get_clientDAO().selectAll();
 
             while (allClients.next())
             {
@@ -150,8 +153,7 @@ public class ajoutReservationController
             this._listNomCircuits = this.comboBox_circuit.getItems();
             this._listCircuits = new ArrayList<>();
 
-            DAO<Circuit> circuitDAO = new CircuitDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allCircuits = circuitDAO.selectAll();
+            ResultSet allCircuits = TableManager.Instance().get_circuitDAO().selectAll();
 
             while (allCircuits.next())
             {
@@ -172,6 +174,42 @@ public class ajoutReservationController
             this.comboBox_circuit.setItems(this._listNomCircuits);
         }
         catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void but_addClientClick()
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutClient.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Ajout Client");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            this.loadComboBoxValues();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void but_addCircuitClick()
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCircuit.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Ajout Client");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            this.loadComboBoxValues();
+        }
+        catch(Exception e)
         {
             e.printStackTrace();
         }

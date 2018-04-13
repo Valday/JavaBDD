@@ -4,6 +4,7 @@ import com.valday.agenceVoyage.DAO.AccompagnateurDAO;
 import com.valday.agenceVoyage.DAO.DAO;
 import com.valday.agenceVoyage.Table.Accompagnateur;
 import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -52,8 +53,7 @@ public class ajoutAccompagnateurController
     private void but_ValiderClick()
     {
 
-        DAO<Accompagnateur> accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
-        Accompagnateur newAccompagnateur = new Accompagnateur(accompagnateurDAO.Count()+1,
+        Accompagnateur newAccompagnateur = new Accompagnateur(TableManager.Instance().get_accompagnateurDAO().Count()+1,
                 this.textField_name.getText(),
                 this.textField_prenom.getText(),
                 this.textField_telephone.getText(),
@@ -62,7 +62,7 @@ public class ajoutAccompagnateurController
                 this.textField_ville.getText(),
                 this.textField_codePostal.getText());
 
-        if(accompagnateurDAO.Add(newAccompagnateur))
+        if(TableManager.Instance().get_accompagnateurDAO().Add(newAccompagnateur))
         {
             System.out.println(" => Accompagnateur successfully add ...");
             // get a handle to the stage

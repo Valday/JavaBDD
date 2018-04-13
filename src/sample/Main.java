@@ -1,12 +1,5 @@
 package sample;
 
-import com.valday.agenceVoyage.DAO.AccompagnateurDAO;
-import com.valday.agenceVoyage.DAO.CircuitDAO;
-import com.valday.agenceVoyage.DAO.DAO;
-import com.valday.agenceVoyage.DAO.HotelDAO;
-import com.valday.agenceVoyage.Table.Accompagnateur;
-import com.valday.agenceVoyage.Table.Circuit;
-import com.valday.agenceVoyage.Table.Hotel;
 import com.valday.agenceVoyage.managers.JdbcConnectionManager;
 import com.valday.utils.xmlParser;
 import javafx.application.Application;

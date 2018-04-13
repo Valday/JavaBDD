@@ -56,7 +56,7 @@ public class HotelDAO extends DAO<Hotel>
     }
 
     @Override
-    public boolean Update(Hotel obj) {
+    public boolean Edit(Hotel obj) {
         return false;
     }
 

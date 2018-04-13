@@ -1,14 +1,13 @@
 package com.valday.agenceVoyage.GUI.Popup;
 
-import com.valday.agenceVoyage.DAO.AccompagnateurDAO;
-import com.valday.agenceVoyage.DAO.DAO;
-import com.valday.agenceVoyage.DAO.HotelDAO;
-import com.valday.agenceVoyage.DAO.VilleDAO;
 import com.valday.agenceVoyage.Table.Hotel;
 import com.valday.agenceVoyage.Table.Ville;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -50,8 +49,6 @@ public class ajoutVilleController
     @FXML
     private void but_ValiderClick()
     {
-        DAO<Ville> villeDAO = new VilleDAO(JdbcConnectionManager.Instance().get_connector());
-
         int idHotel = 0;
         for(int i = 0; i < this._listHotels.size();i++)
         {
@@ -61,11 +58,11 @@ public class ajoutVilleController
             }
         }
 
-        Ville newVille = new Ville(villeDAO.Count()+1,
+        Ville newVille = new Ville(TableManager.Instance().get_villeDAO().Count()+1,
                 this.textField_name.getText(),
                 idHotel);
 
-        if(villeDAO.Add(newVille))
+        if(TableManager.Instance().get_villeDAO().Add(newVille))
         {
             System.out.println(" => Ville successfully add ...");
             // get a handle to the stage
@@ -79,13 +76,17 @@ public class ajoutVilleController
     @FXML
     private void initialize()
     {
+        this.loadComboBoxValues();
+    }
+
+    private void loadComboBoxValues()
+    {
         try
         {
             this._listNomHotels = this.comboBox_hotel.getItems();
             this._listHotels = new ArrayList<>();
 
-            DAO<Hotel> hotelDAO = new HotelDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allHotels = hotelDAO.selectAll();
+            ResultSet allHotels = TableManager.Instance().get_hotelDAO().selectAll();
 
             while(allHotels.next())
             {
@@ -102,6 +103,24 @@ public class ajoutVilleController
 
         }
         catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void but_addHotelClick()
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutHotel.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Ajout Hotel");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            this.loadComboBoxValues();
+        }
+        catch(Exception e)
         {
             e.printStackTrace();
         }

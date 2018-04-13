@@ -22,7 +22,7 @@ public class VilleDAO extends DAO<Ville>
         {
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Villes (Codeville,Nom,CodeHotel) VALUES ("+obj.get_idVille()+",'"+obj.get_nameVille()+"',1)");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Villes (idVille,nom,idHotel) VALUES ("+obj.get_idVille()+",'"+obj.get_nameVille()+"',"+obj.get_idHotel()+")");
             toReturn = true;
         }
         catch (SQLException e)
@@ -41,7 +41,10 @@ public class VilleDAO extends DAO<Ville>
         {
             this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Villes WHERE Codeville = " +obj.get_idVille());
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Visite WHERE idVille = " +obj.get_idVille());
+            this.connect.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Villes WHERE idVille = " +obj.get_idVille());
                 toReturn = true;
         }
         catch (SQLException e)
@@ -52,7 +55,7 @@ public class VilleDAO extends DAO<Ville>
     }
 
     @Override
-    public boolean Update(Ville obj) {
+    public boolean Edit(Ville obj) {
         return false;
     }
 

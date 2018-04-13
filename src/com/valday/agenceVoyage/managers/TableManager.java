@@ -13,31 +13,106 @@ public class TableManager
 
     //region Private Attributs
 
-    private static ObservableList<Circuit> circuitObservableList;
+    private volatile static TableManager _instance;
 
-    private static ObservableList<Accompagnateur> accompagnateurObservableList;
+    private ObservableList<Circuit> _circuitObservableList;
 
-    private static ObservableList<Client> clientObservableList;
+    private ObservableList<Accompagnateur> _accompagnateurObservableList;
 
-    private static ObservableList<Hotel> hotelObservableList;
+    private ObservableList<Client> _clientObservableList;
 
-    private static ObservableList<Reservation> reservationObservableList;
+    private ObservableList<Hotel> _hotelObservableList;
 
-    private static ObservableList<Ville> villeObservableList;
+    private ObservableList<Reservation> _reservationObservableList;
+
+    private ObservableList<Ville> _villeObservableList;
+
+    private static DAO<Accompagnateur> _accompagnateurDAO;
+
+    private static DAO<Circuit> _circuitDAO;
+
+    private static DAO<Client> _clientDAO;
+
+    private static DAO<Hotel> _hotelDAO;
+
+    private static DAO<Ville> _villeDAO;
+
+    private static DAO<Reservation> _reservationDAO;
+
+    private ResultSet _allAccompagnateurs;
+
+    private ResultSet _allCircuits;
+
+    private ResultSet _allClients;
+
+    private ResultSet _allHotels;
+
+    private ResultSet _allVilles;
+
+    private ResultSet _allReservations;
 
     //endregion Private Attributs
 
     //region Public Attributs
 
+    public DAO<Accompagnateur> get_accompagnateurDAO()
+    {
+        return _accompagnateurDAO;
+    }
+
+    public DAO<Circuit> get_circuitDAO()
+    {
+        return _circuitDAO;
+    }
+
+    public DAO<Client> get_clientDAO()
+    {
+        return _clientDAO;
+    }
+
+    public DAO<Hotel> get_hotelDAO()
+    {
+        return _hotelDAO;
+    }
+
+    public DAO<Ville> get_villeDAO()
+    {
+        return _villeDAO;
+    }
+
+    public DAO<Reservation> get_reservationDAO()
+    {
+        return _reservationDAO;
+    }
 
 
     //endregion Public Attributs
 
     //region Constructor
 
-    private TableManager()
+    public static TableManager Instance()
     {
+        if (_instance == null)
+        {
+            synchronized(TableManager.class){
+                if(_instance == null)
+                {
+                    _instance = new TableManager();
+                    initDAO();
+                }
+            }
+        }
+        return _instance;
+    }
 
+    private static void initDAO()
+    {
+        _accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
+        _circuitDAO = new CircuitDAO(JdbcConnectionManager.Instance().get_connector());
+        _clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
+        _hotelDAO = new HotelDAO(JdbcConnectionManager.Instance().get_connector());
+        _reservationDAO = new ReservationDAO(JdbcConnectionManager.Instance().get_connector());
+        _villeDAO = new VilleDAO(JdbcConnectionManager.Instance().get_connector());
     }
 
     //endregion Services
@@ -45,33 +120,31 @@ public class TableManager
     //region Private Services
 
 
-
     //endregion Private Services
 
     //region Public Services
 
-    public static ObservableList<Accompagnateur> LoadAccompagnateurs()
+    public ObservableList<Accompagnateur> LoadAccompagnateurs()
     {
 
-        accompagnateurObservableList = FXCollections.observableArrayList();
+        this._accompagnateurObservableList = FXCollections.observableArrayList();
 
         try
         {
 
-            DAO<Accompagnateur> accompagnateurDAO = new AccompagnateurDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allAccompagnateurs = accompagnateurDAO.selectAll();
+            this._allAccompagnateurs = this._accompagnateurDAO.selectAll();
 
-            while (allAccompagnateurs.next())
+            while (this._allAccompagnateurs.next())
             {
-                Accompagnateur newAccompagnateur = new Accompagnateur(allAccompagnateurs.getInt(1),
-                        allAccompagnateurs.getString(2),
-                        allAccompagnateurs.getString(3),
-                        allAccompagnateurs.getString(4),
-                        allAccompagnateurs.getInt(5),
-                        allAccompagnateurs.getString(6),
-                        allAccompagnateurs.getString(7),
-                        allAccompagnateurs.getString(8));
-                accompagnateurObservableList.add(newAccompagnateur);
+                Accompagnateur newAccompagnateur = new Accompagnateur(this._allAccompagnateurs.getInt(1),
+                        this._allAccompagnateurs.getString(2),
+                        this._allAccompagnateurs.getString(3),
+                        this._allAccompagnateurs.getString(4),
+                        this._allAccompagnateurs.getInt(5),
+                        this._allAccompagnateurs.getString(6),
+                        this._allAccompagnateurs.getString(7),
+                        this._allAccompagnateurs.getString(8));
+                this._accompagnateurObservableList.add(newAccompagnateur);
             }
 
         }
@@ -80,33 +153,32 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return accompagnateurObservableList;
+        return this._accompagnateurObservableList;
 
     }
 
-    public static ObservableList<Circuit> LoadCircuits()
+    public ObservableList<Circuit> LoadCircuits()
     {
 
-        circuitObservableList = FXCollections.observableArrayList();
+        this._circuitObservableList = FXCollections.observableArrayList();
 
         try
         {
 
-            DAO<Circuit> circuitDAO = new CircuitDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allCircuits = circuitDAO.selectAll();
+            this._allCircuits = this._circuitDAO.selectAll();
 
-            while (allCircuits.next())
+            while (this._allCircuits.next())
             {
-                Circuit newCircuit = new Circuit(allCircuits.getInt(1),
-                        allCircuits.getString(2),
-                        allCircuits.getInt(3),
-                        allCircuits.getInt(4),
-                        allCircuits.getString(5),
-                        allCircuits.getString(6),
-                        allCircuits.getBoolean(7),
-                        allCircuits.getInt(8));
+                Circuit newCircuit = new Circuit(this._allCircuits.getInt(1),
+                        this._allCircuits.getString(2),
+                        this._allCircuits.getInt(3),
+                        this._allCircuits.getInt(4),
+                        this._allCircuits.getString(5),
+                        this._allCircuits.getString(6),
+                        this._allCircuits.getBoolean(7),
+                        this._allCircuits.getInt(8));
 
-                circuitObservableList.add(newCircuit);
+                this._circuitObservableList.add(newCircuit);
             }
 
         }
@@ -115,35 +187,34 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return circuitObservableList;
+        return this._circuitObservableList;
 
     }
 
-    public static ObservableList<Client> LoadClients()
+    public  ObservableList<Client> LoadClients()
     {
 
-        clientObservableList = FXCollections.observableArrayList();
+        this._clientObservableList = FXCollections.observableArrayList();
 
         try
         {
-            DAO<Client> clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allClients = clientDAO.selectAll();
+            this._allClients = this._clientDAO.selectAll();
 
-            while (allClients.next())
+            while (this._allClients.next())
             {
-                Client newClient = new Client(allClients.getInt(1),
-                        allClients.getString(2),
-                        allClients.getString(3),
-                        allClients.getString(4),
-                        allClients.getString(5),
-                        allClients.getString(6),
-                        allClients.getString(7),
-                        allClients.getString(8),
-                        allClients.getInt(9),
-                        allClients.getString(10),
-                        allClients.getString(11));
+                Client newClient = new Client(this._allClients.getInt(1),
+                        this._allClients.getString(2),
+                        this._allClients.getString(3),
+                        this._allClients.getString(4),
+                        this._allClients.getString(5),
+                        this._allClients.getString(6),
+                        this._allClients.getString(7),
+                        this._allClients.getString(8),
+                        this._allClients.getInt(9),
+                        this._allClients.getString(10),
+                        this._allClients.getString(11));
 
-                clientObservableList.add(newClient);
+                this._clientObservableList.add(newClient);
             }
 
         }
@@ -152,28 +223,27 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return clientObservableList;
+        return this._clientObservableList;
     }
 
-    public static ObservableList<Hotel> LoadHotels()
+    public ObservableList<Hotel> LoadHotels()
     {
 
-        hotelObservableList = FXCollections.observableArrayList();
+        this._hotelObservableList = FXCollections.observableArrayList();
 
         try
         {
-            DAO<Hotel> hotelDAO = new HotelDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allHotels = hotelDAO.selectAll();
+            this._allHotels = this._hotelDAO.selectAll();
 
-            while(allHotels.next())
+            while(this._allHotels.next())
             {
-                Hotel newHotel = new Hotel(allHotels.getInt(1),
-                        allHotels.getString(2),
-                        allHotels.getString(3),
-                        allHotels.getString(4),
-                        allHotels.getInt(5));
+                Hotel newHotel = new Hotel(this._allHotels.getInt(1),
+                        this._allHotels.getString(2),
+                        this._allHotels.getString(3),
+                        this._allHotels.getString(4),
+                        this._allHotels.getInt(5));
 
-                hotelObservableList.add(newHotel);
+                this._hotelObservableList.add(newHotel);
             }
 
         }
@@ -182,26 +252,25 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return hotelObservableList;
+        return this._hotelObservableList;
     }
 
-    public static ObservableList<Ville> LoadVilles()
+    public ObservableList<Ville> LoadVilles()
     {
 
-        villeObservableList = FXCollections.observableArrayList();
+        this._villeObservableList = FXCollections.observableArrayList();
 
         try
         {
-            DAO<Ville> villeDAO = new VilleDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allVilles = villeDAO.selectAll();
+            this._allVilles = this._villeDAO.selectAll();
 
-            while(allVilles.next())
+            while(this._allVilles.next())
             {
-                Ville newVille = new Ville(allVilles.getInt(1),
-                        allVilles.getString(2),
-                        allVilles.getInt(3));
+                Ville newVille = new Ville(this._allVilles.getInt(1),
+                        this._allVilles.getString(2),
+                        this._allVilles.getInt(3));
 
-                villeObservableList.add(newVille);
+                this._villeObservableList.add(newVille);
             }
 
         }
@@ -210,33 +279,32 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return villeObservableList;
+        return this._villeObservableList;
     }
 
-    public static ObservableList<Reservation> LoadReservations()
+    public ObservableList<Reservation> LoadReservations()
     {
 
-        reservationObservableList = FXCollections.observableArrayList();
+        this._reservationObservableList = FXCollections.observableArrayList();
 
         try
         {
-            DAO<Reservation> reservationDAO = new ReservationDAO(JdbcConnectionManager.Instance().get_connector());
-            ResultSet allReservations = reservationDAO.selectAll();
+            this._allReservations = this._reservationDAO.selectAll();
 
-            while (allReservations.next())
+            while (this._allReservations.next())
             {
-                Reservation newReservation = new Reservation(allReservations.getInt(1),
-                        allReservations.getBoolean(2),
-                        allReservations.getBoolean(3),
-                        allReservations.getString(4),
-                        allReservations.getString(5),
-                        allReservations.getBoolean(6),
-                        allReservations.getInt(7),
-                        allReservations.getInt(8),
-                        allReservations.getInt(9),
-                        allReservations.getInt(10));
+                Reservation newReservation = new Reservation(this._allReservations.getInt(1),
+                        this._allReservations.getBoolean(2),
+                        this._allReservations.getBoolean(3),
+                        this._allReservations.getString(4),
+                        this._allReservations.getString(5),
+                        this._allReservations.getBoolean(6),
+                        this._allReservations.getInt(7),
+                        this._allReservations.getInt(8),
+                        this._allReservations.getInt(9),
+                        this._allReservations.getInt(10));
 
-                reservationObservableList.add(newReservation);
+                this._reservationObservableList.add(newReservation);
             }
 
         }
@@ -245,7 +313,7 @@ public class TableManager
             e.printStackTrace();
         }
 
-        return reservationObservableList;
+        return this._reservationObservableList;
     }
 
     //endregion Public Services

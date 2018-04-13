@@ -4,9 +4,11 @@ import com.valday.agenceVoyage.DAO.ClientDAO;
 import com.valday.agenceVoyage.DAO.DAO;
 import com.valday.agenceVoyage.Table.Client;
 import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -57,9 +59,8 @@ public class ajoutClientController
     @FXML
     private void but_ValiderClick()
     {
-        DAO<Client> clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-        Client newClient = new Client(clientDAO.Count()+1,
+        Client newClient = new Client(TableManager.Instance().get_clientDAO().Count()+1,
                 this.textField_lName.getText(),
                 "",
                 "",
@@ -71,7 +72,7 @@ public class ajoutClientController
                 this.textField_postalCode.getText(),
                 simpleDateFormater.format(java.sql.Date.valueOf(this.datePicker_birthDate.getValue())));
 
-        if(clientDAO.Add(newClient))
+        if(TableManager.Instance().get_clientDAO().Add(newClient))
         {
             System.out.println(" => Client successfully add ...");
             // get a handle to the stage

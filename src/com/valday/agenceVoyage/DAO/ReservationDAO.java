@@ -64,7 +64,7 @@ public class ReservationDAO extends DAO<Reservation>
     }
 
     @Override
-    public boolean Update(Reservation obj) {
+    public boolean Edit(Reservation obj) {
         return false;
     }
 

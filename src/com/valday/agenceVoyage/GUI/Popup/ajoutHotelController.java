@@ -1,9 +1,7 @@
 package com.valday.agenceVoyage.GUI.Popup;
 
-import com.valday.agenceVoyage.DAO.DAO;
-import com.valday.agenceVoyage.DAO.HotelDAO;
 import com.valday.agenceVoyage.Table.Hotel;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.valday.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -43,14 +41,13 @@ public class ajoutHotelController
     @FXML
     private void but_ValiderClick()
     {
-        DAO<Hotel> hotelDAO = new HotelDAO(JdbcConnectionManager.Instance().get_connector());
-        Hotel newHotel = new Hotel(hotelDAO.Count()+1,
+        Hotel newHotel = new Hotel(TableManager.Instance().get_hotelDAO().Count()+1,
                 this.textField_name.getText(),
                 this.textField_phone.getText(),
                 this.textField_street.getText(),
                 Integer.parseInt(this.textField_streetNumber.getText()));
 
-        if(hotelDAO.Add(newHotel))
+        if(TableManager.Instance().get_hotelDAO().Add(newHotel))
         {
             System.out.println(" => Hotel successfully add ...");
             // get a handle to the stage

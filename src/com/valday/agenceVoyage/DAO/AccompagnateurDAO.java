@@ -39,6 +39,9 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         try
         {
             this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE Circuits SET idAccompagnateur = null WHERE idAccompagnateur = "+obj.get_idAccompagnateur());
+            this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Accompagnateurs WHERE idAccompagnateur = " +obj.get_idAccompagnateur());
             toReturn = true;
@@ -51,7 +54,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
     }
 
     @Override
-    public boolean Update(Accompagnateur obj) {
+    public boolean Edit(Accompagnateur obj) {
         return false;
     }
 
@@ -111,7 +114,7 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         {
             resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Accompagnateur");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Accompagnateurs");
 
             resultSet.first();
             nb = resultSet.getInt(1);

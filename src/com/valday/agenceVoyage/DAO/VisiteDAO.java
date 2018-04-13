@@ -37,7 +37,7 @@ public class VisiteDAO extends DAO<Visite>
     }
 
     @Override
-    public boolean Update(Visite obj) {
+    public boolean Edit(Visite obj) {
         return false;
     }
 

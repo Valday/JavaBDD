@@ -10,6 +10,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.CheckBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox prefHeight="290" prefWidth="320" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.Popup.ajoutReservationController">
 <padding><Insets left="5.0" top="15.0" /></padding>
 <HBox spacing="5">
@@ -25,14 +27,39 @@
     </VBox>
 
     <VBox spacing="5" prefWidth="150">
-        <ComboBox fx:id="comboBox_client" prefHeight="25" prefWidth="150"/>
+        <HBox spacing="5" prefWidth="200">
+            <ComboBox fx:id="comboBox_client" prefHeight="25" prefWidth="150"/>
+            <Button fx:id="but_addClient" onAction="#but_addClientClick" prefHeight="25" prefWidth="35" >
+                <graphic>
+                    <ImageView fitWidth="15" fitHeight="15">
+                        <image>
+                            <Image url="@../../../ressources/images/add-528.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+        </HBox>
         <CheckBox fx:id="checkBox_accompteOk" prefHeight="25" />
         <CheckBox fx:id="checkBox_secondPaiementOk" prefHeight="25" />
         <TextField fx:id="textField_montantAccompte" prefHeight="25" prefWidth="100" promptText="Montant accompte"/>
         <TextField fx:id="textField_montantSecondPaiement" prefHeight="25" prefWidth="150" promptText="Montant second paiement"/>
         <DatePicker fx:id="datePicker_reservation" prefHeight="25" prefWidth="150" />
         <DatePicker fx:id="datePicker_limite" prefHeight="25" prefWidth="150" />
-        <ComboBox fx:id="comboBox_circuit" prefHeight="25" prefWidth="150" />
+        <HBox spacing="5" prefWidth="200">
+            <ComboBox fx:id="comboBox_circuit" prefHeight="25" prefWidth="150" />
+            <Button fx:id="but_addCircuit" onAction="#but_addCircuitClick" prefHeight="25" prefWidth="35" >
+                <graphic>
+                    <ImageView fitWidth="15" fitHeight="15">
+                        <image>
+                            <Image  url="@../../../ressources/images/add-528.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+        </HBox>
+
     </VBox>
 </HBox>
 

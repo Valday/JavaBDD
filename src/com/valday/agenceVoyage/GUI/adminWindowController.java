@@ -1,9 +1,6 @@
 package com.valday.agenceVoyage.GUI;
 
-import com.valday.agenceVoyage.DAO.ClientDAO;
-import com.valday.agenceVoyage.DAO.DAO;
 import com.valday.agenceVoyage.Table.*;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
 import com.valday.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +12,6 @@ import javafx.stage.Stage;
 public class adminWindowController
 {
     //region Private Attributs
-
-    //endregion Private Attributs
-
-    //region Public Attributs
-
-
-    //endregion Public Attributs
 
     private SingleSelectionModel<Tab> selectionModel;
 
@@ -49,32 +39,71 @@ public class adminWindowController
     @FXML
     private MenuItem menuItem_Quit;
 
+    //endregion Private Attributs
+
+    //region Public Attributs
+
+    //endregion Public Attributs
+
+    //region Private Services
+
+    //region Constructors / Initialisation
+
+
+    //endregion Constructors / Initialisation
+
+    //region Private Services
+
+    //region FXML
+
     @FXML
-    public void menuItem_QuitClick()
+    private void menuItem_QuitClick()
     {
         System.exit(0);
     }
 
-    @FXML void but_SuprClick()
+    @FXML
+    private void but_SuprClick()
     {
         switch (selectionModel.getSelectedIndex())
         {
             case 0:
+                System.out.println(" => Supression Circuit ...");
+                Circuit newCircuit = tableView_Circuits.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_circuitDAO().Delete(newCircuit);
                 break;
 
             case 1 :
+                System.out.println(" => Supression Client ...");
                 Client newClient = tableView_Clients.getSelectionModel().getSelectedItem();
-                DAO<Client> clientDAO = new ClientDAO(JdbcConnectionManager.Instance().get_connector());
-                clientDAO.Delete(newClient);
+                TableManager.Instance().get_clientDAO().Delete(newClient);
                 break;
             case 2 :
+                System.out.println(" => Supression Hotel ...");
+                Hotel newHotel = tableView_Hotels.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_hotelDAO().Delete(newHotel);
                 break;
-
-
+            case 3 :
+                System.out.println(" => Supression Ville ...");
+                Ville newVille = tableView_Villes.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_villeDAO().Delete(newVille);
+                break;
+            case 4 :
+                System.out.println(" => Supression Accompagnateur ...");
+                Accompagnateur newAccompagnateur = tableView_Accompagnateurs.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_accompagnateurDAO().Delete(newAccompagnateur);
+                break;
+            case 5 :
+                System.out.println(" => Supression Reservation ...");
+                Reservation newReservation = tableView_Reservations.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_reservationDAO().Delete(newReservation);
+                break;
         }
+        this.LoadTables();
     }
 
-    @FXML void but_AjoutClick()
+    @FXML
+    private void but_AjoutClick()
     {
         switch (selectionModel.getSelectedIndex())
         {
@@ -87,7 +116,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Circuit");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -103,7 +131,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Client");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -119,7 +146,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Hotel");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -135,7 +161,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Ville");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -151,7 +176,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Accompagnateur");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -167,7 +191,6 @@ public class adminWindowController
                     stage.setTitle("Ajout Reservation");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    this.LoadTables();
                 }
                 catch(Exception e)
                 {
@@ -175,6 +198,30 @@ public class adminWindowController
                 }
                 break;
         }
+        this.LoadTables();
+    }
+
+    @FXML
+    private void but_EditClick()
+    {
+        switch (selectionModel.getSelectedIndex())
+        {
+            case 0:
+                Circuit newCircuit = tableView_Circuits.getSelectionModel().getSelectedItem();
+                TableManager.Instance().get_circuitDAO().Edit(newCircuit);
+                break;
+            case 1 :
+                break;
+            case 2 :
+                break;
+            case 3 :
+                break;
+            case 4 :
+                break;
+            case 5 :
+                break;
+        }
+
     }
 
     @FXML
@@ -183,15 +230,20 @@ public class adminWindowController
         this.LoadTables();
     }
 
+
+    //endregion FXML
+
     private void LoadTables()
     {
-        tableView_Circuits.setItems(TableManager.LoadCircuits());
-        tableView_Clients.setItems(TableManager.LoadClients());
-        tableView_Hotels.setItems(TableManager.LoadHotels());
-        tableView_Villes.setItems(TableManager.LoadVilles());
-        tableView_Accompagnateurs.setItems(TableManager.LoadAccompagnateurs());
-        tableView_Reservations.setItems(TableManager.LoadReservations());
+        this.tableView_Circuits.setItems(TableManager.Instance().LoadCircuits());
+        this.tableView_Clients.setItems(TableManager.Instance().LoadClients());
+        this.tableView_Hotels.setItems(TableManager.Instance().LoadHotels());
+        this.tableView_Villes.setItems(TableManager.Instance().LoadVilles());
+        this.tableView_Accompagnateurs.setItems(TableManager.Instance().LoadAccompagnateurs());
+        this.tableView_Reservations.setItems(TableManager.Instance().LoadReservations());
 
         this.selectionModel = this.tabPane_main.getSelectionModel();
     }
+
+    //endregion Private Services
 }

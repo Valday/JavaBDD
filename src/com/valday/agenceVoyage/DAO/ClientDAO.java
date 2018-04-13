@@ -40,6 +40,9 @@ public class ClientDAO extends DAO<Client>
         try
         {
             this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Reservations WHERE idClient = " +obj.get_idClient());
+            this.connect.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Clients WHERE idClient = " +obj.get_idClient());
                 toReturn = true;
@@ -52,8 +55,30 @@ public class ClientDAO extends DAO<Client>
     }
 
     @Override
-    public boolean Update(Client obj) {
-        return false;
+    public boolean Edit(Client obj) {
+        boolean toReturn = false;
+        try
+        {
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE FROM Clients SET nom='"+obj.get_nameClient()
+                        +"', userName='"+obj.get_userName()
+                        +"', mdp='"+obj.get_mdp()
+                        +"', prenom='"+obj.get_prenomClient()
+                        +"', telephone='"+obj.get_telephoneClient()
+                        +"',ville='"+obj.get_villeClient()
+                        +"',rue='"+obj.get_rueClient()
+                        +"', numRue="+obj.get_numRueClient()
+                        +", codePostal="+obj.get_codePostalClient()
+                        +", dateNaissance='"+obj.get_dateNaissanceClient()
+                        +"' WHERE idClient = " +obj.get_idClient());
+            toReturn = true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return toReturn;
     }
 
     @Override

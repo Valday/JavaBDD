@@ -53,9 +53,15 @@ public class CircuitDAO extends DAO<Circuit>
         try
         {
             this.connect.createStatement(
-                ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Circuits WHERE idCircuit = " +obj.get_idCircuit());
-                toReturn = true;
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Visite WHERE idCircuit = " +obj.get_idCircuit());
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Reservations WHERE idCircuit = " +obj.get_idCircuit());
+            this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Circuits WHERE idCircuit = " +obj.get_idCircuit());
+            toReturn = true;
         }
         catch (SQLException e)
         {
@@ -65,7 +71,7 @@ public class CircuitDAO extends DAO<Circuit>
     }
 
     @Override
-    public boolean Update(Circuit obj)
+    public boolean Edit(Circuit obj)
     {
         return false;
     }
