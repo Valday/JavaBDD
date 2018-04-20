@@ -3,25 +3,25 @@
  *  Author : Julien Creach.
  */
 
-package com.valday.agenceVoyage.GUI;
+package com.julienCreach.agenceVoyage.GUI;
 
-import com.valday.agenceVoyage.GUI.Popup.applyCircuitController;
-import com.valday.agenceVoyage.Table.Accompagnateur;
-import com.valday.agenceVoyage.Table.Circuit;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
+import com.julienCreach.agenceVoyage.GUI.Popup.applyCircuitController;
+import com.julienCreach.agenceVoyage.Table.Accompagnateur;
+import com.julienCreach.agenceVoyage.Table.Circuit;
+import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
+import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class guideWindowController
 {
@@ -97,7 +97,7 @@ public class guideWindowController
      * Table Permettant d'afficher les circuits de l'accompagnateur
      */
     @FXML
-    private TableView tableView_Circuits;
+    private TableView<Circuit> tableView_Circuits;
 
 
     /**
@@ -142,7 +142,41 @@ public class guideWindowController
     @FXML
     private void but_ValidModifClick()
     {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Save your new datas");
+        alert.setContentText("Are you ok with this?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Accompagnateur newAccompagnateur = new Accompagnateur(_selectedAccompagnateur.get_idAccompagnateur(),
+                    this.textFieldLastName.getText(),
+                    this.textFieldFirstName.getText(),
+                    this.textFieldPhoneNumber.getText(),
+                    Integer.parseInt(this.textFieldStreetNumber.getText()),
+                    this.textFieldStreet.getText(),
+                    this.textFieldCity.getText(),
+                    this.textFieldPostalCode.getText());
+
+            if(TableManager.Instance().get_accompagnateurDAO().Edit(newAccompagnateur))
+            {
+                System.out.println(" => Accompagnateur successfully updated ...");
+            }
+        }
+    }
+
+    @FXML
+    private void but_DeleteClick()
+    {
+        Circuit newCircuit = this.tableView_Circuits.getSelectionModel().getSelectedItem();
+        if(newCircuit != null)
+        {
+            if(TableManager.Instance().get_circuitDAO().Delete(newCircuit))
+            {
+                this.LoadGuideCircuits();
+            }
+        }
     }
 
         /**
@@ -167,6 +201,7 @@ public class guideWindowController
      */
     private void LoadGuideCircuits()
     {
+        int indexCircuits = 1;
         this._guideCircuits = FXCollections.observableArrayList();
 
         ResultSet resultSet = null;
@@ -178,7 +213,7 @@ public class guideWindowController
 
             while (resultSet.next())
             {
-                Circuit newCircuit = new Circuit(resultSet.getInt(1),
+                Circuit newCircuit = new Circuit(indexCircuits++,
                         resultSet.getString(2),
                         resultSet.getInt(3),
                         resultSet.getInt(4),

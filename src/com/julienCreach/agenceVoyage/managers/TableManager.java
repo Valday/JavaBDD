@@ -3,10 +3,10 @@
  *  Author : Julien Creach.
  */
 
-package com.valday.agenceVoyage.managers;
+package com.julienCreach.agenceVoyage.managers;
 
-import com.valday.agenceVoyage.DAO.*;
-import com.valday.agenceVoyage.Table.*;
+import com.julienCreach.agenceVoyage.DAO.*;
+import com.julienCreach.agenceVoyage.Table.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

@@ -3,11 +3,11 @@
  *  Author : Julien Creach.
  */
 
-package com.valday.agenceVoyage.GUI;
+package com.julienCreach.agenceVoyage.GUI;
 
-import com.valday.agenceVoyage.GUI.Popup.*;
-import com.valday.agenceVoyage.Table.*;
-import com.valday.agenceVoyage.managers.TableManager;
+import com.julienCreach.agenceVoyage.GUI.Popup.*;
+import com.julienCreach.agenceVoyage.Table.*;
+import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

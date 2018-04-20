@@ -3,14 +3,14 @@
  *  Author : Julien Creach.
  */
 
-package com.valday.agenceVoyage.GUI;
+package com.julienCreach.agenceVoyage.GUI;
 
-import com.valday.agenceVoyage.Table.Accompagnateur;
-import com.valday.agenceVoyage.Table.Client;
-import com.valday.agenceVoyage.Table.Passwd;
-import com.valday.agenceVoyage.Table.User;
-import com.valday.agenceVoyage.managers.TableManager;
-import com.valday.utils.MessageBox;
+import com.julienCreach.agenceVoyage.Table.Accompagnateur;
+import com.julienCreach.agenceVoyage.Table.Client;
+import com.julienCreach.agenceVoyage.Table.Passwd;
+import com.julienCreach.agenceVoyage.Table.User;
+import com.julienCreach.agenceVoyage.managers.TableManager;
+import com.julienCreach.utils.MessageBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

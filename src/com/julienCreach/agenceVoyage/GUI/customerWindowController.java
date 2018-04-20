@@ -3,14 +3,13 @@
  *  Author : Julien Creach.
  */
 
-package com.valday.agenceVoyage.GUI;
+package com.julienCreach.agenceVoyage.GUI;
 
-import com.valday.agenceVoyage.GUI.Popup.ajoutReservationController;
-import com.valday.agenceVoyage.GUI.Popup.bookNowController;
-import com.valday.agenceVoyage.Table.Client;
-import com.valday.agenceVoyage.Table.Reservation;
-import com.valday.agenceVoyage.managers.JdbcConnectionManager;
-import com.valday.agenceVoyage.managers.TableManager;
+import com.julienCreach.agenceVoyage.GUI.Popup.bookNowController;
+import com.julienCreach.agenceVoyage.Table.Client;
+import com.julienCreach.agenceVoyage.Table.Reservation;
+import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
+import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -100,7 +99,7 @@ public class customerWindowController
      * Table Permettant d'afficher les réserations du client
      */
     @FXML
-    private TableView tableView_Reservations;
+    private TableView<Reservation> tableView_Reservations;
 
     @FXML
     private Button but_ValidModif;
@@ -140,6 +139,19 @@ public class customerWindowController
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void but_DeleteClick()
+    {
+        Reservation newReservation = this.tableView_Reservations.getSelectionModel().getSelectedItem();
+        if(newReservation != null)
+        {
+            if(TableManager.Instance().get_reservationDAO().Delete(newReservation))
+            {
+                this.LoadCustomerReservations();
+            }
         }
     }
 
@@ -195,7 +207,7 @@ public class customerWindowController
      */
     private void LoadCustomerReservations()
     {
-        int indexReservations = 0;
+        int indexReservations = 1;
         this._customerReservations = FXCollections.observableArrayList();
 
         ResultSet resultSet = null;
@@ -207,7 +219,7 @@ public class customerWindowController
 
             while (resultSet.next())
             {
-                Reservation newReservation = new Reservation(indexReservations+1,
+                Reservation newReservation = new Reservation(indexReservations++,
                         resultSet.getBoolean(2),
                         resultSet.getBoolean(3),
                         resultSet.getString(4).substring(0,10),

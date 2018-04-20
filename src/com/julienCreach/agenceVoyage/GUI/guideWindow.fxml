@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
 <!--
   ~ Copyright (c) 2018.
   ~  Author : Julien Creach.
   -->
 
-<VBox prefHeight="795" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.guideWindowController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="795" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.guideWindowController">
     <!-- MenuBar -->
     <MenuBar prefHeight="25" BorderPane.alignment="CENTER">
         <menus>
@@ -101,15 +88,27 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="but_ApplyJob" onAction="#but_ApplyJobClick" prefHeight="25" prefWidth="110" text="Apply circuit">
-                    <graphic>
-                        <ImageView fitHeight="15" fitWidth="15">
-                            <image>
-                                <Image url="@../../ressources/images/add-528.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
+                <HBox spacing="5">
+                    <Button fx:id="but_ApplyJob" onAction="#but_ApplyJobClick" prefHeight="25" prefWidth="110" text="Apply circuit">
+                        <graphic>
+                            <ImageView fitHeight="15" fitWidth="15">
+                                <image>
+                                    <Image url="@../../ressources/images/add-528.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+
+                    <Button fx:id="but_Delete" onAction="#but_DeleteClick" prefHeight="25" prefWidth="140" text="Cancel Reservation">
+                        <graphic>
+                            <ImageView fitHeight="15" fitWidth="15">
+                                <image>
+                                    <Image url="@../../ressources/images/delete-500.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
             </VBox>
 
         </HBox>
@@ -142,9 +141,9 @@
             <TableColumn prefWidth="75" text="Open ?">
                 <cellValueFactory><PropertyValueFactory property="_open" /></cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="125" text="Id accompagnateur">
+<!--            <TableColumn prefWidth="125" text="Id accompagnateur">
                 <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
-            </TableColumn>
+            </TableColumn>-->
         </columns>
         <VBox.margin>
             <Insets left="5.0" />

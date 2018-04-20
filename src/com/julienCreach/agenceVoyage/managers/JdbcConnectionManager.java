@@ -5,7 +5,9 @@
 
 package com.julienCreach.agenceVoyage.managers;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class JdbcConnectionManager
 {
@@ -97,4 +99,5 @@ public class JdbcConnectionManager
     public Connection get_connector()
     {
         return _connector;
-    
+    }
+}
