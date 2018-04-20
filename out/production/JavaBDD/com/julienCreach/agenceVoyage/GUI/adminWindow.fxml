@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~  Author : Julien Creach.
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="768" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.adminWindowController">
+    <top>
+        <VBox>
+            <!-- MenuBar -->
+            <MenuBar prefHeight="25" BorderPane.alignment="CENTER">
+                <menus>
+                    <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <SeparatorMenuItem mnemonicParsing="false" />
+                            <MenuItem fx:id="menuItem_Quit" mnemonicParsing="false" onAction="#menuItem_QuitClick" text="Quit" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <!--Research area-->
+            <HBox spacing="5">
+                <TextField fx:id="textField_requete" promptText="Saisissez une requete">
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                    </HBox.margin></TextField>
+                <Button fx:id="but_Research" prefHeight="25" prefWidth="90" text="Research">
+                    <HBox.margin>
+                        <Insets top="5.0" />
+                    </HBox.margin>
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <image>
+                                <Image url="@../../ressources/images/find-100.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <GridPane maxHeight="Infinity" maxWidth="Infinity">
+            <TabPane fx:id="tabPane_main" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                <tabs>
+
+                    <!-- Tab Circuit -->
+                    <Tab fx:id="tab_circuits" closable="false" text="Circuits">
+                        <TableView fx:id="tableView_Circuits" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="id">
+                                    <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Name">
+                                    <cellValueFactory><PropertyValueFactory property="_nameCircuit" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Places">
+                                    <cellValueFactory><PropertyValueFactory property="_places" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Prix">
+                                    <cellValueFactory><PropertyValueFactory property="_prix" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Depart">
+                                    <cellValueFactory><PropertyValueFactory property="_dateDepart" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Arrivee">
+                                    <cellValueFactory><PropertyValueFactory property="_dateFin" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Open ?">
+                                    <cellValueFactory><PropertyValueFactory property="_open" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Id accompagnateur">
+                                    <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+
+                    <!-- Tab Client -->
+                    <Tab fx:id="tab_clients" closable="false" text="Clients">
+                        <TableView fx:id="tableView_Clients" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="id">
+                                    <cellValueFactory><PropertyValueFactory property="_idClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Last name">
+                                    <cellValueFactory><PropertyValueFactory property="_nameClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="First name">
+                                    <cellValueFactory><PropertyValueFactory property="_prenomClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="City">
+                                    <cellValueFactory><PropertyValueFactory property="_villeClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Postal code">
+                                    <cellValueFactory><PropertyValueFactory property="_codePostalClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Birth date">
+                                    <cellValueFactory><PropertyValueFactory property="_dateNaissanceClient" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+
+                    <!-- Tab Hotel -->
+                    <Tab fx:id="tab_hotel" closable="false" text="Hotels">
+                        <TableView fx:id="tableView_Hotels" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="id">
+                                    <cellValueFactory><PropertyValueFactory property="_idHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Name">
+                                    <cellValueFactory><PropertyValueFactory property="_nameHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueHotel" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueHotel" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+
+                    <!-- Tab Visite -->
+                    <Tab fx:id="tab_ville" closable="false" text="Villes">
+                        <TableView fx:id="tableView_Villes" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="id">
+                                    <cellValueFactory><PropertyValueFactory property="_idVille" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Name">
+                                    <cellValueFactory><PropertyValueFactory property="_nameVille" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="id hotel">
+                                    <cellValueFactory><PropertyValueFactory property="_idHotel" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+
+                    <!-- Tab Accompagnateur -->
+                    <Tab fx:id="tab_accompagnateur" closable="false" text="Accompagnateurs">
+                        <TableView fx:id="tableView_Accompagnateurs" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="id">
+                                    <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Last name">
+                                    <cellValueFactory><PropertyValueFactory property="_nameAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="First name">
+                                    <cellValueFactory><PropertyValueFactory property="_prenomAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Phone number">
+                                    <cellValueFactory><PropertyValueFactory property="_telephoneAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Street number">
+                                    <cellValueFactory><PropertyValueFactory property="_numRueAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Street">
+                                    <cellValueFactory><PropertyValueFactory property="_rueAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="City">
+                                    <cellValueFactory><PropertyValueFactory property="_villeAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Postal code">
+                                    <cellValueFactory><PropertyValueFactory property="_codePostalAccompagnateur" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+
+                    <!-- Tab Reservation -->
+                    <Tab fx:id="tab_reservation" closable="false" text="Reservations">
+                        <TableView fx:id="tableView_Reservations" editable="false">
+                            <columns>
+                                <TableColumn prefWidth="50" text="Id">
+                                    <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Accompte">
+                                    <cellValueFactory><PropertyValueFactory property="_accompte" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Second paiement">
+                                    <cellValueFactory><PropertyValueFactory property="_secondPaiement" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="125" text="Montant accompte">
+                                    <cellValueFactory><PropertyValueFactory property="_accompteValue" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="175" text="Montant second paiement">
+                                    <cellValueFactory><PropertyValueFactory property="_secondPaiementValue" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Date limite">
+                                    <cellValueFactory><PropertyValueFactory property="_dateLimite" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Date reservation">
+                                    <cellValueFactory><PropertyValueFactory property="_dateReservation" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Annulation">
+                                    <cellValueFactory><PropertyValueFactory property="_cancelResevation" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Id client">
+                                    <cellValueFactory><PropertyValueFactory property="_idClient" /></cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75" text="Id circuit">
+                                    <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </Tab>
+                </tabs>
+            </TabPane>
+            <TitledPane prefWidth="300" text="Commands" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                <VBox spacing="5">
+                    <Button onAction="#but_AjoutClick" prefHeight="25" prefWidth="75" text="Add" alignment="CENTER_LEFT">
+                        <graphic>
+                            <ImageView fitWidth="20" fitHeight="20">
+                                <image>
+                                    <Image url="@../../ressources/images/add-528.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button onAction="#but_EditClick" prefHeight="25" prefWidth="75" text="Edit" alignment="CENTER_LEFT">
+                        <graphic>
+                            <ImageView fitWidth="20" fitHeight="20">
+                                <image>
+                                    <Image url="@../../ressources/images/edit-line-100.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button onAction="#but_SuprClick" prefHeight="25" prefWidth="75" text="Delete" alignment="CENTER_LEFT" >
+                        <graphic>
+                            <ImageView fitWidth="20" fitHeight="20">
+                                <image>
+                                    <Image url="@../../ressources/images/delete-500.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+
+                </VBox>
+            </TitledPane>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </center>
+
+</BorderPane>

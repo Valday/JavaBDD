@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~  Author : Julien Creach.
+  -->
+
+<VBox prefHeight="810" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.customerWindowController">
+    <!-- MenuBar -->
+    <MenuBar prefHeight="25" BorderPane.alignment="CENTER">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem fx:id="menuItem_Quit" mnemonicParsing="false" onAction="#menuItem_QuitClick" text="Quit" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <TitledPane collapsible="false" text="Contact details :">
+        <HBox spacing="200">
+            <VBox spacing="15">
+
+                <HBox spacing="5">
+                    <VBox spacing="5">
+                        <Label text="First name :" />
+                        <TextField fx:id="textFieldFirstName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="First name" />
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Last name :" />
+                        <TextField fx:id="textFieldLastName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Last name" />
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5">
+                    <Label text="Date of birth :" />
+                    <DatePicker fx:id="datePickerBirthDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Phone number :" />
+                    <TextField fx:id="textFieldPhoneNumber" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Phone number" />
+                </VBox>
+
+                <HBox spacing="15">
+                    <VBox spacing="5">
+                        <Label text="N° :" />
+                        <TextField fx:id="textFieldStreetNumber" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="75" promptText="N°" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Street :" />
+                        <TextField fx:id="textFieldStreet" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Street" />
+                    </VBox>
+
+                </HBox>
+
+                <HBox spacing="15">
+                    <VBox spacing="5">
+                        <Label text="Post code :" />
+                        <TextField fx:id="textFieldPostalCode" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="75" promptText="Post code" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="City :" />
+                        <TextField fx:id="textFieldCity" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="City" />
+                    </VBox>
+
+
+
+                </HBox>
+            </VBox>
+
+            <VBox spacing="15">
+                <ImageView>
+                    <image>
+                        <Image url="@../../ressources/images/defaultProfilePicture.png" />
+                    </image>
+                </ImageView>
+
+                <Button fx:id="but_ValidModif" onAction="#but_ValidModifClick" prefHeight="25" prefWidth="110" text="Save changes">
+                    <graphic>
+                        <ImageView fitHeight="15" fitWidth="15">
+                            <image>
+                                <Image url="@../../ressources/images/check-500.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="but_Book" onAction="#but_BookClick" prefHeight="25" prefWidth="110" text="Book now">
+                    <graphic>
+                        <ImageView fitHeight="15" fitWidth="15">
+                            <image>
+                                <Image url="@../../ressources/images/add-528.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </VBox>
+
+        </HBox>
+    </TitledPane>
+
+    <Label prefHeight="25" text="Reservations :">
+      <VBox.margin>
+         <Insets left="15.0" />
+      </VBox.margin></Label>
+    <TableView fx:id="tableView_Reservations" editable="false" maxWidth="-Infinity" prefWidth="800.0">
+        <columns>
+            <TableColumn prefWidth="50" text="Id">
+                <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Accompte">
+                <cellValueFactory><PropertyValueFactory property="_accompte" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Second paiement">
+                <cellValueFactory><PropertyValueFactory property="_secondPaiement" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="125" text="Montant accompte">
+                <cellValueFactory><PropertyValueFactory property="_accompteValue" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="175" text="Montant second paiement">
+                <cellValueFactory><PropertyValueFactory property="_secondPaiementValue" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Date limite">
+                <cellValueFactory><PropertyValueFactory property="_dateLimite" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Date reservation">
+                <cellValueFactory><PropertyValueFactory property="_dateReservation" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Annulation">
+                <cellValueFactory><PropertyValueFactory property="_cancelResevation" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75" text="Id circuit">
+                <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>
+            </TableColumn>
+        </columns>
+        <VBox.margin>
+            <Insets left="5.0" />
+        </VBox.margin>
+    </TableView>
+</VBox>

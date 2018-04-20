@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~  Author : Julien Creach.
+  -->
+
+<GridPane alignment="CENTER" prefHeight="250" prefWidth="800" styleClass="loginBackground" stylesheets="@styleSheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valday.agenceVoyage.GUI.loginWindowController">
+    <padding><Insets bottom="5" left="5" right="5" top="10" /></padding>
+
+    <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+        <HBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <VBox spacing="15">
+                <padding><Insets bottom="0" left="5" right="5" top="50" /></padding>
+                <Label prefHeight="25" prefWidth="75" text="Login : ">
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin></Label>
+                <Label prefHeight="25" prefWidth="75" text="Password : " textFill="WHITE" />
+
+            </VBox>
+
+            <VBox spacing="15">
+                <padding><Insets bottom="0" left="5" right="5" top="50" /></padding>
+                <TextField fx:id="txtField_login" prefHeight="25" prefWidth="150" promptText="Login">
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin></TextField>
+                <PasswordField fx:id="passwdField_passwd" prefHeight="25" prefWidth="150" promptText="Password" />
+            </VBox>
+
+            <Label text="A quelques grains du sable du monde ..." textFill="WHITE">
+                <padding><Insets left="0" top="5" /></padding>
+            <font>
+               <Font name="Juice ITC" size="36.0" />
+            </font>
+            </Label>
+
+        </HBox>
+        <HBox spacing="50">
+            <padding><Insets bottom="0" left="300" right="0" top="70" /></padding>
+            <Button fx:id="but_login" onAction="#but_validateClick" prefHeight="25" prefWidth="75" text="Log In">
+                <VBox.margin>
+                    <Insets bottom="5.0" />
+                </VBox.margin>
+                <graphic>
+                    <ImageView fitHeight="20" fitWidth="20">
+                        <image>
+                            <Image url="@../../ressources/images/logIn-100.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+
+            </Button>
+            <Button fx:id="but_cancel" onAction="#but_cancelClick" prefHeight="25" prefWidth="75" text="Cancel">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        </HBox>
+    </VBox>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+
+</GridPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~  Author : Julien Creach.
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.applyCircuitController"
+      prefHeight="120.0" prefWidth="300.0" spacing="5">
+    <padding><Insets left="5.0" top="15.0" /></padding>
+
+    <HBox spacing="5" alignment="CENTER">
+        <Label prefHeight="25" text="Circuit : " />
+        <ComboBox fx:id="comboBox_circuit" prefHeight="25" prefWidth="150" onAction="#comboBox_circuitClick"/>
+    </HBox>
+
+    <HBox spacing="5" alignment="CENTER">
+        <Label text="Date départ : "/>
+        <Label fx:id="lblDepart" text="0"/>
+    </HBox>
+    <HBox spacing="5" alignment="CENTER">
+        <Label text="Date fin : "/>
+        <Label fx:id="lblFin" text="0"/>
+    </HBox>
+
+    <HBox spacing="5" alignment="CENTER">
+        <Button fx:id="but_Valider" onAction="#but_ValiderClick" prefHeight="25" prefWidth="75" text="Apply" />
+        <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Cancel" />
+    </HBox>
+</VBox>
