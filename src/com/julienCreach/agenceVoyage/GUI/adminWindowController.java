@@ -10,64 +10,69 @@ import com.julienCreach.agenceVoyage.Table.*;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class adminWindowController
 {
     //region Private Attributs
 
     /**
-     *
+     * selection model du TabPane.
      */
     private SingleSelectionModel<Tab> selectionModel;
 
     /**
-     *
+     * TabPane principal.
      */
     @FXML
     private TabPane tabPane_main;
 
     /**
-     *
+     * Datagrid circuits.
      */
     @FXML
     private TableView<Circuit> tableView_Circuits;
 
     /**
-     *
+     * Datagrid Clients.
      */
     @FXML
     private TableView<Client> tableView_Clients;
 
     /**
-     *
+     * Datagrid Hotels.
      */
     @FXML
     private TableView<Hotel> tableView_Hotels;
 
     /**
-     *
+     * Datagrid Villes.
      */
     @FXML
     private TableView<Ville> tableView_Villes;
 
     /**
-     *
+     * Datagrid Accompagnateurs.
      */
     @FXML
     private TableView<Accompagnateur> tableView_Accompagnateurs;
 
     /**
-     *
+     * Datagrid Reservations.
      */
     @FXML
     private TableView<Reservation> tableView_Reservations;
 
     /**
-     *
+     * Boutton exit de la barre de menu.
      */
     @FXML
     private MenuItem menuItem_Quit;
@@ -78,10 +83,14 @@ public class adminWindowController
 
     //endregion Public Attributs
 
-    //region Private Services
-
     //region Constructors / Initialisation
 
+    /**
+     * Constructeur par defaut
+     */
+    public adminWindowController()
+    {
+    }
 
     //endregion Constructors / Initialisation
 
@@ -89,6 +98,9 @@ public class adminWindowController
 
     //region FXML
 
+    /**
+     * Actions au click sur le menuitem quit.
+     */
     @FXML
     private void menuItem_QuitClick()
     {
@@ -167,7 +179,8 @@ public class adminWindowController
         {
             case 0 :
                 System.out.println(" => Tab Circuits ...");
-                try {
+                try
+                {
                     ajoutCircuitController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutCircuit.fxml"));
                     Parent root = fxmlLoader.load();
@@ -177,14 +190,15 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
                 break;
             case 1 :
                 System.out.println(" => Tab Clients ...");
-                try {
+                try
+                {
                     ajoutClientController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutClient.fxml"));
                     Parent root = fxmlLoader.load();
@@ -194,14 +208,15 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
                 break;
             case 2 :
                 System.out.println(" => Tab Hotels ...");
-                try {
+                try
+                {
                     ajoutHotelController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutHotel.fxml"));
                     Parent root = fxmlLoader.load();
@@ -211,14 +226,15 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
                 break;
             case 3 :
                 System.out.println(" => Tab Villes ...");
-                try {
+                try
+                {
                     ajoutVilleController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutVille.fxml"));
                     Parent root = fxmlLoader.load();
@@ -228,14 +244,15 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
                 break;
             case 4 :
                 System.out.println(" => Tab Accompagnateurs ...");
-                try {
+                try
+                {
                     ajoutAccompagnateurController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutAccompagnateur.fxml"));
                     Parent root = fxmlLoader.load();
@@ -245,14 +262,15 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
                 break;
             case 5 :
                 System.out.println(" => Tab Reservations ...");
-                try {
+                try
+                {
                     ajoutReservationController.setIsNewOrEdit(true);
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutReservation.fxml"));
                     Parent root = fxmlLoader.load();
@@ -262,10 +280,12 @@ public class adminWindowController
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
                 }
-                catch(Exception e)
+                catch(IOException e)
                 {
                     e.printStackTrace();
                 }
+                break;
+            default:
                 break;
         }
         this.LoadTables();
@@ -296,7 +316,7 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (Exception e)
+                    catch (IOException e)
                     {
                         e.printStackTrace();
                     }
@@ -315,7 +335,7 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                            catch (Exception e)
+                            catch (LoadException e)
                     {
                         e.printStackTrace();
                     }
@@ -333,7 +353,7 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                            catch (Exception e)
+                     catch (IOException e)
                     {
                         e.printStackTrace();
                     }
@@ -351,7 +371,7 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (Exception e)
+                    catch (IOException e)
                     {
                         e.printStackTrace();
                     }
@@ -369,7 +389,7 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (Exception e)
+                    catch (IOException e)
                     {
                         e.printStackTrace();
                     }
@@ -387,10 +407,12 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (Exception e)
+                    catch (IOException e)
                     {
                         e.printStackTrace();
                     }
+                    break;
+                default:
                     break;
             }
         }
@@ -401,12 +423,67 @@ public class adminWindowController
         this.LoadTables();
     }
 
+    /**
+     * Initialisation des datas dans la fentere.
+     */
     @FXML
     private void initialize()
     {
         this.LoadTables();
     }
 
+    /**
+     * Actions au double click sur un élément de la grid.
+     * @param event
+     */
+    @FXML
+    private void tableViewDoubleClick(MouseEvent event)
+    {
+        if(event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2)
+        {
+            switch (selectionModel.getSelectedIndex())
+            {
+                case 1 :
+                    try
+                    {
+                        Client client = tableView_Clients.getSelectionModel().getSelectedItem();
+                        customerWindowController.set_selectedClient(client);
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerWindow.fxml"));
+                        Parent root1 = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle(client.get_prenomClient() + " " + client.get_nameClient());
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                    }
+                    catch(IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 4 :
+                    try
+                    {
+                        Accompagnateur accompagnateur = tableView_Accompagnateurs.getSelectionModel().getSelectedItem();
+                        guideWindowController.set_selectedAccompagnateur(accompagnateur);
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("guideWindow.fxml"));
+                        Parent root1 = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle(accompagnateur.get_prenomAccompagnateur()+" "+accompagnateur.get_nameAccompagnateur());
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                    }
+                    catch(IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 
     //endregion FXML
 

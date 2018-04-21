@@ -21,12 +21,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class loginWindowController
 {
     //region Const Attributes
-
-    //private final Hashtable _passwd_Hashtable;
 
     private Passwd _passd;
 
@@ -108,7 +105,8 @@ public class loginWindowController
 
     private void OpenAdminView()
     {
-        try {
+        try
+        {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminWindow.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
@@ -124,7 +122,8 @@ public class loginWindowController
 
     private void OpenCustomerView()
     {
-        try {
+        try
+        {
             Client client = TableManager.Instance().get_clientDAO().find(this._user.get_idClient());
             customerWindowController.set_selectedClient(client);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerWindow.fxml"));
@@ -142,7 +141,8 @@ public class loginWindowController
 
     private void OpenGuideView()
     {
-        try {
+        try
+        {
             Accompagnateur accompagnateur = TableManager.Instance().get_accompagnateurDAO().find(this._user.get_idAccompagnateur());
             guideWindowController.set_selectedAccompagnateur(accompagnateur);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("guideWindow.fxml"));

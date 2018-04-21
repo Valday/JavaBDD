@@ -37,123 +37,153 @@ public class Reservation
 
     //region Public Attributs
 
-    public int get_idResevation() {
+    public int get_idResevation()
+    {
         return _idResevation.get();
     }
 
-    public SimpleIntegerProperty _idResevationProperty() {
+    public SimpleIntegerProperty _idResevationProperty()
+    {
         return _idResevation;
     }
 
-    public void set_idResevation(int _idResevation) {
+    public void set_idResevation(int _idResevation)
+    {
         this._idResevation.set(_idResevation);
     }
 
-    public boolean is_accompte() {
+    public boolean is_accompte()
+    {
         return _accompte.get();
     }
 
-    public SimpleBooleanProperty _accompteProperty() {
+    public SimpleBooleanProperty _accompteProperty()
+    {
         return _accompte;
     }
 
-    public void set_accompte(boolean _accompte) {
+    public void set_accompte(boolean _accompte)
+    {
         this._accompte.set(_accompte);
     }
 
-    public boolean is_secondPaiement() {
+    public boolean is_secondPaiement()
+    {
         return _secondPaiement.get();
     }
 
-    public SimpleBooleanProperty _secondPaiementProperty() {
+    public SimpleBooleanProperty _secondPaiementProperty()
+    {
         return _secondPaiement;
     }
 
-    public void set_secondPaiement(boolean _secondPaiement) {
+    public void set_secondPaiement(boolean _secondPaiement)
+    {
         this._secondPaiement.set(_secondPaiement);
     }
 
-    public int get_accompteValue() {
+    public int get_accompteValue()
+    {
         return _accompteValue.get();
     }
 
-    public SimpleIntegerProperty _accompteValueProperty() {
+    public SimpleIntegerProperty _accompteValueProperty()
+    {
         return _accompteValue;
     }
 
-    public void set_accompteValue(int _accompteValue) {
+    public void set_accompteValue(int _accompteValue)
+    {
         this._accompteValue.set(_accompteValue);
     }
 
-    public int get_secondPaiementValue() {
+    public int get_secondPaiementValue()
+    {
         return _secondPaiementValue.get();
     }
 
-    public SimpleIntegerProperty _secondPaiementValueProperty() {
+    public SimpleIntegerProperty _secondPaiementValueProperty()
+    {
         return _secondPaiementValue;
     }
 
-    public void set_secondPaiementValue(int _secondPaiementValue) {
+    public void set_secondPaiementValue(int _secondPaiementValue)
+    {
         this._secondPaiementValue.set(_secondPaiementValue);
     }
 
-    public String get_dateLimite() {
+    public String get_dateLimite()
+    {
         return _dateLimite.get();
     }
 
-    public SimpleStringProperty _dateLimiteProperty() {
+    public SimpleStringProperty _dateLimiteProperty()
+    {
         return _dateLimite;
     }
 
-    public void set_dateLimite(String _dateLimite) {
+    public void set_dateLimite(String _dateLimite)
+    {
         this._dateLimite.set(_dateLimite);
     }
 
-    public String get_dateReservation() {
+    public String get_dateReservation()
+    {
         return _dateReservation.get();
     }
 
-    public SimpleStringProperty _dateReservationProperty() {
+    public SimpleStringProperty _dateReservationProperty()
+    {
         return _dateReservation;
     }
 
-    public void set_dateReservation(String _dateReservation) {
+    public void set_dateReservation(String _dateReservation)
+    {
         this._dateReservation.set(_dateReservation);
     }
 
-    public boolean is_cancelResevation() {
+    public boolean is_cancelResevation()
+    {
         return _cancelResevation.get();
     }
 
-    public SimpleBooleanProperty _cancelResevationProperty() {
+    public SimpleBooleanProperty _cancelResevationProperty()
+    {
         return _cancelResevation;
     }
 
-    public void set_cancelResevation(boolean _cancelResevation) {
+    public void set_cancelResevation(boolean _cancelResevation)
+    {
         this._cancelResevation.set(_cancelResevation);
     }
 
-    public int get_idClient() {
+    public int get_idClient()
+    {
         return _idClient.get();
     }
 
-    public SimpleIntegerProperty _idClientProperty() {
+    public SimpleIntegerProperty _idClientProperty()
+    {
         return _idClient;
     }
 
-    public void set_idClient(int _idClient) {
+    public void set_idClient(int _idClient)
+    {
         this._idClient.set(_idClient);
     }
 
-    public int get_idCircuit() {
+    public int get_idCircuit()
+    {
         return _idCircuit.get();
     }
 
-    public SimpleIntegerProperty _idCircuitProperty() {
+    public SimpleIntegerProperty _idCircuitProperty()
+    {
         return _idCircuit;
     }
 
-    public void set_idCircuit(int _idCircuit) {
+    public void set_idCircuit(int _idCircuit)
+    {
         this._idCircuit.set(_idCircuit);
     }
 

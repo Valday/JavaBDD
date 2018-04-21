@@ -20,22 +20,26 @@ public class UserDAO extends DAO<User>
     }
 
     @Override
-    public boolean Add(User obj) {
+    public boolean Add(User obj)
+    {
         return false;
     }
 
     @Override
-    public boolean Delete(User obj) {
+    public boolean Delete(User obj)
+    {
         return false;
     }
 
     @Override
-    public boolean Edit(User obj) {
+    public boolean Edit(User obj)
+    {
         return false;
     }
 
     @Override
-    public User find(int id) {
+    public User find(int id)
+    {
         User user = new User();
 
         try
@@ -58,7 +62,8 @@ public class UserDAO extends DAO<User>
         {
             e.printStackTrace();
         }
-        return user;    }
+        return user;
+    }
 
     @Override
     public User find(String userName, String passwd)
@@ -102,5 +107,6 @@ public class UserDAO extends DAO<User>
             e.printStackTrace();
         }
 
-        return nb;    }
+        return nb;
+    }
 }

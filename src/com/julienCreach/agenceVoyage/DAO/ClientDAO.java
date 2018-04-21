@@ -68,7 +68,8 @@ public class ClientDAO extends DAO<Client>
     }
 
     @Override
-    public boolean Edit(Client obj) {
+    public boolean Edit(Client obj)
+    {
         boolean toReturn = false;
         try
         {

@@ -45,7 +45,8 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
     }
 
     @Override
-    public boolean Delete(Accompagnateur obj) {
+    public boolean Delete(Accompagnateur obj)
+    {
         boolean toReturn = false;
         try
         {
@@ -90,7 +91,8 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
     }
 
     @Override
-    public Accompagnateur find(int id) {
+    public Accompagnateur find(int id)
+    {
         Accompagnateur accompagnateur = new Accompagnateur();
 
         try
@@ -127,7 +129,8 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {

@@ -7,7 +7,7 @@ package com.julienCreach.utils;
 
 import java.io.File;
 
-public class Path
+public final class Path
 {
     private Path()
     {

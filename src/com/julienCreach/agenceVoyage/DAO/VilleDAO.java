@@ -80,7 +80,8 @@ public class VilleDAO extends DAO<Ville>
     }
 
     @Override
-    public Ville find(int id) {
+    public Ville find(int id)
+    {
         Ville ville = new Ville();
 
         try
@@ -113,7 +114,8 @@ public class VilleDAO extends DAO<Ville>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {

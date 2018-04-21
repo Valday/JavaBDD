@@ -19,7 +19,8 @@ public class ReservationDAO extends DAO<Reservation>
     }
 
     @Override
-    public boolean Add(Reservation obj) {
+    public boolean Add(Reservation obj)
+    {
         boolean toReturn = false;
         try
         {
@@ -68,7 +69,8 @@ public class ReservationDAO extends DAO<Reservation>
     }
 
     @Override
-    public boolean Edit(Reservation obj) {
+    public boolean Edit(Reservation obj)
+    {
         boolean toReturn = false;
 
         try
@@ -95,7 +97,8 @@ public class ReservationDAO extends DAO<Reservation>
     }
 
     @Override
-    public Reservation find(int id) {
+    public Reservation find(int id)
+    {
         Reservation reservation = new Reservation();
 
         try
@@ -134,7 +137,8 @@ public class ReservationDAO extends DAO<Reservation>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {

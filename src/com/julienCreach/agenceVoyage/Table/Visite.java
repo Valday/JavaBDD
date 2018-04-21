@@ -24,39 +24,48 @@ public class Visite
 
     //region Public Attributs
 
-    public int get_idVisite() {
+    public int get_idVisite()
+    {
         return _idVisite.get();
     }
 
-    public SimpleIntegerProperty _idVisiteProperty() {
+    public SimpleIntegerProperty _idVisiteProperty()
+    {
         return _idVisite;
     }
 
-    public void set_idVisite(int _idVisite) {
+    public void set_idVisite(int _idVisite)
+    {
         this._idVisite.set(_idVisite);
     }
 
-    public int get_nbNuits() {
+    public int get_nbNuits()
+    {
         return _nbNuits.get();
     }
 
-    public SimpleIntegerProperty _nbNuitsProperty() {
+    public SimpleIntegerProperty _nbNuitsProperty()
+    {
         return _nbNuits;
     }
 
-    public void set_nbNuits(int _nbNuits) {
+    public void set_nbNuits(int _nbNuits)
+    {
         this._nbNuits.set(_nbNuits);
     }
 
-    public Date get_dateArrivee() {
+    public Date get_dateArrivee()
+    {
         return _dateArrivee.get();
     }
 
-    public SimpleObjectProperty<Date> _dateArriveeProperty() {
+    public SimpleObjectProperty<Date> _dateArriveeProperty()
+    {
         return _dateArrivee;
     }
 
-    public void set_dateArrivee(Date _dateArrivee) {
+    public void set_dateArrivee(Date _dateArrivee)
+    {
         this._dateArrivee.set(_dateArrivee);
     }
 

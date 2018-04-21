@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JdbcConnectionManager
+public final class JdbcConnectionManager
 {
     private volatile static JdbcConnectionManager _instance;
 
@@ -72,7 +72,8 @@ public class JdbcConnectionManager
             {
                 System.out.println(" => connection established ...");
             }
-        }catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(" => Connection Failed ...");
             e.printStackTrace();
@@ -81,7 +82,8 @@ public class JdbcConnectionManager
 
     public void Close()
     {
-        try {
+        try
+        {
             if (!_connector.isClosed())
             {
                 _connector.close();

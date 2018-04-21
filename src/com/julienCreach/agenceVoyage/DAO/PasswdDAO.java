@@ -20,22 +20,26 @@ public class PasswdDAO extends DAO<Passwd>
     }
 
     @Override
-    public boolean Add(Passwd obj) {
+    public boolean Add(Passwd obj)
+    {
         return false;
     }
 
     @Override
-    public boolean Delete(Passwd obj) {
+    public boolean Delete(Passwd obj)
+    {
         return false;
     }
 
     @Override
-    public boolean Edit(Passwd obj) {
+    public boolean Edit(Passwd obj)
+    {
         return false;
     }
 
     @Override
-    public Passwd find(int id) {
+    public Passwd find(int id)
+    {
         return null;
     }
 

@@ -19,7 +19,8 @@ public class VisiteDAO extends DAO<Visite>
     }
 
     @Override
-    public boolean Add(Visite obj) {
+    public boolean Add(Visite obj)
+    {
         return false;
     }
 
@@ -42,12 +43,14 @@ public class VisiteDAO extends DAO<Visite>
     }
 
     @Override
-    public boolean Edit(Visite obj) {
+    public boolean Edit(Visite obj)
+    {
         return false;
     }
 
     @Override
-    public Visite find(int id) {
+    public Visite find(int id)
+    {
         Visite visite = new Visite();
 
         try
@@ -79,7 +82,8 @@ public class VisiteDAO extends DAO<Visite>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {

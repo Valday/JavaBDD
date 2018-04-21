@@ -26,63 +26,78 @@ public class Hotel
 
     //region Public Attributs
 
-    public int get_idHotel() {
+    public int get_idHotel()
+    {
         return _idHotel.get();
     }
 
-    public SimpleIntegerProperty _idHotelProperty() {
+    public SimpleIntegerProperty _idHotelProperty()
+    {
         return _idHotel;
     }
 
-    public void set_idHotel(int _idHotel) {
+    public void set_idHotel(int _idHotel)
+    {
         this._idHotel.set(_idHotel);
     }
 
-    public String get_nameHotel() {
+    public String get_nameHotel()
+    {
         return _nameHotel.get();
     }
 
-    public SimpleStringProperty _nameHotelProperty() {
+    public SimpleStringProperty _nameHotelProperty()
+    {
         return _nameHotel;
     }
 
-    public void set_nameHotel(String _nameHotel) {
+    public void set_nameHotel(String _nameHotel)
+    {
         this._nameHotel.set(_nameHotel);
     }
 
-    public String get_telephoneHotel() {
+    public String get_telephoneHotel()
+    {
         return _telephoneHotel.get();
     }
 
-    public SimpleStringProperty _telephoneHotelProperty() {
+    public SimpleStringProperty _telephoneHotelProperty()
+    {
         return _telephoneHotel;
     }
 
-    public void set_telephoneHotel(String _telephoneHotel) {
+    public void set_telephoneHotel(String _telephoneHotel)
+    {
         this._telephoneHotel.set(_telephoneHotel);
     }
 
-    public String get_rueHotel() {
+    public String get_rueHotel()
+    {
         return _rueHotel.get();
     }
 
-    public SimpleStringProperty _rueHotelProperty() {
+    public SimpleStringProperty _rueHotelProperty()
+    {
         return _rueHotel;
     }
 
-    public void set_rueHotel(String _rueHotel) {
+    public void set_rueHotel(String _rueHotel)
+    {
         this._rueHotel.set(_rueHotel);
     }
 
-    public int get_numRueHotel() {
+    public int get_numRueHotel()
+    {
         return _numRueHotel.get();
     }
 
-    public SimpleIntegerProperty _numRueHotelProperty() {
+    public SimpleIntegerProperty _numRueHotelProperty()
+    {
         return _numRueHotel;
     }
 
-    public void set_numRueHotel(int _numRueHotel) {
+    public void set_numRueHotel(int _numRueHotel)
+    {
         this._numRueHotel.set(_numRueHotel);
     }
 

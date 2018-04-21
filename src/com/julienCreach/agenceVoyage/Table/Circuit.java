@@ -34,99 +34,123 @@ public class Circuit
 
     //region Public Attributs
 
-    public int get_idCircuit() {
+    public int get_idCircuit()
+    {
         return _idCircuit.get();
     }
 
-    public SimpleIntegerProperty _idCircuitProperty() {
+    public SimpleIntegerProperty _idCircuitProperty()
+    {
         return _idCircuit;
     }
 
-    public void set_idCircuit(int _idCircuit) {
+    public void set_idCircuit(int _idCircuit)
+    {
         this._idCircuit.set(_idCircuit);
     }
 
-    public String get_nameCircuit() {
+    public String get_nameCircuit()
+    {
         return _nameCircuit.get();
     }
 
-    public SimpleStringProperty _nameCircuitProperty() {
+    public SimpleStringProperty _nameCircuitProperty()
+    {
         return _nameCircuit;
     }
 
-    public void set_nameCircuit(String _nameCircuit) {
+    public void set_nameCircuit(String _nameCircuit)
+    {
         this._nameCircuit.set(_nameCircuit);
     }
 
-    public int get_places() {
+    public int get_places()
+    {
         return _places.get();
     }
 
-    public SimpleIntegerProperty _placesProperty() {
+    public SimpleIntegerProperty _placesProperty()
+    {
         return _places;
     }
 
-    public void set_places(int _places) {
+    public void set_places(int _places)
+    {
         this._places.set(_places);
     }
 
-    public int get_prix() {
+    public int get_prix()
+    {
         return _prix.get();
     }
 
-    public SimpleIntegerProperty _prixProperty() {
+    public SimpleIntegerProperty _prixProperty()
+    {
         return _prix;
     }
 
-    public void set_prix(int _prix) {
+    public void set_prix(int _prix)
+    {
         this._prix.set(_prix);
     }
 
-    public String get_dateDepart() {
+    public String get_dateDepart()
+    {
         return _dateDepart.get();
     }
 
-    public SimpleStringProperty _dateDepartProperty() {
+    public SimpleStringProperty _dateDepartProperty()
+    {
         return _dateDepart;
     }
 
-    public void set_dateDepart(String _dateDepart) {
+    public void set_dateDepart(String _dateDepart)
+    {
         this._dateDepart.set(_dateDepart);
     }
 
-    public String get_dateFin() {
+    public String get_dateFin()
+    {
         return _dateFin.get();
     }
 
-    public SimpleStringProperty _dateFinProperty() {
+    public SimpleStringProperty _dateFinProperty()
+    {
         return _dateFin;
     }
 
-    public void set_dateFin(String _dateFin) {
+    public void set_dateFin(String _dateFin)
+    {
         this._dateFin.set(_dateFin);
     }
 
-    public boolean is_open() {
+    public boolean is_open()
+    {
         return _open.get();
     }
 
-    public SimpleBooleanProperty _openProperty() {
+    public SimpleBooleanProperty _openProperty()
+    {
         return _open;
     }
 
-    public void set_open(boolean _open) {
+    public void set_open(boolean _open)
+    {
         this._open.set(_open);
     }
 
-    public int get_idAccompagnateur() {
+    public int get_idAccompagnateur()
+    {
         return _idAccompagnateur.get();
     }
 
-    public SimpleIntegerProperty _idAccompagnateurProperty() {
+    public SimpleIntegerProperty _idAccompagnateurProperty()
+    {
         return _idAccompagnateur;
     }
 
-    public void set_idAccompagnateur(int _idAccompagnateur) {
+    public void set_idAccompagnateur(int _idAccompagnateur)
+    {
         this._idAccompagnateur.set(_idAccompagnateur);
     }
 

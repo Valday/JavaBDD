@@ -34,111 +34,138 @@ public class Client
 
     //region Public Attributs
 
-    public int get_idClient() {
+    public int get_idClient()
+    {
         return _idClient.get();
     }
 
-    public SimpleIntegerProperty _idClientProperty() {
+    public SimpleIntegerProperty _idClientProperty()
+    {
         return _idClient;
     }
 
-    public void set_idClient(int _idClient) {
+    public void set_idClient(int _idClient)
+    {
         this._idClient.set(_idClient);
     }
 
-    public String get_nameClient() {
+    public String get_nameClient()
+    {
         return _nameClient.get();
     }
 
-    public SimpleStringProperty _nameClientProperty() {
+    public SimpleStringProperty _nameClientProperty()
+    {
         return _nameClient;
     }
 
-    public void set_nameClient(String _nameClient) {
+    public void set_nameClient(String _nameClient)
+    {
         this._nameClient.set(_nameClient);
     }
 
-    public String get_prenomClient() {
+    public String get_prenomClient()
+    {
         return _prenomClient.get();
     }
 
-    public SimpleStringProperty _prenomClientProperty() {
+    public SimpleStringProperty _prenomClientProperty()
+    {
         return _prenomClient;
     }
 
-    public void set_prenomClient(String _prenomClient) {
+    public void set_prenomClient(String _prenomClient)
+    {
         this._prenomClient.set(_prenomClient);
     }
 
-    public String get_telephoneClient() {
+    public String get_telephoneClient()
+    {
         return _telephoneClient.get();
     }
 
-    public SimpleStringProperty _telephoneClientProperty() {
+    public SimpleStringProperty _telephoneClientProperty()
+    {
         return _telephoneClient;
     }
 
-    public void set_telephoneClient(String _telephoneClient) {
+    public void set_telephoneClient(String _telephoneClient)
+    {
         this._telephoneClient.set(_telephoneClient);
     }
 
-    public String get_villeClient() {
+    public String get_villeClient()
+    {
         return _villeClient.get();
     }
 
-    public SimpleStringProperty _villeClientProperty() {
+    public SimpleStringProperty _villeClientProperty()
+    {
         return _villeClient;
     }
 
-    public void set_villeClient(String _villeClient) {
+    public void set_villeClient(String _villeClient)
+    {
         this._villeClient.set(_villeClient);
     }
 
-    public String get_rueClient() {
+    public String get_rueClient()
+    {
         return _rueClient.get();
     }
 
-    public SimpleStringProperty _rueClientProperty() {
+    public SimpleStringProperty _rueClientProperty()
+    {
         return _rueClient;
     }
 
-    public void set_rueClient(String _rueClient) {
+    public void set_rueClient(String _rueClient)
+    {
         this._rueClient.set(_rueClient);
     }
 
-    public int get_numRueClient() {
+    public int get_numRueClient()
+    {
         return _numRueClient.get();
     }
 
-    public SimpleIntegerProperty _numRueClientProperty() {
+    public SimpleIntegerProperty _numRueClientProperty()
+    {
         return _numRueClient;
     }
 
-    public void set_numRueClient(int _numRueClient) {
+    public void set_numRueClient(int _numRueClient)
+    {
         this._numRueClient.set(_numRueClient);
     }
 
-    public String get_codePostalClient() {
+    public String get_codePostalClient()
+    {
         return _codePostalClient.get();
     }
 
-    public SimpleStringProperty _codePostalClientProperty() {
+    public SimpleStringProperty _codePostalClientProperty()
+    {
         return _codePostalClient;
     }
 
-    public void set_codePostalClient(String _codePostalClient) {
+    public void set_codePostalClient(String _codePostalClient)
+    {
         this._codePostalClient.set(_codePostalClient);
     }
 
-    public String get_dateNaissanceClient() {
+    public String get_dateNaissanceClient()
+    {
         return _dateNaissanceClient.get();
     }
 
-    public SimpleStringProperty _dateNaissanceClientProperty() {
+    public SimpleStringProperty _dateNaissanceClientProperty()
+    {
         return _dateNaissanceClient;
     }
 
-    public void set_dateNaissanceClient(String _dateNaissanceClient) {
+    public void set_dateNaissanceClient(String _dateNaissanceClient)
+    {
         this._dateNaissanceClient.set(_dateNaissanceClient);
     }
 
@@ -169,7 +196,8 @@ public class Client
 
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Client{" +
                 "\n_idClient=" + _idClient +
                 ",\n _nameClient=" + _nameClient +

@@ -38,7 +38,8 @@ public class HotelDAO extends DAO<Hotel>
             e.printStackTrace();
         }
 
-        return toReturn;    }
+        return toReturn;
+    }
 
     @Override
     public boolean Delete(Hotel obj)
@@ -82,7 +83,8 @@ public class HotelDAO extends DAO<Hotel>
     }
 
     @Override
-    public Hotel find(int id) {
+    public Hotel find(int id)
+    {
         Hotel hotel = new Hotel();
 
         try
@@ -116,7 +118,8 @@ public class HotelDAO extends DAO<Hotel>
     }
 
     @Override
-    public ResultSet selectAll() {
+    public ResultSet selectAll()
+    {
         ResultSet resultSet = null;
         try
         {

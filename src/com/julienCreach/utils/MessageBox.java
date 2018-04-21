@@ -7,7 +7,7 @@ package com.julienCreach.utils;
 
 import javafx.scene.control.Alert;
 
-public class MessageBox
+public final class MessageBox
 {
     private MessageBox()
     {

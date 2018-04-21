@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TableManager
+public final class TableManager
 {
     //region Private Attributs
 
@@ -114,6 +114,11 @@ public class TableManager
     //endregion Public Attributs
 
     //region Constructor
+
+    private TableManager()
+    {
+
+    }
 
     public static TableManager Instance()
     {
