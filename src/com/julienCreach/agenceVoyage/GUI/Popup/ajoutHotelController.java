@@ -32,28 +32,28 @@ public class ajoutHotelController
     }
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private TextField textField_name;
+    private TextField textFieldName;
 
     @FXML
-    private TextField textField_phone;
+    private TextField textFieldPhone;
 
     @FXML
-    private TextField textField_streetNumber;
+    private TextField textFieldStreetNumber;
 
     @FXML
-    private TextField textField_street;
+    private TextField textFieldStreet;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -61,22 +61,21 @@ public class ajoutHotelController
 
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         Hotel newHotel = new Hotel(-1,
-                this.textField_name.getText(),
-                this.textField_phone.getText(),
-                this.textField_street.getText(),
-                Integer.parseInt(this.textField_streetNumber.getText()));
+                this.textFieldName.getText(),
+                this.textFieldPhone.getText(),
+                this.textFieldStreet.getText(),
+                Integer.parseInt(this.textFieldStreetNumber.getText()));
 
         if(isNewOrEdit)
         {
-            newHotel.set_idHotel(TableManager.Instance().get_hotelDAO().Count()+1);
             if(TableManager.Instance().get_hotelDAO().Add(newHotel))
             {
                 System.out.println(" => Hotel successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -89,7 +88,7 @@ public class ajoutHotelController
             {
                 System.out.println(" => Hotel successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -110,9 +109,9 @@ public class ajoutHotelController
 
     private void loadEditValues()
     {
-        this.textField_name.setText(_selectedHotel.get_nameHotel());
-        this.textField_phone.setText(_selectedHotel.get_telephoneHotel());
-        this.textField_street.setText(_selectedHotel.get_rueHotel());
-        this.textField_streetNumber.setText(Integer.toString(_selectedHotel.get_numRueHotel()));
+        this.textFieldName.setText(_selectedHotel.get_nameHotel());
+        this.textFieldPhone.setText(_selectedHotel.get_telephoneHotel());
+        this.textFieldStreet.setText(_selectedHotel.get_rueHotel());
+        this.textFieldStreetNumber.setText(Integer.toString(_selectedHotel.get_numRueHotel()));
     }
 }

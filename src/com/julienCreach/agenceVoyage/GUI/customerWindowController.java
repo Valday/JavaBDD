@@ -27,20 +27,12 @@ import java.util.Optional;
 
 public class customerWindowController
 {
+    //region Private Attributs
 
     /**
      * Client Selectionné
      */
     private static Client _selectedClient;
-
-    /**
-     * Assesseur sur le client selectioné
-     * @param _selectedClient client a afficher
-     */
-    public static void set_selectedClient(Client _selectedClient)
-    {
-        customerWindowController._selectedClient = _selectedClient;
-    }
 
     /**
      * Liste des réservations
@@ -99,18 +91,24 @@ public class customerWindowController
      * Table Permettant d'afficher les réserations du client
      */
     @FXML
-    private TableView<Reservation> tableView_Reservations;
+    private TableView<Reservation> tableViewReservations;
 
-    @FXML
-    private Button but_ValidModif;
+    //endregion Private Attributs
+
+    //region Public Attributs
+
     /**
-     * Action sur le menuItem quitter de la menu bar
-     */
-    @FXML
-    public void menuItem_QuitClick()
+    * Assesseur sur le client selectioné
+    * @param _selectedClient client a afficher
+    */
+    public static void set_selectedClient(Client _selectedClient)
     {
-        System.exit(0);
+        customerWindowController._selectedClient = _selectedClient;
     }
+
+    //endregion Public Attributs
+
+    //region Private Services
 
     /**
      * Initialisation du contenu de la fenetre
@@ -118,11 +116,14 @@ public class customerWindowController
     @FXML
     private void initialize()
     {
-       this.LoadValues();
+        this.LoadValues();
     }
 
+    /**
+     * Actions sur click bouton butBook
+     */
     @FXML
-    private void but_BookClick()
+    private void butBookClick()
     {
         try
         {
@@ -142,10 +143,13 @@ public class customerWindowController
         }
     }
 
+    /**
+     * Actions sur click bouton butDelete
+     */
     @FXML
-    private void but_DeleteClick()
+    private void butDeleteClick()
     {
-        Reservation newReservation = this.tableView_Reservations.getSelectionModel().getSelectedItem();
+        Reservation newReservation = this.tableViewReservations.getSelectionModel().getSelectedItem();
         if(newReservation != null)
         {
             if(TableManager.Instance().get_reservationDAO().Delete(newReservation))
@@ -155,8 +159,11 @@ public class customerWindowController
         }
     }
 
+    /**
+     * Actions sur click bouton butValid
+     */
     @FXML
-    private void but_ValidModifClick()
+    private void butValidModifClick()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -183,6 +190,15 @@ public class customerWindowController
             }
         }
 
+    }
+
+    /**
+     * Action sur le menuItem quitter de la menu bar
+     */
+    @FXML
+    private void menuItemQuitClick()
+    {
+        System.exit(0);
     }
 
     /**
@@ -238,6 +254,8 @@ public class customerWindowController
             e.printStackTrace();
         }
 
-        this.tableView_Reservations.setItems(_customerReservations);
+        this.tableViewReservations.setItems(_customerReservations);
     }
+
+    //endregion private Services
 }

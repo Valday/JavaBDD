@@ -16,7 +16,7 @@
 
     <HBox spacing="5" alignment="CENTER">
         <Label prefHeight="25" text="Circuit : " />
-        <ComboBox fx:id="comboBox_circuit" prefHeight="25" prefWidth="150" onAction="#comboBox_circuitClick"/>
+        <ComboBox fx:id="comboBoxCircuit" prefHeight="25" prefWidth="150" onAction="#comboBoxCircuitClick"/>
     </HBox>
 
     <HBox spacing="5" alignment="CENTER">
@@ -29,7 +29,7 @@
     </HBox>
 
     <HBox spacing="5" alignment="CENTER">
-        <Button fx:id="but_Valider" onAction="#but_ValiderClick" prefHeight="25" prefWidth="75" text="Apply" />
-        <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Cancel" />
+        <Button fx:id="butValider" onAction="#butValiderClick" prefHeight="25" prefWidth="75" text="Apply" />
+        <Button fx:id="butCancel" onAction="#butAnnulerClick" prefHeight="25" prefWidth="75" text="Cancel" />
     </HBox>
 </VBox>

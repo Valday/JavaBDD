@@ -14,10 +14,16 @@ import java.sql.SQLException;
 
 public class ClientDAO extends DAO<Client>
 {
+    //region Constructeur
+
     public ClientDAO(Connection connect)
     {
         super(connect);
     }
+
+    //endregion Constructeur
+
+    //region Public Services
 
     @Override
     public boolean Add(Client obj)
@@ -126,49 +132,5 @@ public class ClientDAO extends DAO<Client>
         return client;
     }
 
-    @Override
-    public Client find(String userName, String passwd)
-    {
-        return null;
-    }
-
-    @Override
-    public ResultSet selectAll()
-    {
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Clients");
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    @Override
-    public int Count()
-    {
-        int nb = 0;
-
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Clients");
-
-            resultSet.first();
-            nb = resultSet.getInt(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return nb;
-    }
+    //endregion Public Services
 }

@@ -13,10 +13,16 @@ import java.sql.SQLException;
 
 public class ReservationDAO extends DAO<Reservation>
 {
+    //region Constructeur
+
     public ReservationDAO(Connection connect)
     {
         super(connect);
     }
+
+    //endregion Constructeur
+
+    //region Public Services
 
     @Override
     public boolean Add(Reservation obj)
@@ -130,49 +136,5 @@ public class ReservationDAO extends DAO<Reservation>
         return reservation;
     }
 
-    @Override
-    public Reservation find(String userName, String passwd)
-    {
-        return null;
-    }
-
-    @Override
-    public ResultSet selectAll()
-    {
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Reservations");
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    @Override
-    public int Count()
-    {
-        int nb = 0;
-
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations");
-
-            resultSet.first();
-            nb = resultSet.getInt(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return nb;
-    }
+    //endregion Public Services
 }

@@ -36,67 +36,66 @@ public class ajoutClientController
     }
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private TextField textField_lName;
+    private TextField textFieldLName;
 
     @FXML
-    private TextField textField_fName;
+    private TextField textFieldFName;
 
     @FXML
-    private TextField textField_phone;
+    private TextField textFieldPhone;
 
     @FXML
-    private TextField textField_streetNumber;
+    private TextField textFieldStreetNumber;
 
     @FXML
-    private TextField textField_street;
+    private TextField textFieldStreet;
 
     @FXML
-    private TextField textField_city;
+    private TextField textFieldCity;
 
     @FXML
-    private TextField textField_postalCode;
+    private TextField textFieldPostalCode;
 
     @FXML
-    private DatePicker datePicker_birthDate;
+    private DatePicker datePickerBirthDate;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         Client newClient = new Client(-1,
-                this.textField_lName.getText(),
-                this.textField_fName.getText(),
-                this.textField_phone.getText(),
-                this.textField_city.getText(),
-                this.textField_street.getText(),
-                Integer.parseInt(this.textField_streetNumber.getText()),
-                this.textField_postalCode.getText(),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePicker_birthDate.getValue())));
+                this.textFieldLName.getText(),
+                this.textFieldFName.getText(),
+                this.textFieldPhone.getText(),
+                this.textFieldCity.getText(),
+                this.textFieldStreet.getText(),
+                Integer.parseInt(this.textFieldStreetNumber.getText()),
+                this.textFieldPostalCode.getText(),
+                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerBirthDate.getValue())));
 
         if(isNewOrEdit)
         {
-            newClient.set_idClient(TableManager.Instance().get_clientDAO().Count()+1);
             if(TableManager.Instance().get_clientDAO().Add(newClient))
             {
                 System.out.println(" => Client successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -109,7 +108,7 @@ public class ajoutClientController
             {
                 System.out.println(" => Client successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -129,13 +128,13 @@ public class ajoutClientController
 
     private void loadEditValues()
     {
-        this.textField_fName.setText(_selectedClient.get_prenomClient());
-        this.textField_lName.setText(_selectedClient.get_nameClient());
-        this.textField_city.setText(_selectedClient.get_villeClient());
-        this.textField_street.setText(_selectedClient.get_rueClient());
-        this.textField_phone.setText(_selectedClient.get_telephoneClient());
-        this.textField_postalCode.setText(_selectedClient.get_codePostalClient());
-        this.textField_streetNumber.setText(Integer.toString(_selectedClient.get_numRueClient()));
-        this.datePicker_birthDate.setValue(LocalDate.parse(_selectedClient.get_dateNaissanceClient()));
+        this.textFieldFName.setText(_selectedClient.get_prenomClient());
+        this.textFieldLName.setText(_selectedClient.get_nameClient());
+        this.textFieldCity.setText(_selectedClient.get_villeClient());
+        this.textFieldStreet.setText(_selectedClient.get_rueClient());
+        this.textFieldPhone.setText(_selectedClient.get_telephoneClient());
+        this.textFieldPostalCode.setText(_selectedClient.get_codePostalClient());
+        this.textFieldStreetNumber.setText(Integer.toString(_selectedClient.get_numRueClient()));
+        this.datePickerBirthDate.setValue(LocalDate.parse(_selectedClient.get_dateNaissanceClient()));
     }
 }

@@ -45,55 +45,55 @@ public class ajoutCircuitController
     }
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private TextField textField_name;
+    private TextField textFieldName;
 
     @FXML
-    private TextField textField_placeDispo;
+    private TextField textFieldPlaceDispo;
 
     @FXML
-    private TextField textField_prix;
+    private TextField textFieldPrix;
 
     @FXML
-    private DatePicker datePick_depart;
+    private DatePicker datePickDepart;
 
     @FXML
-    private DatePicker datePick_arrivee;
+    private DatePicker datePickArrivee;
 
     @FXML
-    private CheckBox checkBox_circuitOpen;
+    private CheckBox checkBoxCircuitOpen;
 
     @FXML
-    private ComboBox comboBox_accompagnateurs;
+    private ComboBox comboBoxAccompagnateurs;
 
     private ObservableList<String> _listNomAccompagnateurs;
 
     private List<Accompagnateur> _listAccompagnateurs;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         int idAcc = -1;
         for(int i = 0; i < this._listAccompagnateurs.size();i++)
         {
-            if(this.comboBox_accompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_nameAccompagnateur())
-                    && this.comboBox_accompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_prenomAccompagnateur()))
+            if(this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_nameAccompagnateur())
+                    && this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_prenomAccompagnateur()))
             {
                 idAcc = this._listAccompagnateurs.get(i).get_idAccompagnateur();
             }
@@ -101,24 +101,21 @@ public class ajoutCircuitController
 
 
         Circuit newCircuit = new Circuit(-1,
-                this.textField_name.getText(),
-                Integer.parseInt(this.textField_placeDispo.getText()),
-                Integer.parseInt(this.textField_prix.getText()),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePick_depart.getValue())),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePick_arrivee.getValue())),
-                this.checkBox_circuitOpen.isSelected(),
+                this.textFieldName.getText(),
+                Integer.parseInt(this.textFieldPlaceDispo.getText()),
+                Integer.parseInt(this.textFieldPrix.getText()),
+                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickDepart.getValue())),
+                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickArrivee.getValue())),
+                this.checkBoxCircuitOpen.isSelected(),
                 idAcc);
         if(isNewOrEdit)
         {
-
-            newCircuit.set_idCircuit(TableManager.Instance().get_circuitDAO().Count()+1);
-
             if(TableManager.Instance().get_circuitDAO().Add(newCircuit))
             {
                 System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully add ...");
 
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -134,7 +131,7 @@ public class ajoutCircuitController
                 System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully updated ...");
 
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -145,7 +142,7 @@ public class ajoutCircuitController
     }
 
     @FXML
-    private void but_addAccClick()
+    private void butAddAccClick()
     {
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutAccompagnateur.fxml"));
@@ -177,10 +174,10 @@ public class ajoutCircuitController
     {
         try
         {
-            this._listNomAccompagnateurs = this.comboBox_accompagnateurs.getItems();
+            this._listNomAccompagnateurs = this.comboBoxAccompagnateurs.getItems();
             this._listAccompagnateurs = new ArrayList<>();
 
-            ResultSet allAccompagnateurs = TableManager.Instance().get_accompagnateurDAO().selectAll();
+            ResultSet allAccompagnateurs = TableManager.Instance().get_accompagnateurDAO().selectAll("Accompagnateurs");
 
             while (allAccompagnateurs.next())
             {
@@ -196,7 +193,7 @@ public class ajoutCircuitController
                 this._listAccompagnateurs.add(newAccompagnateur);
                 this._listNomAccompagnateurs.add(newAccompagnateur.get_nameAccompagnateur()+" "+newAccompagnateur.get_prenomAccompagnateur());
             }
-            this.comboBox_accompagnateurs.setItems(this._listNomAccompagnateurs);
+            this.comboBoxAccompagnateurs.setItems(this._listNomAccompagnateurs);
         }
         catch (SQLException e)
         {
@@ -206,12 +203,12 @@ public class ajoutCircuitController
 
     private void loadEditValues()
     {
-            this.textField_name.setText(_selectedCircuit.get_nameCircuit());
-            this.textField_placeDispo.setText(Integer.toString(_selectedCircuit.get_places()));
-            this.textField_prix.setText(Integer.toString(_selectedCircuit.get_prix()));
-            this.datePick_depart.setValue(LocalDate.parse(_selectedCircuit.get_dateDepart()));
-            this.datePick_arrivee.setValue(LocalDate.parse(_selectedCircuit.get_dateFin()));
-            this.checkBox_circuitOpen.setSelected(_selectedCircuit.is_open());
-            this.comboBox_accompagnateurs.getSelectionModel().select(_selectedCircuit.get_idAccompagnateur()-1);
+            this.textFieldName.setText(_selectedCircuit.get_nameCircuit());
+            this.textFieldPlaceDispo.setText(Integer.toString(_selectedCircuit.get_places()));
+            this.textFieldPrix.setText(Integer.toString(_selectedCircuit.get_prix()));
+            this.datePickDepart.setValue(LocalDate.parse(_selectedCircuit.get_dateDepart()));
+            this.datePickArrivee.setValue(LocalDate.parse(_selectedCircuit.get_dateFin()));
+            this.checkBoxCircuitOpen.setSelected(_selectedCircuit.is_open());
+            this.comboBoxAccompagnateurs.getSelectionModel().select(_selectedCircuit.get_idAccompagnateur()-1);
     }
 }

@@ -27,6 +27,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <BorderPane prefHeight="768" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.adminWindowController">
     <top>
         <VBox>
@@ -36,7 +37,13 @@
                     <Menu mnemonicParsing="false" text="File">
                         <items>
                             <SeparatorMenuItem mnemonicParsing="false" />
-                            <MenuItem fx:id="menuItem_Quit" mnemonicParsing="false" onAction="#menuItem_QuitClick" text="Quit" />
+                            <MenuItem fx:id="menuItemQuit" mnemonicParsing="false" onAction="#menuItemQuitClick" text="Quit" />
+                        </items>
+                    </Menu>
+
+                    <Menu mnemonicParsing="false" text="Statistics">
+                        <items>
+                            <MenuItem fx:id="menuItemStatistics" mnemonicParsing="false" onAction="#menuItemStatisticsClick" text="Show statistics" />
                         </items>
                     </Menu>
                 </menus>
@@ -44,11 +51,26 @@
 
             <!--Research area-->
             <HBox spacing="5">
-                <TextField fx:id="textField_requete" promptText="Saisissez une requete">
+                <Label text="Research : " prefHeight="25">
                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" top="5.0" />
-                    </HBox.margin></TextField>
-                <Button fx:id="but_Research" prefHeight="25" prefWidth="90" text="Research">
+                    </HBox.margin>
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <image>
+                                <Image url="@../../ressources/images/find-100.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <TextField fx:id="textFieldRequete" promptText="Saisissez un nom">
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                    </HBox.margin>
+                </TextField>
+
+<!--
+                <Button fx:id="butResearch" prefHeight="25" prefWidth="90" text="Research">
                     <HBox.margin>
                         <Insets top="5.0" />
                     </HBox.margin>
@@ -60,17 +82,18 @@
                         </ImageView>
                     </graphic>
                 </Button>
+-->
             </HBox>
         </VBox>
     </top>
 
     <center>
         <GridPane maxHeight="Infinity" maxWidth="Infinity">
-            <TabPane fx:id="tabPane_main" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <TabPane fx:id="tabPaneMain" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                 <tabs>
                     <!-- Tab Circuit -->
-                    <Tab fx:id="tab_circuits" closable="false" text="Circuits">
-                        <TableView fx:id="tableView_Circuits" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabCircuits" closable="false" text="Circuits">
+                        <TableView fx:id="tableViewCircuits" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>
@@ -101,8 +124,8 @@
                     </Tab>
 
                     <!-- Tab Client -->
-                    <Tab fx:id="tab_clients" closable="false" text="Clients">
-                        <TableView fx:id="tableView_Clients" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabClients" closable="false" text="Clients">
+                        <TableView fx:id="tableViewClients" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idClient" /></cellValueFactory>
@@ -136,8 +159,8 @@
                     </Tab>
 
                     <!-- Tab Hotel -->
-                    <Tab fx:id="tab_hotel" closable="false" text="Hotels">
-                        <TableView fx:id="tableView_Hotels" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabHotel" closable="false" text="Hotels">
+                        <TableView fx:id="tableViewHotels" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idHotel" /></cellValueFactory>
@@ -159,8 +182,8 @@
                     </Tab>
 
                     <!-- Tab Visite -->
-                    <Tab fx:id="tab_ville" closable="false" text="Villes">
-                        <TableView fx:id="tableView_Villes" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabVille" closable="false" text="Villes">
+                        <TableView fx:id="tableViewVilles" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idVille" /></cellValueFactory>
@@ -176,8 +199,8 @@
                     </Tab>
 
                     <!-- Tab Accompagnateur -->
-                    <Tab fx:id="tab_accompagnateur" closable="false" text="Accompagnateurs">
-                        <TableView fx:id="tableView_Accompagnateurs" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabAccompagnateur" closable="false" text="Accompagnateurs">
+                        <TableView fx:id="tableViewAccompagnateurs" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="id">
                                     <cellValueFactory><PropertyValueFactory property="_idAccompagnateur" /></cellValueFactory>
@@ -208,8 +231,8 @@
                     </Tab>
 
                     <!-- Tab Reservation -->
-                    <Tab fx:id="tab_reservation" closable="false" text="Reservations">
-                        <TableView fx:id="tableView_Reservations" editable="false" onMouseClicked="#tableViewDoubleClick">
+                    <Tab fx:id="tabReservation" closable="false" text="Reservations">
+                        <TableView fx:id="tableViewReservations" editable="false" onMouseClicked="#tableViewDoubleClick">
                             <columns>
                                 <TableColumn prefWidth="50" text="Id">
                                     <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>
@@ -246,9 +269,10 @@
                     </Tab>
                 </tabs>
             </TabPane>
+
             <TitledPane prefWidth="300" text="Commands" GridPane.columnIndex="1" GridPane.valignment="TOP">
                 <VBox spacing="5">
-                    <Button alignment="CENTER_LEFT" onAction="#but_AjoutClick" prefHeight="25" prefWidth="75" text="Add">
+                    <Button alignment="CENTER_LEFT" onAction="#butAjoutClick" prefHeight="25" prefWidth="75" text="Add">
                         <graphic>
                             <ImageView fitHeight="20" fitWidth="20">
                                 <image>
@@ -257,7 +281,8 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button alignment="CENTER_LEFT" onAction="#but_EditClick" prefHeight="25" prefWidth="75" text="Edit">
+
+                    <Button alignment="CENTER_LEFT" onAction="#butEditClick" prefHeight="25" prefWidth="75" text="Edit">
                         <graphic>
                             <ImageView fitHeight="20" fitWidth="20">
                                 <image>
@@ -266,7 +291,8 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button alignment="CENTER_LEFT" onAction="#but_SuprClick" prefHeight="25" prefWidth="75" text="Delete">
+
+                    <Button alignment="CENTER_LEFT" onAction="#butSuprClick" prefHeight="25" prefWidth="75" text="Delete">
                         <graphic>
                             <ImageView fitHeight="20" fitWidth="20">
                                 <image>
@@ -275,17 +301,17 @@
                             </ImageView>
                         </graphic>
                     </Button>
-
                 </VBox>
             </TitledPane>
+
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
          </columnConstraints>
+
          <rowConstraints>
             <RowConstraints />
          </rowConstraints>
         </GridPane>
     </center>
-
 </BorderPane>

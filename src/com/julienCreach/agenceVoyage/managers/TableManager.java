@@ -164,7 +164,7 @@ public final class TableManager
         try
         {
 
-            this._allAccompagnateurs = this._accompagnateurDAO.selectAll();
+            this._allAccompagnateurs = this._accompagnateurDAO.selectAll("Accompagnateurs");
 
             while (this._allAccompagnateurs.next())
             {
@@ -197,7 +197,7 @@ public final class TableManager
         try
         {
 
-            this._allCircuits = this._circuitDAO.selectAll();
+            this._allCircuits = this._circuitDAO.selectAll("Circuits");
 
             while (this._allCircuits.next())
             {
@@ -230,7 +230,7 @@ public final class TableManager
 
         try
         {
-            this._allClients = this._clientDAO.selectAll();
+            this._allClients = this._clientDAO.selectAll("Clients");
 
             while (this._allClients.next())
             {
@@ -263,7 +263,7 @@ public final class TableManager
 
         try
         {
-            this._allHotels = this._hotelDAO.selectAll();
+            this._allHotels = this._hotelDAO.selectAll("Hotels");
 
             while(this._allHotels.next())
             {
@@ -292,7 +292,7 @@ public final class TableManager
 
         try
         {
-            this._allVilles = this._villeDAO.selectAll();
+            this._allVilles = this._villeDAO.selectAll("Villes");
 
             while(this._allVilles.next())
             {
@@ -319,7 +319,7 @@ public final class TableManager
 
         try
         {
-            this._allReservations = this._reservationDAO.selectAll();
+            this._allReservations = this._reservationDAO.selectAll("Reservations");
 
             while (this._allReservations.next())
             {
@@ -336,7 +336,6 @@ public final class TableManager
 
                 this._reservationObservableList.add(newReservation);
             }
-
         }
         catch(SQLException e)
         {
@@ -353,7 +352,7 @@ public final class TableManager
 
         try
         {
-            this._allPasswd = this._passwdDAO.selectAll();
+            this._allPasswd = this._passwdDAO.selectAll("passwds");
 
             while(this._allPasswd.next())
             {
@@ -381,7 +380,7 @@ public final class TableManager
 
         try
         {
-            this._allUser = this._userDAO.selectAll();
+            this._allUser = this._userDAO.selectAll("Users");
 
             while(this._allUser.next())
             {

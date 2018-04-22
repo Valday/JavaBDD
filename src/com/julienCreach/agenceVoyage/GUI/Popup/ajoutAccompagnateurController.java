@@ -33,63 +33,62 @@ public class ajoutAccompagnateurController
     }
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private TextField textField_name;
+    private TextField textFieldName;
 
     @FXML
-    private  TextField textField_prenom;
+    private  TextField textFieldPrenom;
 
     @FXML
-    private TextField textField_telephone;
+    private TextField textFieldTelephone;
 
     @FXML
-    private TextField textField_numRue;
+    private TextField textFieldNumRue;
 
     @FXML
-    private TextField textField_rue;
+    private TextField textFieldRue;
 
     @FXML
-    private  TextField textField_ville;
+    private  TextField textFieldVille;
 
     @FXML
-    private TextField textField_codePostal;
+    private TextField textFieldCodePostal;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
 
         Accompagnateur newAccompagnateur = new Accompagnateur(-1,
-                this.textField_name.getText(),
-                this.textField_prenom.getText(),
-                this.textField_telephone.getText(),
-                Integer.parseInt(this.textField_numRue.getText()),
-                this.textField_rue.getText(),
-                this.textField_ville.getText(),
-                this.textField_codePostal.getText());
+                this.textFieldName.getText(),
+                this.textFieldPrenom.getText(),
+                this.textFieldTelephone.getText(),
+                Integer.parseInt(this.textFieldNumRue.getText()),
+                this.textFieldRue.getText(),
+                this.textFieldVille.getText(),
+                this.textFieldCodePostal.getText());
 
         if(isNewOrEdit)
         {
-            newAccompagnateur.set_idAccompagnateur(TableManager.Instance().get_accompagnateurDAO().Count()+1);
             if(TableManager.Instance().get_accompagnateurDAO().Add(newAccompagnateur))
             {
                 System.out.println(" => Accompagnateur successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -102,7 +101,7 @@ public class ajoutAccompagnateurController
             {
                 System.out.println(" => Accompagnateur successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -127,12 +126,12 @@ public class ajoutAccompagnateurController
 
     private void loadEditValues()
     {
-        this.textField_name.setText(_selectedAccompagnateur.get_nameAccompagnateur());
-        this.textField_prenom.setText(_selectedAccompagnateur.get_prenomAccompagnateur());
-        this.textField_codePostal.setText(_selectedAccompagnateur.get_codePostalAccompagnateur());
-        this.textField_numRue.setText(Integer.toString(_selectedAccompagnateur.get_numRueAccompagnateur()));
-        this.textField_rue.setText(_selectedAccompagnateur.get_rueAccompagnateur());
-        this.textField_ville.setText(_selectedAccompagnateur.get_villeAccompagnateur());
-        this.textField_telephone.setText(_selectedAccompagnateur.get_telephoneAccompagnateur());
+        this.textFieldName.setText(_selectedAccompagnateur.get_nameAccompagnateur());
+        this.textFieldPrenom.setText(_selectedAccompagnateur.get_prenomAccompagnateur());
+        this.textFieldCodePostal.setText(_selectedAccompagnateur.get_codePostalAccompagnateur());
+        this.textFieldNumRue.setText(Integer.toString(_selectedAccompagnateur.get_numRueAccompagnateur()));
+        this.textFieldRue.setText(_selectedAccompagnateur.get_rueAccompagnateur());
+        this.textFieldVille.setText(_selectedAccompagnateur.get_villeAccompagnateur());
+        this.textFieldTelephone.setText(_selectedAccompagnateur.get_telephoneAccompagnateur());
     }
 }

@@ -19,10 +19,12 @@
         </VBox>
 
         <VBox spacing="5" prefWidth="200">
-            <TextField fx:id="textField_name" prefHeight="25" prefWidth="100" promptText="name" />
+            <TextField fx:id="textFieldName" prefHeight="25" prefWidth="100" promptText="name" />
+
             <HBox spacing="5">
-                <ComboBox fx:id="comboBox_hotel" prefHeight="25" prefWidth="160" />
-                <Button fx:id="but_addHotel" onAction="#but_addHotelClick" prefWidth="35" prefHeight="25">
+                <ComboBox fx:id="comboBoxHotel" prefHeight="25" prefWidth="160" />
+
+                <Button fx:id="butAddHotel" onAction="#butAddHotelClick" prefWidth="35" prefHeight="25">
                     <graphic>
                         <ImageView fitWidth="15" fitHeight="15">
                             <image>
@@ -37,8 +39,8 @@
 
     <VBox spacing="35">
         <HBox alignment="CENTER" spacing="5">
-            <Button fx:id="but_Valider" onAction="#but_ValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
-            <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
+            <Button fx:id="butValider" onAction="#butValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
+            <Button fx:id="butCancel" onAction="#butAnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
         </HBox>
     </VBox>
 </VBox>

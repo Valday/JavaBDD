@@ -10,6 +10,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox prefHeight="795" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.guideWindowController">
     <!-- MenuBar -->
     <MenuBar prefHeight="25" BorderPane.alignment="CENTER">
@@ -17,21 +18,22 @@
             <Menu mnemonicParsing="false" text="File">
                 <items>
                     <SeparatorMenuItem mnemonicParsing="false" />
-                    <MenuItem fx:id="menuItem_Quit" mnemonicParsing="false" onAction="#menuItem_QuitClick" text="Quit" />
+                    <MenuItem fx:id="menuItemQuit" mnemonicParsing="false" onAction="#menuItemQuitClick" text="Quit" />
                 </items>
             </Menu>
         </menus>
     </MenuBar>
 
+    <!--Zone detail de l'accompagnateur-->
     <TitledPane collapsible="false" text="Contact details :">
         <HBox spacing="200">
             <VBox spacing="15">
-
                 <HBox spacing="5">
                     <VBox spacing="5">
                         <Label text="First name :" />
                         <TextField fx:id="textFieldFirstName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="First name" />
                     </VBox>
+
                     <VBox spacing="5">
                         <Label text="Last name :" />
                         <TextField fx:id="textFieldLastName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Last name" />
@@ -53,7 +55,6 @@
                         <Label text="Street :" />
                         <TextField fx:id="textFieldStreet" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Street" />
                     </VBox>
-
                 </HBox>
 
                 <HBox spacing="15">
@@ -66,9 +67,6 @@
                         <Label text="City :" />
                         <TextField fx:id="textFieldCity" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="City" />
                     </VBox>
-
-
-
                 </HBox>
             </VBox>
 
@@ -79,7 +77,7 @@
                     </image>
                 </ImageView>
 
-                <Button fx:id="but_ValidModif" onAction="#but_ValidModifClick" prefHeight="25" prefWidth="110" text="Save changes">
+                <Button fx:id="butValidModif" onAction="#butValidModifClick" prefHeight="25" prefWidth="110" text="Save changes">
                     <graphic>
                         <ImageView fitHeight="15" fitWidth="15">
                             <image>
@@ -88,8 +86,9 @@
                         </ImageView>
                     </graphic>
                 </Button>
+
                 <HBox spacing="5">
-                    <Button fx:id="but_ApplyJob" onAction="#but_ApplyJobClick" prefHeight="25" prefWidth="110" text="Apply circuit">
+                    <Button fx:id="butApplyJob" onAction="#butApplyJobClick" prefHeight="25" prefWidth="110" text="Apply circuit">
                         <graphic>
                             <ImageView fitHeight="15" fitWidth="15">
                                 <image>
@@ -99,7 +98,7 @@
                         </graphic>
                     </Button>
 
-                    <Button fx:id="but_Delete" onAction="#but_DeleteClick" prefHeight="25" prefWidth="140" text="Cancel Reservation">
+                    <Button fx:id="butDelete" onAction="#butDeleteClick" prefHeight="25" prefWidth="140" text="Cancel Reservation">
                         <graphic>
                             <ImageView fitHeight="15" fitWidth="15">
                                 <image>
@@ -114,11 +113,13 @@
         </HBox>
     </TitledPane>
 
+    <!--Table des Circuits-->
     <Label prefHeight="25" text="Circuits :">
       <padding>
          <Insets left="15.0" />
-      </padding></Label>
-    <TableView fx:id="tableView_Circuits" editable="false" maxWidth="-Infinity" prefWidth="800.0">
+      </padding>
+    </Label>
+    <TableView fx:id="tableViewCircuits" editable="false" maxWidth="-Infinity" prefWidth="800.0">
         <columns>
             <TableColumn prefWidth="50" text="id">
                 <cellValueFactory><PropertyValueFactory property="_idCircuit" /></cellValueFactory>

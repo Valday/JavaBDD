@@ -26,8 +26,9 @@
 
         <VBox spacing="5" prefWidth="150">
             <HBox spacing="5" prefWidth="200">
-                <ComboBox fx:id="comboBox_client" prefHeight="25" prefWidth="150"/>
-                <Button fx:id="but_addClient" onAction="#but_addClientClick" prefHeight="25" prefWidth="35" >
+                <ComboBox fx:id="comboBoxClient" prefHeight="25" prefWidth="150"/>
+
+                <Button fx:id="butAddClient" onAction="#butAddClientClick" prefHeight="25" prefWidth="35" >
                     <graphic>
                         <ImageView fitWidth="15" fitHeight="15">
                             <image>
@@ -36,17 +37,17 @@
                         </ImageView>
                     </graphic>
                 </Button>
-
             </HBox>
-            <CheckBox fx:id="checkBox_accompteOk" prefHeight="25" />
-            <CheckBox fx:id="checkBox_secondPaiementOk" prefHeight="25" />
-            <TextField fx:id="textField_montantAccompte" prefHeight="25" prefWidth="100" promptText="Montant accompte"/>
-            <TextField fx:id="textField_montantSecondPaiement" prefHeight="25" prefWidth="150" promptText="Montant second paiement"/>
-            <DatePicker fx:id="datePicker_reservation" prefHeight="25" prefWidth="150" />
-            <DatePicker fx:id="datePicker_limite" prefHeight="25" prefWidth="150" />
+            <CheckBox fx:id="checkBoxAccompteOk" prefHeight="25" />
+            <CheckBox fx:id="checkBoxSecondPaiementOk" prefHeight="25" />
+            <TextField fx:id="textFieldMontantAccompte" prefHeight="25" prefWidth="100" promptText="Montant accompte"/>
+            <TextField fx:id="textFieldMontantSecondPaiement" prefHeight="25" prefWidth="150" promptText="Montant second paiement"/>
+            <DatePicker fx:id="datePickerReservation" prefHeight="25" prefWidth="150" />
+            <DatePicker fx:id="datePickerLimite" prefHeight="25" prefWidth="150" />
             <HBox spacing="5" prefWidth="200">
-                <ComboBox fx:id="comboBox_circuit" prefHeight="25" prefWidth="150" />
-                <Button fx:id="but_addCircuit" onAction="#but_addCircuitClick" prefHeight="25" prefWidth="35" >
+                <ComboBox fx:id="comboBoxCircuit" prefHeight="25" prefWidth="150" />
+
+                <Button fx:id="butAddCircuit" onAction="#butAddCircuitClick" prefHeight="25" prefWidth="35" >
                     <graphic>
                         <ImageView fitWidth="15" fitHeight="15">
                             <image>
@@ -55,16 +56,14 @@
                         </ImageView>
                     </graphic>
                 </Button>
-
             </HBox>
-
         </VBox>
     </HBox>
 
     <VBox spacing="35">
         <HBox alignment="CENTER" spacing="5">
-            <Button fx:id="but_Valider" onAction="#but_ValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
-            <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
+            <Button fx:id="butValider" onAction="#butValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
+            <Button fx:id="butCancel" onAction="#butAnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
         </HBox>
     </VBox>
 </VBox>

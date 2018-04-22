@@ -152,7 +152,7 @@ INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccomp
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (8,'magna a',85,640,'25/01/18','24/04/18',1,18);
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (9,'Mauris vel',32,385,'03/02/18','12/05/18',0,22);
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (10,'nonummy ac,',71,463,'27/05/18','26/08/17',0,13);
-INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (11,'a, scelerisque',68,254,'28/11/17','04/04/19',0,1);
+INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (11,'scelerisque',68,254,'28/11/17','04/04/19',0,1);
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (12,'lacus. Aliquam',55,115,'29/01/18','13/03/18',0,19);
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (13,'et, rutrum',36,632,'14/04/17','24/04/18',1,7);
 INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccompagnateur) VALUES (14,'mus. Proin',78,996,'03/10/17','02/09/17',0,12);

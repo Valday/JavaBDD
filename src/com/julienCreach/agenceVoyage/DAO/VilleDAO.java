@@ -14,10 +14,16 @@ import java.sql.SQLException;
 
 public class VilleDAO extends DAO<Ville>
 {
+    //region Constructeur
+
     public VilleDAO(Connection connect)
     {
         super(connect);
     }
+
+    //endregion Constructeur
+
+    //region Public Services
 
     @Override
     public boolean Add(Ville obj)
@@ -107,48 +113,5 @@ public class VilleDAO extends DAO<Ville>
 
     }
 
-    @Override
-    public Ville find(String userName, String passwd)
-    {
-        return null;
-    }
-
-    @Override
-    public ResultSet selectAll()
-    {
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Villes");
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    @Override
-    public int Count()
-    {
-        int nb = 0;
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Villes");
-
-            resultSet.first();
-            nb = resultSet.getInt(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return nb;
-    }
+    //endregion Public Services
 }

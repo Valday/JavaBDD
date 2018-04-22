@@ -43,55 +43,54 @@ public class ajoutVilleController
     }
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private TextField textField_name;
+    private TextField textFieldName;
 
     @FXML
-    private ComboBox comboBox_hotel;
+    private ComboBox comboBoxHotel;
 
     private ObservableList<String> _listNomHotels;
 
     private List<Hotel> _listHotels;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         int idHotel = 0;
         for(int i = 0; i < this._listHotels.size();i++)
         {
-            if(this._listHotels.get(i).get_nameHotel() == this.comboBox_hotel.getSelectionModel().getSelectedItem().toString())
+            if(this._listHotels.get(i).get_nameHotel() == this.comboBoxHotel.getSelectionModel().getSelectedItem().toString())
             {
                 idHotel = this._listHotels.get(i).get_idHotel();
             }
         }
 
         Ville newVille = new Ville(-1,
-                this.textField_name.getText(),
+                this.textFieldName.getText(),
                 idHotel);
 
         if(isNewOrEdit)
         {
-            newVille.set_idVille(TableManager.Instance().get_villeDAO().Count()+1);
             if(TableManager.Instance().get_villeDAO().Add(newVille))
             {
                 System.out.println(" => Ville successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -104,7 +103,7 @@ public class ajoutVilleController
             {
                 System.out.println(" => Ville successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -128,10 +127,10 @@ public class ajoutVilleController
     {
         try
         {
-            this._listNomHotels = this.comboBox_hotel.getItems();
+            this._listNomHotels = this.comboBoxHotel.getItems();
             this._listHotels = new ArrayList<>();
 
-            ResultSet allHotels = TableManager.Instance().get_hotelDAO().selectAll();
+            ResultSet allHotels = TableManager.Instance().get_hotelDAO().selectAll("Hotels");
 
             while(allHotels.next())
             {
@@ -144,7 +143,7 @@ public class ajoutVilleController
                 this._listHotels.add(newHotel);
                 this._listNomHotels.add(newHotel.get_nameHotel());
             }
-            this.comboBox_hotel.setItems(this._listNomHotels);
+            this.comboBoxHotel.setItems(this._listNomHotels);
 
         }
         catch (SQLException e)
@@ -155,12 +154,12 @@ public class ajoutVilleController
 
     private void loadEditValues()
     {
-        this.textField_name.setText(_selectedVille.get_nameVille());
-        this.comboBox_hotel.getSelectionModel().select(_selectedVille.get_idHotel()-1);
+        this.textFieldName.setText(_selectedVille.get_nameVille());
+        this.comboBoxHotel.getSelectionModel().select(_selectedVille.get_idHotel()-1);
     }
 
         @FXML
-    private void but_addHotelClick()
+    private void butAddHotelClick()
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutHotel.fxml"));

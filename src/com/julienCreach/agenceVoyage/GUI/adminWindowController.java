@@ -8,6 +8,8 @@ package com.julienCreach.agenceVoyage.GUI;
 import com.julienCreach.agenceVoyage.GUI.Popup.*;
 import com.julienCreach.agenceVoyage.Table.*;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.LoadException;
@@ -33,49 +35,51 @@ public class adminWindowController
      * TabPane principal.
      */
     @FXML
-    private TabPane tabPane_main;
+    private TabPane tabPaneMain;
 
     /**
      * Datagrid circuits.
      */
     @FXML
-    private TableView<Circuit> tableView_Circuits;
+    private TableView<Circuit> tableViewCircuits;
 
     /**
      * Datagrid Clients.
      */
     @FXML
-    private TableView<Client> tableView_Clients;
+    private TableView<Client> tableViewClients;
 
     /**
      * Datagrid Hotels.
      */
     @FXML
-    private TableView<Hotel> tableView_Hotels;
+    private TableView<Hotel> tableViewHotels;
 
     /**
      * Datagrid Villes.
      */
     @FXML
-    private TableView<Ville> tableView_Villes;
+    private TableView<Ville> tableViewVilles;
 
     /**
      * Datagrid Accompagnateurs.
      */
     @FXML
-    private TableView<Accompagnateur> tableView_Accompagnateurs;
+    private TableView<Accompagnateur> tableViewAccompagnateurs;
 
     /**
      * Datagrid Reservations.
      */
     @FXML
-    private TableView<Reservation> tableView_Reservations;
+    private TableView<Reservation> tableViewReservations;
 
+    @FXML
+    private TextField textFieldRequete;
     /**
      * Boutton exit de la barre de menu.
      */
     @FXML
-    private MenuItem menuItem_Quit;
+    private MenuItem menuItemQuit;
 
     //endregion Private Attributs
 
@@ -102,22 +106,40 @@ public class adminWindowController
      * Actions au click sur le menuitem quit.
      */
     @FXML
-    private void menuItem_QuitClick()
+    private void menuItemQuitClick()
     {
         System.exit(0);
+    }
+
+    @FXML
+    private void menuItemStatisticsClick()
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticWindow.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Statistiques");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Actions sur bouton de suppression
      */
     @FXML
-    private void but_SuprClick()
+    private void butSuprClick()
     {
         switch (selectionModel.getSelectedIndex())
         {
             case 0:
                 System.out.println(" => Supression Circuit ...");
-                Circuit newCircuit = tableView_Circuits.getSelectionModel().getSelectedItem();
+                Circuit newCircuit = tableViewCircuits.getSelectionModel().getSelectedItem();
                 if(newCircuit != null)
                 {
                     TableManager.Instance().get_circuitDAO().Delete(newCircuit);
@@ -126,7 +148,7 @@ public class adminWindowController
 
             case 1 :
                 System.out.println(" => Supression Client ...");
-                Client newClient = tableView_Clients.getSelectionModel().getSelectedItem();
+                Client newClient = tableViewClients.getSelectionModel().getSelectedItem();
                 if(newClient != null)
                 {
 
@@ -135,7 +157,7 @@ public class adminWindowController
                 break;
             case 2 :
                 System.out.println(" => Supression Hotel ...");
-                Hotel newHotel = tableView_Hotels.getSelectionModel().getSelectedItem();
+                Hotel newHotel = tableViewHotels.getSelectionModel().getSelectedItem();
                 if(newHotel != null)
                 {
                     TableManager.Instance().get_hotelDAO().Delete(newHotel);
@@ -143,7 +165,7 @@ public class adminWindowController
                 break;
             case 3 :
                 System.out.println(" => Supression Ville ...");
-                Ville newVille = tableView_Villes.getSelectionModel().getSelectedItem();
+                Ville newVille = tableViewVilles.getSelectionModel().getSelectedItem();
                 if(newVille != null)
                 {
                     TableManager.Instance().get_villeDAO().Delete(newVille);
@@ -151,7 +173,7 @@ public class adminWindowController
                 break;
             case 4 :
                 System.out.println(" => Supression Accompagnateur ...");
-                Accompagnateur newAccompagnateur = tableView_Accompagnateurs.getSelectionModel().getSelectedItem();
+                Accompagnateur newAccompagnateur = tableViewAccompagnateurs.getSelectionModel().getSelectedItem();
                 if(newAccompagnateur != null)
                 {
                     TableManager.Instance().get_accompagnateurDAO().Delete(newAccompagnateur);
@@ -159,7 +181,7 @@ public class adminWindowController
                 break;
             case 5 :
                 System.out.println(" => Supression Reservation ...");
-                Reservation newReservation = tableView_Reservations.getSelectionModel().getSelectedItem();
+                Reservation newReservation = tableViewReservations.getSelectionModel().getSelectedItem();
                 if(newReservation != null)
                 {
                     TableManager.Instance().get_reservationDAO().Delete(newReservation);
@@ -173,7 +195,7 @@ public class adminWindowController
      * Actions sur bouton d'ajout
      */
     @FXML
-    private void but_AjoutClick()
+    private void butAjoutClick()
     {
         switch (selectionModel.getSelectedIndex())
         {
@@ -295,7 +317,7 @@ public class adminWindowController
      * Actions sur bouton d'edition
      */
     @FXML
-    private void but_EditClick()
+    private void butEditClick()
     {
         try
         {
@@ -306,7 +328,7 @@ public class adminWindowController
                     try
                     {
                         ajoutCircuitController.setIsNewOrEdit(false);
-                        ajoutCircuitController.set_selectedCircuit(tableView_Circuits.getSelectionModel().getSelectedItem());
+                        ajoutCircuitController.set_selectedCircuit(tableViewCircuits.getSelectionModel().getSelectedItem());
 
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutCircuit.fxml"));
                         Parent root = fxmlLoader.load();
@@ -326,7 +348,7 @@ public class adminWindowController
                     try
                     {
                         ajoutClientController.setIsNewOrEdit(false);
-                        ajoutClientController.set_selectedClient(tableView_Clients.getSelectionModel().getSelectedItem());
+                        ajoutClientController.set_selectedClient(tableViewClients.getSelectionModel().getSelectedItem());
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutClient.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
@@ -344,7 +366,7 @@ public class adminWindowController
                     try
                     {
                         ajoutHotelController.setIsNewOrEdit(false);
-                        ajoutHotelController.set_selectedHotel(tableView_Hotels.getSelectionModel().getSelectedItem());
+                        ajoutHotelController.set_selectedHotel(tableViewHotels.getSelectionModel().getSelectedItem());
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutHotel.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
@@ -362,7 +384,7 @@ public class adminWindowController
                     try
                     {
                         ajoutVilleController.setIsNewOrEdit(false);
-                        ajoutVilleController.set_selectedVille(tableView_Villes.getSelectionModel().getSelectedItem());
+                        ajoutVilleController.set_selectedVille(tableViewVilles.getSelectionModel().getSelectedItem());
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutVille.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
@@ -380,7 +402,7 @@ public class adminWindowController
                     try
                     {
                         ajoutAccompagnateurController.setIsNewOrEdit(false);
-                        ajoutAccompagnateurController.set_selectedAccompagnateur(tableView_Accompagnateurs.getSelectionModel().getSelectedItem());
+                        ajoutAccompagnateurController.set_selectedAccompagnateur(tableViewAccompagnateurs.getSelectionModel().getSelectedItem());
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutAccompagnateur.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
@@ -398,7 +420,7 @@ public class adminWindowController
                     try
                     {
                         ajoutReservationController.setIsNewOrEdit(false);
-                        ajoutReservationController.set_selectedReservation(tableView_Reservations.getSelectionModel().getSelectedItem());
+                        ajoutReservationController.set_selectedReservation(tableViewReservations.getSelectionModel().getSelectedItem());
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutReservation.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
@@ -446,7 +468,7 @@ public class adminWindowController
                 case 1 :
                     try
                     {
-                        Client client = tableView_Clients.getSelectionModel().getSelectedItem();
+                        Client client = tableViewClients.getSelectionModel().getSelectedItem();
                         customerWindowController.set_selectedClient(client);
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerWindow.fxml"));
                         Parent root1 = fxmlLoader.load();
@@ -464,7 +486,7 @@ public class adminWindowController
                 case 4 :
                     try
                     {
-                        Accompagnateur accompagnateur = tableView_Accompagnateurs.getSelectionModel().getSelectedItem();
+                        Accompagnateur accompagnateur = tableViewAccompagnateurs.getSelectionModel().getSelectedItem();
                         guideWindowController.set_selectedAccompagnateur(accompagnateur);
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("guideWindow.fxml"));
                         Parent root1 = fxmlLoader.load();
@@ -492,14 +514,141 @@ public class adminWindowController
      */
     private void LoadTables()
     {
-        this.tableView_Circuits.setItems(TableManager.Instance().LoadCircuits());
-        this.tableView_Clients.setItems(TableManager.Instance().LoadClients());
-        this.tableView_Hotels.setItems(TableManager.Instance().LoadHotels());
-        this.tableView_Villes.setItems(TableManager.Instance().LoadVilles());
-        this.tableView_Accompagnateurs.setItems(TableManager.Instance().LoadAccompagnateurs());
-        this.tableView_Reservations.setItems(TableManager.Instance().LoadReservations());
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Circuit> filteredCircuitData = new FilteredList<>(TableManager.Instance().LoadCircuits(), p -> true);
+        FilteredList<Client> filteredClientData = new FilteredList<>(TableManager.Instance().LoadClients(), p -> true);
+        FilteredList<Hotel> filteredHotelData = new FilteredList<>(TableManager.Instance().LoadHotels(), p -> true);
+        FilteredList<Ville> filteredVilleData = new FilteredList<>(TableManager.Instance().LoadVilles(), p -> true);
+        FilteredList<Accompagnateur> filteredAccompagnateurData = new FilteredList<>(TableManager.Instance().LoadAccompagnateurs(), p -> true);
 
-        this.selectionModel = this.tabPane_main.getSelectionModel();
+        // 2. Set the filter Predicate whenever the filter changes.
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredCircuitData.setPredicate(Circuit -> {
+                // If filter text is empty, display all Circuits.
+                if (newValue == null || newValue.isEmpty())
+                {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Circuit.get_nameCircuit().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredClientData.setPredicate(Client -> {
+                // If filter text is empty, display all Circuits.
+                if (newValue == null || newValue.isEmpty())
+                {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Client.get_nameClient().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                else if (Client.get_prenomClient().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredHotelData.setPredicate(Hotel -> {
+                // If filter text is empty, display all Circuits.
+                if (newValue == null || newValue.isEmpty())
+                {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Hotel.get_nameHotel().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredVilleData.setPredicate(Ville -> {
+                // If filter text is empty, display all Circuits.
+                if (newValue == null || newValue.isEmpty())
+                {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Ville.get_nameVille().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredAccompagnateurData.setPredicate(Accompagnateur -> {
+                // If filter text is empty, display all Circuits.
+                if (newValue == null || newValue.isEmpty())
+                {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Accompagnateur.get_nameAccompagnateur().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true; // Filter matches name.
+                }
+                else if(Accompagnateur.get_prenomAccompagnateur().toLowerCase().contains(lowerCaseFilter))
+                {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Circuit> sortedCircuitData = new SortedList<>(filteredCircuitData);
+        SortedList<Client> sortedClientData = new SortedList<>(filteredClientData);
+        SortedList<Hotel> sortedHotelData = new SortedList<>(filteredHotelData);
+        SortedList<Ville> sortedVilleData = new SortedList<>(filteredVilleData);
+        SortedList<Accompagnateur> sortedAccompagnateurData = new SortedList<>(filteredAccompagnateurData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedCircuitData.comparatorProperty().bind(tableViewCircuits.comparatorProperty());
+        sortedClientData.comparatorProperty().bind(tableViewClients.comparatorProperty());
+        sortedHotelData.comparatorProperty().bind(tableViewHotels.comparatorProperty());
+        sortedVilleData.comparatorProperty().bind(tableViewVilles.comparatorProperty());
+        sortedAccompagnateurData.comparatorProperty().bind(tableViewAccompagnateurs.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        this.tableViewCircuits.setItems(sortedCircuitData);
+        this.tableViewClients.setItems(sortedClientData);
+        this.tableViewHotels.setItems(sortedHotelData);
+        this.tableViewVilles.setItems(sortedVilleData);
+        this.tableViewAccompagnateurs.setItems(sortedAccompagnateurData);
+
+        this.tableViewReservations.setItems(TableManager.Instance().LoadReservations());
+
+        this.selectionModel = this.tabPaneMain.getSelectionModel();
     }
 
     //endregion Private Services

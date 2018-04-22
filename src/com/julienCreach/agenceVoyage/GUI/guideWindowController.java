@@ -26,19 +26,12 @@ import java.util.Optional;
 public class guideWindowController
 {
 
+    //region Private Attributs
+
     /**
      * Accompagnateur sélectionné
      */
     private static Accompagnateur _selectedAccompagnateur;
-
-    /**
-     * Assesseur sur l'accompgnateur sélectionné
-     * @param _selectedAccompagnateur Accompagnateur a afficher
-     */
-    public static void set_selectedAccompagnateur(Accompagnateur _selectedAccompagnateur)
-    {
-        guideWindowController._selectedAccompagnateur = _selectedAccompagnateur;
-    }
 
     /**
      * Liste des circuits que l'acompagnateur sélectionné encadre
@@ -56,12 +49,6 @@ public class guideWindowController
      */
     @FXML
     private TextField textFieldFirstName;
-
-    /**
-     * Champ de saisie date de naissance
-     */
-    @FXML
-    private DatePicker datePickerBirthDate;
 
     /**
      * Champ de saisie numero de telephone
@@ -97,14 +84,30 @@ public class guideWindowController
      * Table Permettant d'afficher les circuits de l'accompagnateur
      */
     @FXML
-    private TableView<Circuit> tableView_Circuits;
+    private TableView<Circuit> tableViewCircuits;
 
+    //endregion Private Attributs
+
+    //region Public Attributs
+
+    /**
+     * Assesseur sur l'accompgnateur sélectionné
+     * @param _selectedAccompagnateur Accompagnateur a afficher
+     */
+    public static void set_selectedAccompagnateur(Accompagnateur _selectedAccompagnateur)
+    {
+        guideWindowController._selectedAccompagnateur = _selectedAccompagnateur;
+    }
+
+    //endregion Public Attributs
+
+    //region  Private Services
 
     /**
      * Action sur le menuItem quitter de la menu bar
      */
     @FXML
-    public void menuItem_QuitClick()
+    private void menuItemQuitClick()
     {
         System.exit(0);
     }
@@ -118,8 +121,11 @@ public class guideWindowController
         this.LoadValues();
     }
 
+    /**
+     * Action sur click boutton ApplyJob
+     */
     @FXML
-    private void but_ApplyJobClick()
+    private void butApplyJobClick()
     {
         try
         {
@@ -139,8 +145,11 @@ public class guideWindowController
         }
     }
 
+    /**
+     * Action sur click boutton validModif
+     */
     @FXML
-    private void but_ValidModifClick()
+    private void butValidModifClick()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -166,10 +175,13 @@ public class guideWindowController
         }
     }
 
+    /**
+     * Action sur click boutton delete
+     */
     @FXML
-    private void but_DeleteClick()
+    private void butDeleteClick()
     {
-        Circuit newCircuit = this.tableView_Circuits.getSelectionModel().getSelectedItem();
+        Circuit newCircuit = this.tableViewCircuits.getSelectionModel().getSelectedItem();
         if(newCircuit != null)
         {
             if(TableManager.Instance().get_circuitDAO().Delete(newCircuit))
@@ -179,9 +191,9 @@ public class guideWindowController
         }
     }
 
-        /**
-         * Charge les données pour l'affichage dans la page de profil
-         */
+    /**
+     * Charge les données pour l'affichage dans la page de profil
+     */
     private void LoadValues()
     {
         this.textFieldLastName.setText(_selectedAccompagnateur.get_nameAccompagnateur());
@@ -193,7 +205,6 @@ public class guideWindowController
         this.textFieldCity.setText(_selectedAccompagnateur.get_villeAccompagnateur());
 
         this.LoadGuideCircuits();
-
     }
 
     /**
@@ -230,6 +241,12 @@ public class guideWindowController
             e.printStackTrace();
         }
 
-        this.tableView_Circuits.setItems(_guideCircuits);
+        this.tableViewCircuits.setItems(_guideCircuits);
     }
+
+    //endregion Private Services
+
+    //region  Public Services
+
+    //endregion Public Services
 }

@@ -57,26 +57,26 @@ public class bookNowController
     private Label lblFin;
 
     @FXML
-    private ComboBox comboBox_circuit;
+    private ComboBox comboBoxCircuit;
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         Calendar dateLimite = Calendar.getInstance();
         dateLimite.add(Calendar.DATE,10);
@@ -99,7 +99,7 @@ public class bookNowController
             {
                 System.out.println(" => Reservation successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -113,14 +113,14 @@ public class bookNowController
     }
 
     @FXML
-    private void comboBox_circuitClick()
+    private void comboBoxCircuitClick()
     {
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         try
         {
             resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Circuits WHERE nom = '"+this.comboBox_circuit.getSelectionModel().getSelectedItem().toString()+"'");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Circuits WHERE nom = '"+this.comboBoxCircuit.getSelectionModel().getSelectedItem().toString()+"'");
 
             if (resultSet.first())
             {
@@ -145,10 +145,10 @@ public class bookNowController
     {
         try
         {
-            this._listNomCircuits = this.comboBox_circuit.getItems();
+            this._listNomCircuits = this.comboBoxCircuit.getItems();
             this._listCircuits = new ArrayList<>();
 
-            ResultSet allCircuits = TableManager.Instance().get_circuitDAO().selectAll();
+            ResultSet allCircuits = TableManager.Instance().get_circuitDAO().selectAll("Circuits");
 
             while (allCircuits.next())
             {
@@ -165,7 +165,7 @@ public class bookNowController
                 this._listNomCircuits.add(newCircuit.get_nameCircuit());
             }
 
-            this.comboBox_circuit.setItems(this._listNomCircuits);
+            this.comboBoxCircuit.setItems(this._listNomCircuits);
         }
         catch (SQLException e)
         {

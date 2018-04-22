@@ -23,54 +23,81 @@ import javafx.stage.Stage;
 
 public class loginWindowController
 {
-    //region Const Attributes
+    //region Private Attributes
 
-    private Passwd _passd;
-
+    /**
+     * User correspondant au identifiants de connexion.
+     */
     private User _user;
 
-    //endregion Const Attributes
-
+    /**
+     * Bouton cancel.
+     */
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
+    /**
+     * Champ de saisie login.
+     */
     @FXML
-    private TextField txtField_login;
+    private TextField txtFieldLogin;
 
+    /**
+     * Champ de saisie Passwds.
+     */
     @FXML
-    private PasswordField passwdField_passwd;
+    private PasswordField passwdFieldPasswd;
 
-    @FXML
-    public void but_validateClick()
-    {
-        this.connect(this.txtField_login.getText(),this.passwdField_passwd.getText());
-    }
+    //endregion Private Attributes
 
-    @FXML
-    public void but_cancelClick()
-    {
-        // get a handle to the stage
-        Stage stage = (Stage)but_cancel.getScene().getWindow();
+    //region Constructor
 
-        // do what you have to do
-        stage.close();
-    }
-
+    /**
+     * Constructeur par defaut.
+     */
     public loginWindowController()
     {
 
     }
 
+    //endregion Constructor
 
     //region Private Services
 
+    /**
+     * Action sur click bouton valider
+     */
+    @FXML
+    private void butValidateClick()
+    {
+        this.connect(this.txtFieldLogin.getText(),this.passwdFieldPasswd.getText());
+    }
+
+    /**
+     * Action sur click bouton cancel
+     */
+    @FXML
+    private void butCancelClick()
+    {
+        // get a handle to the stage
+        Stage stage = (Stage) butCancel.getScene().getWindow();
+
+        // do what you have to do
+        stage.close();
+    }
+
+    /**
+     * Methode gerant la conexion
+     * @param id identifiant de connexion
+     * @param passwd mot de passe
+     */
     private void connect(String id, String passwd)
     {
-        this._passd = TableManager.Instance().get_passwdDAO().find(id,passwd);
+        Passwd passd = TableManager.Instance().get_passwdDAO().find(id,passwd);
 
-        if(this._passd != null)
+        if(passd != null)
         {
-            this._user = TableManager.Instance().get_userDAO().find(this._passd.get_idUser());
+            this._user = TableManager.Instance().get_userDAO().find(passd.get_idUser());
             if(this._user != null)
             {
                 switch (this._user.get_rank())
@@ -97,12 +124,15 @@ public class loginWindowController
             MessageBox.Show(Alert.AlertType.ERROR,"User name or password not found", null,"Invalid datas, please try again!");
         }
 
-        this.txtField_login.clear();
-        this.passwdField_passwd.clear();
+        this.txtFieldLogin.clear();
+        this.passwdFieldPasswd.clear();
     }
 
     //endregion Private Services
 
+    /**
+     * Methode de connexion vue admin.
+     */
     private void OpenAdminView()
     {
         try
@@ -120,6 +150,9 @@ public class loginWindowController
         }
     }
 
+    /**
+     * Methode de connexion vue Client.
+     */
     private void OpenCustomerView()
     {
         try
@@ -139,6 +172,9 @@ public class loginWindowController
         }
     }
 
+    /**
+     * Methode de connexion vue accompagnateur.
+     */
     private void OpenGuideView()
     {
         try

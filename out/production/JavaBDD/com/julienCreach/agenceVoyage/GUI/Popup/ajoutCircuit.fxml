@@ -24,15 +24,17 @@
         </VBox>
 
         <VBox spacing="5" prefWidth="190">
-            <TextField fx:id="textField_name" prefHeight="25" prefWidth="100" promptText="Nom" />
-            <TextField fx:id="textField_placeDispo" prefHeight="25" prefWidth="100" promptText="Nombre de places"/>
-            <TextField fx:id="textField_prix" prefHeight="25" prefWidth="100" promptText="Prix"/>
-            <DatePicker fx:id="datePick_depart" prefHeight="25" prefWidth="200" />
-            <DatePicker fx:id="datePick_arrivee" prefHeight="25" prefWidth="200" />
-            <CheckBox fx:id="checkBox_circuitOpen" prefHeight="25" prefWidth="150"/>
+            <TextField fx:id="textFieldName" prefHeight="25" prefWidth="100" promptText="Nom" />
+            <TextField fx:id="textFieldPlaceDispo" prefHeight="25" prefWidth="100" promptText="Nombre de places"/>
+            <TextField fx:id="textFieldPrix" prefHeight="25" prefWidth="100" promptText="Prix"/>
+            <DatePicker fx:id="datePickDepart" prefHeight="25" prefWidth="200" />
+            <DatePicker fx:id="datePickArrivee" prefHeight="25" prefWidth="200" />
+            <CheckBox fx:id="checkBoxCircuitOpen" prefHeight="25" prefWidth="150"/>
+
             <HBox spacing="5" prefWidth="175">
-                <ComboBox fx:id="comboBox_accompagnateurs" prefHeight="25" prefWidth="150" />
-                <Button fx:id="but_addAcc" onAction="#but_addAccClick" prefHeight="25" prefWidth="35" >
+                <ComboBox fx:id="comboBoxAccompagnateurs" prefHeight="25" prefWidth="150" />
+
+                <Button fx:id="butAddAcc" onAction="#butAddAccClick" prefHeight="25" prefWidth="35" >
                     <graphic>
                         <ImageView fitWidth="15" fitHeight="15">
                             <image>
@@ -47,8 +49,8 @@
 
     <VBox spacing="35">
         <HBox alignment="CENTER" spacing="5">
-            <Button fx:id="but_Valider" onAction="#but_ValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
-            <Button fx:id="but_cancel" onAction="#but_AnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
+            <Button fx:id="butValider" onAction="#butValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
+            <Button fx:id="butCancel" onAction="#butAnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
         </HBox>
     </VBox>
 </VBox>

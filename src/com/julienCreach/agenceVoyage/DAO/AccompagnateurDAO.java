@@ -13,11 +13,26 @@ import java.sql.SQLException;
 
 public class AccompagnateurDAO extends DAO<Accompagnateur>
 {
+    //region Constructor
+
+    /**
+     * Constructeur par defaut.
+     * @param connect objet connection
+     */
     public AccompagnateurDAO(Connection connect)
     {
         super(connect);
     }
 
+    //endregion Constructor
+
+    //region Public Services
+
+    /**
+     * Methode d'ajout d'un Accompagnateur en bdd.
+     * @param obj Acommpagnateur
+     * @return true en cas de succès sinon false
+     */
     @Override
     public boolean Add(Accompagnateur obj)
     {
@@ -44,6 +59,11 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         return toReturn;
     }
 
+    /**
+     * Methode de supression d'un Accompagnateur en bdd.
+     * @param obj Accompagnateur
+     * @return true en cas de succès sinon false
+     */
     @Override
     public boolean Delete(Accompagnateur obj)
     {
@@ -65,6 +85,11 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         return toReturn;
     }
 
+    /**
+     * Methode d'édition d'un Accompagnateur en bdd.
+     * @param obj Accompagnateur
+     * @return true en cas de succès sinon false
+     */
     @Override
     public boolean Edit(Accompagnateur obj)
     {
@@ -74,13 +99,13 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Accompagnateurs SET nom='"+obj.get_nameAccompagnateur()
-                    +"', prenom='"+obj.get_prenomAccompagnateur()
-                    +"', telephone='"+obj.get_telephoneAccompagnateur()
-                    +"', numRue="+obj.get_numRueAccompagnateur()
-                    +",rue='"+obj.get_rueAccompagnateur()
-                    +"',ville='"+obj.get_villeAccompagnateur()
-                    +"', codePostal='"+obj.get_codePostalAccompagnateur()
-                    +"' WHERE idAccompagnateur = " +obj.get_idAccompagnateur());
+                                                                    +"', prenom='"+obj.get_prenomAccompagnateur()
+                                                                    +"', telephone='"+obj.get_telephoneAccompagnateur()
+                                                                    +"', numRue="+obj.get_numRueAccompagnateur()
+                                                                    +",rue='"+obj.get_rueAccompagnateur()
+                                                                    +"',ville='"+obj.get_villeAccompagnateur()
+                                                                    +"', codePostal='"+obj.get_codePostalAccompagnateur()
+                                                                    +"' WHERE idAccompagnateur = " +obj.get_idAccompagnateur());
             toReturn = true;
         }
         catch (SQLException e)
@@ -90,6 +115,11 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         return toReturn;
     }
 
+    /**
+     * Methode de recherche par id d'un Accompagnateur.
+     * @param id  id de l'Accompagnateur
+     * @return un objet Accompagnateur
+     */
     @Override
     public Accompagnateur find(int id)
     {
@@ -122,48 +152,5 @@ public class AccompagnateurDAO extends DAO<Accompagnateur>
         return accompagnateur;
     }
 
-    @Override
-    public Accompagnateur find(String userName, String passwd)
-    {
-        return null;
-    }
-
-    @Override
-    public ResultSet selectAll()
-    {
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Accompagnateurs");
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    @Override
-    public int Count()
-    {
-        int nb = 0;
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Accompagnateurs");
-
-            resultSet.first();
-            nb = resultSet.getInt(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return nb;
-    }
+    //endregion Public Services
 }

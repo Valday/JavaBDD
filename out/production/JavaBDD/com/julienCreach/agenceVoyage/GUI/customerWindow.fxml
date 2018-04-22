@@ -31,12 +31,13 @@
             <Menu mnemonicParsing="false" text="File">
                 <items>
                     <SeparatorMenuItem mnemonicParsing="false" />
-                    <MenuItem fx:id="menuItem_Quit" mnemonicParsing="false" onAction="#menuItem_QuitClick" text="Quit" />
+                    <MenuItem fx:id="menuItemQuit" mnemonicParsing="false" onAction="#menuItemQuitClick" text="Quit" />
                 </items>
             </Menu>
         </menus>
     </MenuBar>
 
+    <!--Zone detail du client-->
     <TitledPane collapsible="false" text="Contact details :">
         <HBox spacing="200">
             <VBox spacing="15">
@@ -46,6 +47,7 @@
                         <Label text="First name :" />
                         <TextField fx:id="textFieldFirstName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="First name" />
                     </VBox>
+
                     <VBox spacing="5">
                         <Label text="Last name :" />
                         <TextField fx:id="textFieldLastName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="Last name" />
@@ -85,9 +87,6 @@
                         <Label text="City :" />
                         <TextField fx:id="textFieldCity" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25" prefWidth="150" promptText="City" />
                     </VBox>
-
-
-
                 </HBox>
             </VBox>
 
@@ -98,7 +97,7 @@
                     </image>
                 </ImageView>
 
-                <Button fx:id="but_ValidModif" onAction="#but_ValidModifClick" prefHeight="25" prefWidth="110" text="Save changes">
+                <Button fx:id="butValidModif" onAction="#butValidModifClick" prefHeight="25" prefWidth="110" text="Save changes">
                     <graphic>
                         <ImageView fitHeight="15" fitWidth="15">
                             <image>
@@ -107,8 +106,9 @@
                         </ImageView>
                     </graphic>
                 </Button>
+
                 <HBox spacing="5">
-                    <Button fx:id="but_Book" onAction="#but_BookClick" prefHeight="25" prefWidth="110" text="Book now">
+                    <Button fx:id="butBook" onAction="#butBookClick" prefHeight="25" prefWidth="110" text="Book now">
                         <graphic>
                             <ImageView fitHeight="15" fitWidth="15">
                                 <image>
@@ -117,7 +117,8 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button fx:id="but_Delete" onAction="#but_DeleteClick" prefHeight="25" prefWidth="140" text="Cancel Reservation">
+
+                    <Button fx:id="butDelete" onAction="#butDeleteClick" prefHeight="25" prefWidth="140" text="Cancel Reservation">
                         <graphic>
                             <ImageView fitHeight="15" fitWidth="15">
                                 <image>
@@ -126,18 +127,19 @@
                             </ImageView>
                         </graphic>
                     </Button>
-
                 </HBox>
             </VBox>
-
         </HBox>
     </TitledPane>
 
+    <!--Table des reservations-->
     <Label prefHeight="25" text="Reservations :">
-      <VBox.margin>
+        <VBox.margin>
          <Insets left="15.0" />
-      </VBox.margin></Label>
-    <TableView fx:id="tableView_Reservations" editable="false" maxWidth="-Infinity" prefWidth="800.0">
+      </VBox.margin>
+    </Label>
+
+    <TableView fx:id="tableViewReservations" editable="false" maxWidth="-Infinity" prefWidth="800.0">
         <columns>
             <TableColumn prefWidth="50" text="Id">
                 <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>

@@ -44,34 +44,34 @@ public class ajoutReservationController
     }
 
     @FXML
-    private ComboBox comboBox_client;
+    private ComboBox comboBoxClient;
 
     @FXML
-    private CheckBox  checkBox_accompteOk;
+    private CheckBox checkBoxAccompteOk;
 
     @FXML
-    private  CheckBox checkBox_secondPaiementOk;
+    private  CheckBox checkBoxSecondPaiementOk;
 
     @FXML
-    private TextField textField_montantAccompte;
+    private TextField textFieldMontantAccompte;
 
     @FXML
-    private TextField textField_montantSecondPaiement;
+    private TextField textFieldMontantSecondPaiement;
 
     @FXML
-    private DatePicker datePicker_reservation;
+    private DatePicker datePickerReservation;
 
     @FXML
-    private  DatePicker datePicker_limite;
+    private  DatePicker datePickerLimite;
 
     @FXML
-    private ComboBox comboBox_circuit;
+    private ComboBox comboBoxCircuit;
 
     @FXML
-    private Button but_Valider;
+    private Button butValider;
 
     @FXML
-    private Button but_cancel;
+    private Button butCancel;
 
     private ObservableList<String> _listNomClients;
 
@@ -82,17 +82,17 @@ public class ajoutReservationController
     private List<Circuit> _listCircuits;
 
     @FXML
-    private void but_AnnulerClick()
+    private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) but_cancel.getScene().getWindow();
+        Stage stage = (Stage) butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
     @FXML
-    private void but_ValiderClick()
+    private void butValiderClick()
     {
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         int idClient = -1;
@@ -100,8 +100,8 @@ public class ajoutReservationController
 
         for(int i = 0; i < this._listClients.size();i++)
         {
-            if(this.comboBox_client.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_nameClient())
-                    && this.comboBox_client.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_prenomClient()))
+            if(this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_nameClient())
+                    && this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_prenomClient()))
             {
                 idClient = this._listClients.get(i).get_idClient();
             }
@@ -109,32 +109,31 @@ public class ajoutReservationController
 
         for(int i = 0; i < this._listCircuits.size();i++)
         {
-            if(this.comboBox_circuit.getSelectionModel().getSelectedItem().toString().contains(this._listCircuits.get(i).get_nameCircuit()))
+            if(this.comboBoxCircuit.getSelectionModel().getSelectedItem().toString().contains(this._listCircuits.get(i).get_nameCircuit()))
             {
                 idCircuit = this._listCircuits.get(i).get_idCircuit();
             }
         }
 
         Reservation newReservation = new Reservation(-1,
-                this.checkBox_accompteOk.isSelected(),
-                this.checkBox_secondPaiementOk.isSelected(),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePicker_limite.getValue())),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePicker_reservation.getValue())),
+                this.checkBoxAccompteOk.isSelected(),
+                this.checkBoxSecondPaiementOk.isSelected(),
+                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerLimite.getValue())),
+                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerReservation.getValue())),
                 false,
-                Integer.parseInt(this.textField_montantAccompte.getText()),
-                Integer.parseInt(this.textField_montantSecondPaiement.getText()),
+                Integer.parseInt(this.textFieldMontantAccompte.getText()),
+                Integer.parseInt(this.textFieldMontantSecondPaiement.getText()),
                 idClient,
                 idCircuit);
 
 
         if(isNewOrEdit)
         {
-            newReservation.set_idResevation(TableManager.Instance().get_reservationDAO().Count()+1);
             if(TableManager.Instance().get_reservationDAO().Add(newReservation))
             {
                 System.out.println(" => Reservation successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -147,7 +146,7 @@ public class ajoutReservationController
             {
                 System.out.println(" => Reservation successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) but_Valider.getScene().getWindow();
+                Stage stage = (Stage) butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -170,10 +169,10 @@ public class ajoutReservationController
     {
         try
         {
-            this._listNomClients = this.comboBox_client.getItems();
+            this._listNomClients = this.comboBoxClient.getItems();
             this._listClients = new ArrayList<>();
 
-            ResultSet allClients = TableManager.Instance().get_clientDAO().selectAll();
+            ResultSet allClients = TableManager.Instance().get_clientDAO().selectAll("Clients");
 
             while (allClients.next())
             {
@@ -191,10 +190,10 @@ public class ajoutReservationController
                 this._listNomClients.add(newClient.get_nameClient()+" "+newClient.get_prenomClient());
             }
 
-            this._listNomCircuits = this.comboBox_circuit.getItems();
+            this._listNomCircuits = this.comboBoxCircuit.getItems();
             this._listCircuits = new ArrayList<>();
 
-            ResultSet allCircuits = TableManager.Instance().get_circuitDAO().selectAll();
+            ResultSet allCircuits = TableManager.Instance().get_circuitDAO().selectAll("Circuits");
 
             while (allCircuits.next())
             {
@@ -211,8 +210,8 @@ public class ajoutReservationController
                 this._listNomCircuits.add(newCircuit.get_nameCircuit());
             }
 
-            this.comboBox_client.setItems(this._listNomClients);
-            this.comboBox_circuit.setItems(this._listNomCircuits);
+            this.comboBoxClient.setItems(this._listNomClients);
+            this.comboBoxCircuit.setItems(this._listNomCircuits);
         }
         catch (SQLException e)
         {
@@ -222,18 +221,18 @@ public class ajoutReservationController
 
     private void loadEditValues()
     {
-        this.checkBox_accompteOk.setSelected(_selectedReservation.is_accompte());
-        this.checkBox_secondPaiementOk.setSelected(_selectedReservation.is_secondPaiement());
-        this.textField_montantAccompte.setText(Integer.toString(_selectedReservation.get_accompteValue()));
-        this.textField_montantSecondPaiement.setText(Integer.toString(_selectedReservation.get_secondPaiementValue()));
-        this.datePicker_limite.setValue(LocalDate.parse(_selectedReservation.get_dateLimite()));
-        this.datePicker_reservation.setValue(LocalDate.parse(_selectedReservation.get_dateReservation()));
-        this.comboBox_circuit.getSelectionModel().select(_selectedReservation.get_idCircuit()-1);
-        this.comboBox_client.getSelectionModel().select(_selectedReservation.get_idClient()-1);
+        this.checkBoxAccompteOk.setSelected(_selectedReservation.is_accompte());
+        this.checkBoxSecondPaiementOk.setSelected(_selectedReservation.is_secondPaiement());
+        this.textFieldMontantAccompte.setText(Integer.toString(_selectedReservation.get_accompteValue()));
+        this.textFieldMontantSecondPaiement.setText(Integer.toString(_selectedReservation.get_secondPaiementValue()));
+        this.datePickerLimite.setValue(LocalDate.parse(_selectedReservation.get_dateLimite()));
+        this.datePickerReservation.setValue(LocalDate.parse(_selectedReservation.get_dateReservation()));
+        this.comboBoxCircuit.getSelectionModel().select(_selectedReservation.get_idCircuit()-1);
+        this.comboBoxClient.getSelectionModel().select(_selectedReservation.get_idClient()-1);
     }
 
     @FXML
-    private void but_addClientClick()
+    private void butAddClientClick()
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutClient.fxml"));
@@ -251,7 +250,7 @@ public class ajoutReservationController
     }
 
     @FXML
-    private void but_addCircuitClick()
+    private void butAddCircuitClick()
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCircuit.fxml"));

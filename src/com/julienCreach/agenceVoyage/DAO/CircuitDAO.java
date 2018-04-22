@@ -14,11 +14,20 @@ import java.sql.SQLException;
 
 public class CircuitDAO extends DAO<Circuit>
 {
+    //region Constructor
 
+    /**
+     * COnstructeur par defaut.
+     * @param connect Objet connection
+     */
     public CircuitDAO(Connection connect)
     {
         super(connect);
     }
+
+    //endregion Constructor
+
+    //region Public Services
 
     @Override
     public boolean Add(Circuit obj)
@@ -133,49 +142,5 @@ public class CircuitDAO extends DAO<Circuit>
         return circuit;
     }
 
-    @Override
-    public Circuit find(String userName, String passwd)
-    {
-        return null;
-    }
-
-    @Override
-    public ResultSet selectAll()
-    {
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Circuits");
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    @Override
-    public int Count()
-    {
-        int nb = 0;
-
-        ResultSet resultSet = null;
-        try
-        {
-            resultSet = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Circuits");
-
-            resultSet.first();
-            nb = resultSet.getInt(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return nb;
-    }
+    //endregion Public Services
 }
