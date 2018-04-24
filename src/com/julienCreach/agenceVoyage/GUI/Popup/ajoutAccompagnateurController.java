@@ -5,7 +5,7 @@
 
 package com.julienCreach.agenceVoyage.GUI.Popup;
 
-import com.julienCreach.agenceVoyage.Table.Accompagnateur;
+import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

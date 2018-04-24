@@ -6,8 +6,8 @@
 package com.julienCreach.agenceVoyage.GUI;
 
 import com.julienCreach.agenceVoyage.GUI.Popup.bookNowController;
-import com.julienCreach.agenceVoyage.Table.Client;
-import com.julienCreach.agenceVoyage.Table.Reservation;
+import com.julienCreach.agenceVoyage.Modele.Client;
+import com.julienCreach.agenceVoyage.Modele.Reservation;
 import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.FXCollections;
@@ -88,7 +88,7 @@ public class customerWindowController
     private TextField textFieldCity;
 
     /**
-     * Table Permettant d'afficher les réserations du client
+     * Modele Permettant d'afficher les réserations du client
      */
     @FXML
     private TableView<Reservation> tableViewReservations;

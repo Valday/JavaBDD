@@ -27,13 +27,13 @@ public class Main extends Application
         primaryStage.show();
     }
 
-
     public static void main(String[] args)
     {
-        Document doc = xmlParser.deserializeXML("D:\\Git\\JavaBDD","conf\\\\jdbcConfig.xml");
-        String dataBaseUrl = xmlParser.nodeToOracleAddress(doc);
+        Document doc = xmlParser.deserializeXML("conf\\\\jdbcConfig.xml"); //deserialiszation du fichier de config
 
-        JdbcConnectionManager.Instance().Open(dataBaseUrl);
+        String dataBaseUrl = xmlParser.nodeToOracleAddress(doc); //Concaténation de l'url
+
+        JdbcConnectionManager.Instance().Open(dataBaseUrl, "tutor", "oracletutor");
 
         launch(args);
     }

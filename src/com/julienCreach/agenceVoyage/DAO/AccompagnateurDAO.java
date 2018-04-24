@@ -5,12 +5,17 @@
 
 package com.julienCreach.agenceVoyage.DAO;
 
-import com.julienCreach.agenceVoyage.Table.Accompagnateur;
+import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO accompagnateur.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class AccompagnateurDAO extends DAO<Accompagnateur>
 {
     //region Constructor

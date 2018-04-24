@@ -6,8 +6,11 @@
 package com.julienCreach.agenceVoyage.GUI;
 
 import com.julienCreach.agenceVoyage.GUI.Popup.*;
-import com.julienCreach.agenceVoyage.Table.*;
+import com.julienCreach.agenceVoyage.Modele.*;
+import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -15,12 +18,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class adminWindowController
 {
@@ -111,21 +117,95 @@ public class adminWindowController
         System.exit(0);
     }
 
+    /**
+     * Generation d'un graph des reservations par circuit.
+     */
     @FXML
-    private void menuItemStatisticsClick()
+    private void menuItemStatisticsCircuitsClick()
     {
+        ObservableList<Circuit> allCircuits = TableManager.Instance().LoadCircuits();
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        ObservableList<String> axeX = FXCollections.observableArrayList();
+        series.setName("Reservations");
+
         try
         {
+            for (Circuit elem : allCircuits)
+            {
+                ResultSet resultSet = null;
+
+                resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idCircuit = "+elem.get_idCircuit());
+
+                resultSet.first();
+                series.getData().add(new XYChart.Data<>(elem.get_nameCircuit(),resultSet.getInt(1)));
+
+                axeX.add(elem.get_nameCircuit());
+            }
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticWindow.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));
+            statisticWindowController controller = fxmlLoader.getController();
+            controller.setBarChartStatSeries("Nombre de réservations par circuits", "Reservations", "Circuits",axeX,series);
             stage.showAndWait();
         }
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+        catch (SQLException eSql)
+        {
+            eSql.printStackTrace();
+        }
+    }
+
+    /**
+     * Generation d'un graph des reservations par clients.
+     */
+    @FXML
+    private void menuItemStatisticsClientClick()
+    {
+        ObservableList<Client> allClients = TableManager.Instance().LoadClients();
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        ObservableList<String> axeX = FXCollections.observableArrayList();
+        series.setName("Reservations");
+
+        try
+        {
+            for (Client elem : allClients)
+            {
+                ResultSet resultSet = null;
+
+                resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idClient = "+elem.get_idClient());
+
+                resultSet.first();
+                series.getData().add(new XYChart.Data<>(elem.get_nameClient()+" "+elem.get_prenomClient(),resultSet.getInt(1)));
+
+                axeX.add(elem.get_nameClient()+" "+elem.get_prenomClient());
+            }
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticWindow.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Statistiques");
+            stage.setScene(new Scene(root));
+            statisticWindowController controller = fxmlLoader.getController();
+            controller.setBarChartStatSeries("Nombre de réservations par client", "Reservations", "Clients", axeX,series);
+            stage.showAndWait();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (SQLException eSql)
+        {
+            eSql.printStackTrace();
         }
     }
 
@@ -533,11 +613,7 @@ public class adminWindowController
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (Circuit.get_nameCircuit().toLowerCase().contains(lowerCaseFilter))
-                {
-                    return true; // Filter matches name.
-                }
-                return false; // Does not match.
+                return Circuit.get_nameCircuit().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -556,11 +632,7 @@ public class adminWindowController
                 {
                     return true; // Filter matches name.
                 }
-                else if (Client.get_prenomClient().toLowerCase().contains(lowerCaseFilter))
-                {
-                    return true; // Filter matches name.
-                }
-                return false; // Does not match.
+                else return Client.get_prenomClient().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -575,11 +647,7 @@ public class adminWindowController
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (Hotel.get_nameHotel().toLowerCase().contains(lowerCaseFilter))
-                {
-                    return true; // Filter matches name.
-                }
-                return false; // Does not match.
+                return Hotel.get_nameHotel().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -594,11 +662,7 @@ public class adminWindowController
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (Ville.get_nameVille().toLowerCase().contains(lowerCaseFilter))
-                {
-                    return true; // Filter matches name.
-                }
-                return false; // Does not match.
+                return Ville.get_nameVille().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -617,11 +681,7 @@ public class adminWindowController
                 {
                     return true; // Filter matches name.
                 }
-                else if(Accompagnateur.get_prenomAccompagnateur().toLowerCase().contains(lowerCaseFilter))
-                {
-                    return true;
-                }
-                return false; // Does not match.
+                else return Accompagnateur.get_prenomAccompagnateur().toLowerCase().contains(lowerCaseFilter);
             });
         });
 

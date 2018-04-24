@@ -16,19 +16,31 @@ import java.io.FileInputStream;
 
 public class xmlParser
 {
+    //region Constructors
+
+    /**
+     * Constructeur par defaut
+     */
     private xmlParser ()
     {
 
     }
 
-    public static Document deserializeXML(String path, String fileName)
+    //endregion Constructors
+
+    /**
+     * Deserialize un fichier xml
+     * @param path chemin d'acces au fichier
+     * @return un document contenant les infos
+     */
+    public static Document deserializeXML(String path)
     {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Document doc = null;
         try
         {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            InputSource inputFile = new InputSource(new FileInputStream(Path.combine(path,fileName)));
+            InputSource inputFile = new InputSource(new FileInputStream(path));
             doc = documentBuilder.parse(inputFile);
         }catch (Exception e)
         {
@@ -37,6 +49,11 @@ public class xmlParser
         return doc;
     }
 
+    /**
+     * Concatène les info du doc en une url de connexion jdbc
+     * @param doc doc a exploiter
+     * @return url
+     */
     public static String nodeToOracleAddress(Document doc)
     {
         Element element = doc.getDocumentElement();

@@ -5,9 +5,11 @@
 
 package com.julienCreach.agenceVoyage.GUI.Popup;
 
-import com.julienCreach.agenceVoyage.Table.Client;
+import com.julienCreach.agenceVoyage.Modele.Client;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import com.julienCreach.utils.MessageBox;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -78,8 +80,10 @@ public class ajoutClientController
     @FXML
     private void butValiderClick()
     {
-        SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-        Client newClient = new Client(-1,
+        try
+        {
+            SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
+            Client newClient = new Client(-1,
                 this.textFieldLName.getText(),
                 this.textFieldFName.getText(),
                 this.textFieldPhone.getText(),
@@ -89,30 +93,35 @@ public class ajoutClientController
                 this.textFieldPostalCode.getText(),
                 simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerBirthDate.getValue())));
 
-        if(isNewOrEdit)
-        {
-            if(TableManager.Instance().get_clientDAO().Add(newClient))
+            if(isNewOrEdit)
             {
-                System.out.println(" => Client successfully add ...");
-                // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                if(TableManager.Instance().get_clientDAO().Add(newClient))
+                {
+                    System.out.println(" => Client successfully add ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage) butValider.getScene().getWindow();
 
-                // do what you have to do
-                stage.close();
+                    // do what you have to do
+                    stage.close();
+                }
+            }
+            else
+            {
+                newClient.set_idClient(_selectedClient.get_idClient());
+                if(TableManager.Instance().get_clientDAO().Edit(newClient))
+                {
+                    System.out.println(" => Client successfully updated ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage) butValider.getScene().getWindow();
+
+                    // do what you have to do
+                    stage.close();
+                }
             }
         }
-        else
+        catch (NumberFormatException e)
         {
-            newClient.set_idClient(_selectedClient.get_idClient());
-            if(TableManager.Instance().get_clientDAO().Edit(newClient))
-            {
-                System.out.println(" => Client successfully updated ...");
-                // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
-
-                // do what you have to do
-                stage.close();
-            }
+            MessageBox.Show(Alert.AlertType.ERROR,"Erreur de saisie","Le contenu du champ -Street number- doit etre un nombre","");
         }
     }
 

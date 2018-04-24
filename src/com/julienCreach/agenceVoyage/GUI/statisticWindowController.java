@@ -5,18 +5,12 @@
 
 package com.julienCreach.agenceVoyage.GUI;
 
-import com.julienCreach.agenceVoyage.Table.Circuit;
-import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
-import com.julienCreach.agenceVoyage.managers.TableManager;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class statisticWindowController
 {
@@ -26,39 +20,23 @@ public class statisticWindowController
     @FXML
     private CategoryAxis xAxis;
 
+    @FXML
+    private NumberAxis yAxis;
+
     private ObservableList<String> axeX;
 
-    @FXML
-    private void initialize()
+    private  XYChart.Series<String, Integer> series;
+
+    public void setBarChartStatSeries(String title, String xAxisLabel, String yAxisLabel, ObservableList<String> axeX, XYChart.Series<String, Integer> series)
     {
-        this.axeX = FXCollections.observableArrayList();
-        ObservableList<Circuit> allCircuits = TableManager.Instance().LoadCircuits();
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        series.setName("Circuits");
+        this.axeX = axeX;
+        this.series = series;
 
-        try
-        {
-            for (Circuit elem : allCircuits)
-            {
-                ResultSet resultSet = null;
-
-                    resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idCircuit = "+elem.get_idCircuit());
-
-                    resultSet.first();
-                    series.getData().add(new XYChart.Data<>(elem.get_nameCircuit(),resultSet.getInt(1)));
-
-                this.axeX.add(elem.get_nameCircuit());
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
+        this.barChartStat.setTitle(title);
         this.xAxis.setTickLabelRotation(90);
-        this.xAxis.setCategories(axeX);
-        this.barChartStat.getData().add(series);
+        this.xAxis.setLabel(xAxisLabel);
+        this.xAxis.setCategories(this.axeX);
+        this.yAxis.setLabel(yAxisLabel);
+        this.barChartStat.getData().add(this.series);
     }
 }

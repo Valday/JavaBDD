@@ -22,7 +22,7 @@ drop sequence Seq_Vil_idVil;
 drop sequence Seq_Pass_idPass;
 drop sequence Seq_Use_idUse;
 ------------------------------------------------------------
--- Table: Clients
+-- Modele: Clients
 ------------------------------------------------------------
 CREATE TABLE Clients(
 	idClient       NUMBER NOT NULL ,
@@ -38,7 +38,7 @@ CREATE TABLE Clients(
 );
 
 ------------------------------------------------------------
--- Table: Circuits
+-- Modele: Circuits
 ------------------------------------------------------------
 CREATE TABLE Circuits(
 	idCircuit         NUMBER NOT NULL ,
@@ -54,7 +54,7 @@ CREATE TABLE Circuits(
 );
 
 ------------------------------------------------------------
--- Table: Accompagnateurs
+-- Modele: Accompagnateurs
 ------------------------------------------------------------
 CREATE TABLE Accompagnateurs(
 	idAccompagnateur  NUMBER NOT NULL ,
@@ -69,7 +69,7 @@ CREATE TABLE Accompagnateurs(
 );
 
 ------------------------------------------------------------
--- Table: Reservations
+-- Modele: Reservations
 ------------------------------------------------------------
 CREATE TABLE Reservations(
 	idReservation          NUMBER NOT NULL ,
@@ -89,7 +89,7 @@ CREATE TABLE Reservations(
 );
 
 ------------------------------------------------------------
--- Table: Hotels
+-- Modele: Hotels
 ------------------------------------------------------------
 CREATE TABLE Hotels(
 	idHotel    NUMBER NOT NULL ,
@@ -101,7 +101,7 @@ CREATE TABLE Hotels(
 );
 
 ------------------------------------------------------------
--- Table: Villes
+-- Modele: Villes
 ------------------------------------------------------------
 CREATE TABLE Villes(
 	idVille  NUMBER NOT NULL ,
@@ -111,7 +111,7 @@ CREATE TABLE Villes(
 );
 
 ------------------------------------------------------------
--- Table: passwd
+-- Modele: passwd
 ------------------------------------------------------------
 CREATE TABLE passwds(
 	idPasswd  NUMBER NOT NULL ,
@@ -122,7 +122,7 @@ CREATE TABLE passwds(
 );
 
 ------------------------------------------------------------
--- Table: Users
+-- Modele: Users
 ------------------------------------------------------------
 CREATE TABLE Users(
 	idUser            NUMBER NOT NULL ,
@@ -134,7 +134,7 @@ CREATE TABLE Users(
 );
 
 ------------------------------------------------------------
--- Table: visite
+-- Modele: visite
 ------------------------------------------------------------
 CREATE TABLE visite(
 	Nombrenuits  NUMBER (10,0)  ,

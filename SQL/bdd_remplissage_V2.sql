@@ -1,8 +1,8 @@
 ----------------------
--- Table clients
+-- Modele clients
 ----------------------
 
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (1,'Hernandez','Caleb','05 17 59 91 06','Maringá','Ap #862-4562 Metus St.',123,'6255','07/02/27');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (1,'Hernandez','Caleb','05 17 59 91 06','Maringï¿½','Ap #862-4562 Metus St.',123,'6255','07/02/27');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (2,'Snyder','Hedy','06 79 80 29 76','Sioux City','Ap #255-1128 Diam St.',142,'112010','23/04/74');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (3,'Cooper','Karen','08 35 04 58 57','St. Austell','3640 Phasellus St.',96,'7195','27/05/64');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (4,'Haney','Aphrodite','07 80 65 64 60','Chambave','593-7173 Enim Avenue',120,'J6B 2X3','11/11/61');
@@ -21,7 +21,7 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (17,'Chambers','Quinn','06 30 83 18 96','Heidenheim','939-8216 Vulputate Rd.',53,'131181','10/04/77');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (18,'Franks','Gemma','06 77 15 54 30','Neunkirchen','P.O. Box 311, 5646 Tristique Street',110,'18-065','10/01/52');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (19,'Shaffer','Nasim','04 15 59 49 35','Hull','4506 Mauris. Rd.',7,'225812','10/06/41');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (20,'Downs','Galena','02 51 45 30 11','Río Bueno','193-7752 Malesuada St.',130,'129752','11/08/84');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (20,'Downs','Galena','02 51 45 30 11','Rï¿½o Bueno','193-7752 Malesuada St.',130,'129752','11/08/84');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (21,'Obrien','Halla','02 26 01 97 91','Bottidda','4212 Consectetuer, Road',140,'43174','09/12/01');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (22,'Bryan','Ivan','08 18 07 88 26','Dunfermline','1895 Donec Road',72,'78653','21/05/25');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (23,'Caldwell','Hillary','06 59 61 55 15','Veere','Ap #528-7995 Feugiat. St.',96,'86-509','19/02/24');
@@ -37,7 +37,7 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (33,'Collins','Grady','05 08 45 29 55','Chiusa/Klausen','1375 Blandit Avenue',62,'26675','15/08/66');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (34,'Meyers','Norman','08 43 67 69 69','Carterton','Ap #109-8454 Erat. Street',148,'147796','10/08/25');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (35,'Bernard','Upton','07 37 78 16 64','Casperia','536-8408 Nec, Rd.',40,'247649','07/06/45');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (36,'Powers','Brent','04 49 83 54 23','NeuprŽ','P.O. Box 629, 3712 Purus Rd.',55,'613081','01/11/73');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (36,'Powers','Brent','04 49 83 54 23','Neuprï¿½','P.O. Box 629, 3712 Purus Rd.',55,'613081','01/11/73');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (37,'Wright','Bruno','09 27 57 38 05','Beauwelz','Ap #353-3615 Massa. Rd.',91,'6133 JW','14/10/26');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (38,'Garza','Peter','02 16 56 36 65','Alsemberg','Ap #374-7688 Tellus Ave',65,'JF2 6YK','23/03/52');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (39,'Mclean','Philip','05 94 22 68 65','Heidenheim','2791 Eleifend St.',87,'653816','20/06/40');
@@ -51,7 +51,7 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (47,'Buckley','Gwendolyn','09 72 81 13 19','Nerem','P.O. Box 761, 245 Tellus. Road',105,'89947','01/05/79');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (48,'Mays','Amery','04 91 16 79 60','Frutillar','P.O. Box 307, 9946 Aliquam, Avenue',147,'3193','31/07/56');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (49,'Blair','Lacey','07 81 34 54 60','Pangnirtung','8997 Eu St.',37,'5862','06/02/77');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (50,'Randolph','Tatiana','07 46 01 80 14','Schwäbisch Gmünd','5370 Lectus, Avenue',44,'16-250','29/08/20');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (50,'Randolph','Tatiana','07 46 01 80 14','Schwï¿½bisch Gmï¿½nd','5370 Lectus, Avenue',44,'16-250','29/08/20');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (51,'Moran','Alexander','07 34 22 54 72','Fallo','P.O. Box 670, 7235 Ante Avenue',147,'18954','13/08/45');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (52,'Delacruz','Cole','06 30 51 36 42','Indianapolis','221-8196 Nulla Road',47,'24008-389','30/05/77');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (53,'Britt','Caldwell','02 03 58 55 93','Sherbrooke','815-9395 Metus Rd.',93,'5855','23/04/77');
@@ -65,14 +65,14 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (61,'Wilkinson','Declan','03 00 92 76 78','Bevagna','119 Dolor Rd.',132,'M7P 3T8','30/01/49');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (62,'Wilder','Kasper','04 54 97 86 39','Bursa','Ap #409-3611 Gravida Ave',9,'010585','27/07/95');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (63,'Travis','Kaitlin','07 95 99 57 88','Gembloux','Ap #409-3392 Arcu. Ave',2,'88688','15/12/58');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (64,'Harvey','Sawyer','07 63 70 41 14','Camaçari','1561 Tempus Av.',40,'299878','06/09/59');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (64,'Harvey','Sawyer','07 63 70 41 14','Camaï¿½ari','1561 Tempus Av.',40,'299878','06/09/59');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (65,'Berg','Avram','07 80 54 19 84','Forchies-la-Marche','865-4707 Suspendisse Street',73,'057508','21/12/06');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (66,'Velasquez','Xerxes','09 44 04 03 85','Starachowice','Ap #841-3185 Aliquam Ave',42,'L2C 3N2','24/01/29');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (67,'Meadows','Xanthus','01 39 34 39 33','Serampore','697-1555 Magna Ave',7,'5356','18/04/68');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (68,'Kidd','Scott','05 12 56 63 41','Milwaukee','1933 Aenean Street',96,'18340','20/09/37');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (69,'Flynn','Melodie','07 88 35 08 71','Aieta','Ap #337-8072 Risus. Road',135,'35-498','08/09/59');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (70,'Kirk','Stacey','01 78 38 00 97','Waitara','5558 Sollicitudin Street',134,'7831 ZU','09/10/33');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (71,'Dean','Callie','03 68 00 35 80','Püttlingen','P.O. Box 206, 1635 Diam Av.',31,'551815','27/08/79');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (71,'Dean','Callie','03 68 00 35 80','Pï¿½ttlingen','P.O. Box 206, 1635 Diam Av.',31,'551815','27/08/79');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (72,'Hatfield','Ayanna','06 20 84 50 59','Coaldale','262-380 Etiam St.',39,'76880','01/01/21');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (73,'Henry','Rinah','04 05 62 20 62','Springfield','P.O. Box 278, 5382 Auctor, St.',103,'9868','08/01/09');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (74,'Austin','Indira','01 47 30 06 59','Kalisz','639-7801 Ac Rd.',15,'61601','14/11/92');
@@ -96,7 +96,7 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (92,'Blanchard','Joy','07 43 69 37 84','Maser','7849 Ipsum. Av.',12,'557829','25/10/99');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (93,'Griffin','Kieran','01 28 18 99 52','Heilbronn','Ap #117-2271 Orci Rd.',141,'4911','01/05/94');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (94,'Horton','Inez','09 20 69 15 62','Pietraroja','P.O. Box 324, 6540 Lacus. Av.',98,'84598-617','19/09/49');
-INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (95,'Butler','Chloe','07 04 80 69 90','San Cristóbal de la Laguna','P.O. Box 805, 8319 Iaculis Road',77,'5602','23/06/80');
+INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (95,'Butler','Chloe','07 04 80 69 90','San Cristï¿½bal de la Laguna','P.O. Box 805, 8319 Iaculis Road',77,'5602','23/06/80');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (96,'Herman','Gannon','07 33 34 68 88','Sogliano Cavour','335-3555 Eu, St.',138,'327637','23/03/44');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (97,'Logan','Stacy','02 08 96 58 40','Tourinnes-Saint-Lambert','473-9653 Libero. Ave',137,'17191','28/05/74');
 INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,dateNaissance) VALUES (98,'Henson','Amir','06 59 31 31 61','Paine','5266 Sed Road',1,'70001','26/08/65');
@@ -105,12 +105,12 @@ INSERT INTO Clients (idClient,nom,prenom,telephone,ville,rue,numRue,codePostal,d
 
 
 -----------------------------
--- Table accompagnateurs
+-- Modele accompagnateurs
 -----------------------------
 
 INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (1,'Pacheco','Brooke','03 71 92 76 47',59,'Ap #122-3238 Augue. Ave','Ceppaloni','60912');
 INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (2,'Bond','Illiana','09 26 75 99 40',8,'P.O. Box 230, 1390 Non, St.','Preore','3190');
-INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (3,'Slater','Claudia','08 90 82 41 67',100,'Ap #447-8662 Donec St.','Vaux-sous-ChŽvremont','54255-381');
+INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (3,'Slater','Claudia','08 90 82 41 67',100,'Ap #447-8662 Donec St.','Vaux-sous-Chï¿½vremont','54255-381');
 INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (4,'Sweeney','Tashya','01 93 10 98 75',70,'656-2448 Magna. Ave','Castel Baronia','6101');
 INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (5,'Valenzuela','Aladdin','06 07 43 00 57',101,'8161 Sed Street','Innsbruck','64-288');
 INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,ville,codePostal) VALUES (6,'Hawkins','Breanna','04 99 11 54 23',29,'P.O. Box 948, 8892 Molestie Road','Terrance','356994');
@@ -138,7 +138,7 @@ INSERT INTO Accompagnateurs (idAccompagnateur,nom,prenom,telephone,numRue,rue,vi
 
 
 ------------------------------
--- Table Circuit
+-- Modele Circuit
 ------------------------------
 
 
@@ -196,7 +196,7 @@ INSERT INTO Circuits (idCircuit,nom,places,prix,dateDepart,dateFin,open,idAccomp
 
 
 ---------------------------------------
--- Table Reservation
+-- Modele Reservation
 ---------------------------------------
 
 INSERT INTO Reservations (idReservation,acompteVerse,secondPaiement,dateLimitePaiement,dateReservation,annulation,acompteMontant,secondPaiementMontant,idClient,idCircuit) VALUES (1,0,1,'06/04/17','19/01/19',0,86,874,7,26);
@@ -301,7 +301,7 @@ INSERT INTO Reservations (idReservation,acompteVerse,secondPaiement,dateLimitePa
 
 
 ----------------------------
--- Table Hotel
+-- Modele Hotel
 ----------------------------
 
 INSERT INTO Hotels (idHotel,nom,telephone,rue,numRue) VALUES (1,'Semper Egestas Urna PC','04 98 98 76 91','P.O. Box 725, 2879 Massa. Street',15);
@@ -356,19 +356,19 @@ INSERT INTO Hotels (idHotel,nom,telephone,rue,numRue) VALUES (49,'A Arcu Institu
 INSERT INTO Hotels (idHotel,nom,telephone,rue,numRue) VALUES (50,'Luctus Felis PC','01 12 13 71 11','977-4188 Mattis. Street',24);
 
 ----------------------------
--- Table Villes
+-- Modele Villes
 ----------------------------
 
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (1,'West Ham',21);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (2,'Bhubaneswar',49);
-INSERT INTO Villes (idVille,nom,idHotel) VALUES (3,'Bünyan',41);
+INSERT INTO Villes (idVille,nom,idHotel) VALUES (3,'Bï¿½nyan',41);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (4,'Ranst',46);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (5,'Limbach-Oberfrohna',18);
-INSERT INTO Villes (idVille,nom,idHotel) VALUES (6,'Hualañé',9);
+INSERT INTO Villes (idVille,nom,idHotel) VALUES (6,'Hualaï¿½ï¿½',9);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (7,'Shippagan',15);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (8,'Roccalumera',21);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (9,'Arles',9);
-INSERT INTO Villes (idVille,nom,idHotel) VALUES (10,'Córdoba',19);
+INSERT INTO Villes (idVille,nom,idHotel) VALUES (10,'Cï¿½rdoba',19);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (11,'Trani',21);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (12,'Sandviken',15);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (13,'Charters Towers',50);
@@ -395,8 +395,8 @@ INSERT INTO Villes (idVille,nom,idHotel) VALUES (33,'Naperville',37);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (34,'Hamme',5);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (35,'Saint-Malo',11);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (36,'Pamel',25);
-INSERT INTO Villes (idVille,nom,idHotel) VALUES (37,'LouveignŽ',2);
-INSERT INTO Villes (idVille,nom,idHotel) VALUES (38,'Quilpué',2);
+INSERT INTO Villes (idVille,nom,idHotel) VALUES (37,'Louveignï¿½',2);
+INSERT INTO Villes (idVille,nom,idHotel) VALUES (38,'Quilpuï¿½',2);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (39,'Pirna',22);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (40,'Wommelgem',15);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (41,'Banbury',40);
@@ -411,7 +411,7 @@ INSERT INTO Villes (idVille,nom,idHotel) VALUES (49,'Pont-de-Loup',40);
 INSERT INTO Villes (idVille,nom,idHotel) VALUES (50,'Llandovery',7);
 
 -----------------------
--- Table Users
+-- Modele Users
 -----------------------
 
 INSERT INTO Users(idUser, rank) VALUES (1, 3);
@@ -419,7 +419,7 @@ INSERT INTO Users(idUser, rank, idClient) VALUES (2, 1, 1);
 INSERT INTO Users(idUser, rank, idAccompagnateur) VALUES (3, 2, 1);
 
 -----------------------
--- Table passwds
+-- Modele passwds
 -----------------------
 INSERT INTO Passwds (idPasswd, userName,passwd,idUser) VALUES (1,'admin','root',1);
 INSERT INTO Passwds (idPasswd, userName,passwd,idUser) VALUES (2,'client','client',2);
@@ -428,7 +428,7 @@ INSERT INTO Passwds (idPasswd, userName,passwd,idUser) VALUES (3,'acc','acc',3);
 
 
 -----------------------
--- Table visite
+-- Modele visite
 -----------------------
 
 INSERT INTO visite (Nombrenuits,Datearrivee,idCircuit,idVille) VALUES (10,'02/06/18',40,1);

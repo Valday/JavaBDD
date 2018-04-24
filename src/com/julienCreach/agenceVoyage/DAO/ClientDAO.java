@@ -6,16 +6,25 @@
 package com.julienCreach.agenceVoyage.DAO;
 
 
-import com.julienCreach.agenceVoyage.Table.Client;
+import com.julienCreach.agenceVoyage.Modele.Client;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO client.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class ClientDAO extends DAO<Client>
 {
     //region Constructeur
 
+    /**
+     * Constructeur par defaut.
+     * @param connect Objet connexion
+     */
     public ClientDAO(Connection connect)
     {
         super(connect);

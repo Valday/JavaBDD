@@ -5,11 +5,9 @@
 
 package com.julienCreach.agenceVoyage.DAO;
 
-import com.julienCreach.agenceVoyage.Table.Passwd;
+import com.julienCreach.agenceVoyage.Modele.Passwd;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class PasswdDAO extends DAO<Passwd>
 {

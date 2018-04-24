@@ -61,13 +61,13 @@ public final class JdbcConnectionManager
         return _instance;
     }
 
-    public void Open(String url)
+    public void Open(String url, String userName, String passwd)
     {
         _url = url;
         try
         {
             System.out.println(" => Connection to database ("+_url+") in progress ...");
-            _connector = DriverManager.getConnection(_url,"tutor","oracletutor");
+            _connector = DriverManager.getConnection(_url,userName, passwd);
             if (_connector.isValid(_timeOut))
             {
                 System.out.println(" => connection established ...");

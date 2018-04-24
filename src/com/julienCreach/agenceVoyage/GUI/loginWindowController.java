@@ -5,10 +5,10 @@
 
 package com.julienCreach.agenceVoyage.GUI;
 
-import com.julienCreach.agenceVoyage.Table.Accompagnateur;
-import com.julienCreach.agenceVoyage.Table.Client;
-import com.julienCreach.agenceVoyage.Table.Passwd;
-import com.julienCreach.agenceVoyage.Table.User;
+import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
+import com.julienCreach.agenceVoyage.Modele.Client;
+import com.julienCreach.agenceVoyage.Modele.Passwd;
+import com.julienCreach.agenceVoyage.Modele.User;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import com.julienCreach.utils.MessageBox;
 import javafx.fxml.FXML;

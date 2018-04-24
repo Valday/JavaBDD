@@ -6,18 +6,23 @@
 package com.julienCreach.agenceVoyage.DAO;
 
 
-import com.julienCreach.agenceVoyage.Table.Circuit;
+import com.julienCreach.agenceVoyage.Modele.Circuit;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO Circuit.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class CircuitDAO extends DAO<Circuit>
 {
     //region Constructor
 
     /**
-     * COnstructeur par defaut.
+     * Constructeur par defaut.
      * @param connect Objet connection
      */
     public CircuitDAO(Connection connect)

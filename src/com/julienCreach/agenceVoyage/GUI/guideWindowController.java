@@ -6,8 +6,8 @@
 package com.julienCreach.agenceVoyage.GUI;
 
 import com.julienCreach.agenceVoyage.GUI.Popup.applyCircuitController;
-import com.julienCreach.agenceVoyage.Table.Accompagnateur;
-import com.julienCreach.agenceVoyage.Table.Circuit;
+import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
+import com.julienCreach.agenceVoyage.Modele.Circuit;
 import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.FXCollections;
@@ -16,7 +16,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
@@ -81,7 +84,7 @@ public class guideWindowController
     private TextField textFieldCity;
 
     /**
-     * Table Permettant d'afficher les circuits de l'accompagnateur
+     * Modele Permettant d'afficher les circuits de l'accompagnateur
      */
     @FXML
     private TableView<Circuit> tableViewCircuits;

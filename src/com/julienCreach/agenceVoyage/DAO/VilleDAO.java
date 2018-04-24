@@ -6,7 +6,7 @@
 package com.julienCreach.agenceVoyage.DAO;
 
 
-import com.julienCreach.agenceVoyage.Table.Ville;
+import com.julienCreach.agenceVoyage.Modele.Ville;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

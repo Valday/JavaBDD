@@ -5,8 +5,8 @@
 
 package com.julienCreach.agenceVoyage.GUI.Popup;
 
-import com.julienCreach.agenceVoyage.Table.Accompagnateur;
-import com.julienCreach.agenceVoyage.Table.Circuit;
+import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
+import com.julienCreach.agenceVoyage.Modele.Circuit;
 import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.ObservableList;

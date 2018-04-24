@@ -5,8 +5,8 @@
 
 package com.julienCreach.agenceVoyage.GUI.Popup;
 
-import com.julienCreach.agenceVoyage.Table.Hotel;
-import com.julienCreach.agenceVoyage.Table.Ville;
+import com.julienCreach.agenceVoyage.Modele.Hotel;
+import com.julienCreach.agenceVoyage.Modele.Ville;
 import com.julienCreach.agenceVoyage.managers.TableManager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

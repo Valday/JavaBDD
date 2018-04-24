@@ -6,7 +6,7 @@
 package com.julienCreach.agenceVoyage.managers;
 
 import com.julienCreach.agenceVoyage.DAO.*;
-import com.julienCreach.agenceVoyage.Table.*;
+import com.julienCreach.agenceVoyage.Modele.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -164,7 +164,7 @@ public final class TableManager
         try
         {
 
-            this._allAccompagnateurs = this._accompagnateurDAO.selectAll("Accompagnateurs");
+            this._allAccompagnateurs = _accompagnateurDAO.selectAll("Accompagnateurs");
 
             while (this._allAccompagnateurs.next())
             {
@@ -197,7 +197,7 @@ public final class TableManager
         try
         {
 
-            this._allCircuits = this._circuitDAO.selectAll("Circuits");
+            this._allCircuits = _circuitDAO.selectAll("Circuits");
 
             while (this._allCircuits.next())
             {
@@ -230,7 +230,7 @@ public final class TableManager
 
         try
         {
-            this._allClients = this._clientDAO.selectAll("Clients");
+            this._allClients = _clientDAO.selectAll("Clients");
 
             while (this._allClients.next())
             {
@@ -263,7 +263,7 @@ public final class TableManager
 
         try
         {
-            this._allHotels = this._hotelDAO.selectAll("Hotels");
+            this._allHotels = _hotelDAO.selectAll("Hotels");
 
             while(this._allHotels.next())
             {
@@ -292,7 +292,7 @@ public final class TableManager
 
         try
         {
-            this._allVilles = this._villeDAO.selectAll("Villes");
+            this._allVilles = _villeDAO.selectAll("Villes");
 
             while(this._allVilles.next())
             {
@@ -319,7 +319,7 @@ public final class TableManager
 
         try
         {
-            this._allReservations = this._reservationDAO.selectAll("Reservations");
+            this._allReservations = _reservationDAO.selectAll("Reservations");
 
             while (this._allReservations.next())
             {
@@ -352,7 +352,7 @@ public final class TableManager
 
         try
         {
-            this._allPasswd = this._passwdDAO.selectAll("passwds");
+            this._allPasswd = _passwdDAO.selectAll("passwds");
 
             while(this._allPasswd.next())
             {
@@ -380,7 +380,7 @@ public final class TableManager
 
         try
         {
-            this._allUser = this._userDAO.selectAll("Users");
+            this._allUser = _userDAO.selectAll("Users");
 
             while(this._allUser.next())
             {

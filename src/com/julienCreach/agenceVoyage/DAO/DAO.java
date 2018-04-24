@@ -5,18 +5,31 @@
 
 package com.julienCreach.agenceVoyage.DAO;
 
-import com.julienCreach.agenceVoyage.Table.Passwd;
+import com.julienCreach.agenceVoyage.Modele.Passwd;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO.
+ * @param <T> Type objet
+ * @author Julien Creach
+ * @version 1.0
+ */
 public abstract class DAO<T>
 {
+    /**
+     * Objet connexion.
+     */
     protected Connection connect;
 
     //region Constructeur
 
+    /**
+     * Constructeur par defaut.
+     * @param connect objet connexion
+     */
     public DAO(Connection connect)
     {
         this.connect = connect;
@@ -81,7 +94,7 @@ public abstract class DAO<T>
     }
 
     /**
-     * Recupère toutes les datas d'une table
+     * Recupère toutes les datas d'une table.
      * @param tableName nom de la table a récuperer
      * @return Le resultset de la requete
      */
@@ -103,7 +116,7 @@ public abstract class DAO<T>
     }
 
     /**
-     * Permet de chercher un user dans la table passwds à la connexion
+     * Permet de chercher un user dans la table passwds à la connexion.
      * @param userName nom de l'utilisateur
      * @param passwd mot de passe
      * @return objet passwd
