@@ -12,7 +12,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-public class statisticWindowController
+public class StatisticWindowController
 {
     @FXML
     private BarChart<String,Integer> barChartStat;
@@ -26,6 +26,13 @@ public class statisticWindowController
     private ObservableList<String> axeX;
 
     private  XYChart.Series<String, Integer> series;
+
+    /**
+     * Constructeur pardefaut.
+     */
+    public StatisticWindowController()
+    {
+    }
 
     public void setBarChartStatSeries(String title, String xAxisLabel, String yAxisLabel, ObservableList<String> axeX, XYChart.Series<String, Integer> series)
     {

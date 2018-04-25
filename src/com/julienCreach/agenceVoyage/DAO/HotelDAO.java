@@ -12,10 +12,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO Hotel.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class HotelDAO extends DAO<Hotel>
 {
     //region Constructeur
 
+    /**
+     * Constructeur.
+     * @param connect connexion
+     */
     public HotelDAO(Connection connect)
     {
         super(connect);

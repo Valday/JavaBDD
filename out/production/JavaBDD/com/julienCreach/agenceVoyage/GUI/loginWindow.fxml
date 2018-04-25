@@ -12,7 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<GridPane alignment="CENTER" prefHeight="250" prefWidth="800" styleClass="loginBackground" stylesheets="@styleSheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.loginWindowController">
+<GridPane alignment="CENTER" prefHeight="250" prefWidth="800" styleClass="loginBackground" stylesheets="@styleSheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.LoginWindowController">
     <padding>
         <Insets bottom="5" left="5" right="5" top="10" />
     </padding>

@@ -12,10 +12,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO ville.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class VilleDAO extends DAO<Ville>
 {
     //region Constructeur
 
+    /**
+     * Constructeur.
+     * @param connect connexion
+     */
     public VilleDAO(Connection connect)
     {
         super(connect);

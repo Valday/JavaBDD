@@ -18,23 +18,25 @@ import javafx.stage.Stage;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
-public class ajoutClientController
+public class AjoutClientController
 {
     private static boolean isNewOrEdit;
 
-    public static boolean isIsNewOrEdit() {
+    public static boolean isIsNewOrEdit()
+    {
         return isNewOrEdit;
     }
 
-    public static void setIsNewOrEdit(boolean isNewOrEdit) {
-        ajoutClientController.isNewOrEdit = isNewOrEdit;
+    public static void setIsNewOrEdit(boolean isNewOrEdit)
+    {
+        AjoutClientController.isNewOrEdit = isNewOrEdit;
     }
 
     private static Client _selectedClient;
 
     public static void set_selectedClient(Client _selectedClient)
     {
-        ajoutClientController._selectedClient = _selectedClient;
+        AjoutClientController._selectedClient = _selectedClient;
     }
 
     @FXML
@@ -67,11 +69,19 @@ public class ajoutClientController
     @FXML
     private DatePicker datePickerBirthDate;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public AjoutClientController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -99,7 +109,7 @@ public class ajoutClientController
                 {
                     System.out.println(" => Client successfully add ...");
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -112,7 +122,7 @@ public class ajoutClientController
                 {
                     System.out.println(" => Client successfully updated ...");
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -128,7 +138,7 @@ public class ajoutClientController
     @FXML
     private void initialize()
     {
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedClient != null)
         {
             this.loadEditValues();
         }

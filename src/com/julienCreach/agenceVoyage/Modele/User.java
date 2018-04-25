@@ -7,27 +7,32 @@ package com.julienCreach.agenceVoyage.Modele;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * Modele user.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class User
 {
     //region Private Attributs
 
     /**
-     * index du user
+     * index du user.
      */
     private SimpleIntegerProperty _idUser;
 
     /**
-     * privilège du user
+     * privilège du user.
      */
     private SimpleIntegerProperty _rank;
 
     /**
-     * Correspondance dans la table accompangateur
+     * Correspondance dans la table accompangateur.
      */
     private SimpleIntegerProperty _idAccompagnateur;
 
     /**
-     * Correspondance dans la table client
+     * Correspondance dans la table client.
      */
     private SimpleIntegerProperty _idClient;
 
@@ -36,7 +41,7 @@ public class User
     //region Public Attributs
 
     /**
-     * Getter niveau de privilège
+     * Getter niveau de privilège.
      * @return retourne une valeur qui est soit 1, 2 ou 3
      */
     public int get_rank()
@@ -45,7 +50,7 @@ public class User
     }
 
     /**
-     * Getter index de correspondance accompagnateur
+     * Getter index de correspondance accompagnateur.
      * @return l'indice
      */
     public int get_idAccompagnateur()
@@ -54,7 +59,7 @@ public class User
     }
 
     /**
-     * Getter index de correspondance client
+     * Getter index de correspondance client.
      * @return l'indice
      */
     public int get_idClient()
@@ -74,7 +79,7 @@ public class User
     }
 
     /**
-     *  Constructeur
+     *  Constructeur.
      * @param idUser index du nouveau user
      * @param rank privilèges du user
      * @param idAccompagnateur Correspondance dans la table accompangateur
@@ -94,7 +99,7 @@ public class User
     //region Public Services
 
     /**
-     * Override toString
+     * Override toString.
      * @return user values in a string
      */
     @Override

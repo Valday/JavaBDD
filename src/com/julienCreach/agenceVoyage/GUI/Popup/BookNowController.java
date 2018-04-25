@@ -25,20 +25,20 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class bookNowController
+public class BookNowController
 {
     /**
-     * Client Selectionné
+     * Client Selectionné.
      */
     private static Client _actualClient;
 
     /**
-     * Assesseur sur le client selectioné
+     * Assesseur sur le client selectioné.
      * @param _selectedClient client a afficher
      */
     public static void set_actualClient(Client _selectedClient)
     {
-        bookNowController._actualClient = _selectedClient;
+        BookNowController._actualClient = _selectedClient;
     }
 
     private ObservableList<String> _listNomCircuits;
@@ -65,11 +65,19 @@ public class bookNowController
     @FXML
     private Button butValider;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public BookNowController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -99,7 +107,7 @@ public class bookNowController
             {
                 System.out.println(" => Reservation successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();

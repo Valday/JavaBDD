@@ -10,7 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<VBox prefHeight="260" prefWidth="310" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.ajoutCircuitController">
+<VBox prefHeight="260" prefWidth="310" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.AjoutCircuitController">
     <padding><Insets left="5.0" top="15.0" /></padding>
     <HBox spacing="5">
         <VBox spacing="5">

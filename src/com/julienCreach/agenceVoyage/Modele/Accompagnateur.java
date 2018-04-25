@@ -183,7 +183,7 @@ public class Accompagnateur
 
     /**
      * Override toString.
-     * @return
+     * @return value
      */
     @Override
     public String toString()

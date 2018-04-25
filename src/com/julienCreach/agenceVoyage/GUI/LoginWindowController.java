@@ -20,8 +20,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.io.IOException;
 
-public class loginWindowController
+/**
+ * Controleur de la vue login.
+ * @author Julien Creach
+ * @version 1.0
+ */
+public class LoginWindowController
 {
     //region Private Attributes
 
@@ -55,7 +61,7 @@ public class loginWindowController
     /**
      * Constructeur par defaut.
      */
-    public loginWindowController()
+    public LoginWindowController()
     {
 
     }
@@ -65,7 +71,7 @@ public class loginWindowController
     //region Private Services
 
     /**
-     * Action sur click bouton valider
+     * Action sur click bouton valider.
      */
     @FXML
     private void butValidateClick()
@@ -80,7 +86,7 @@ public class loginWindowController
     private void butCancelClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -137,14 +143,14 @@ public class loginWindowController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminWindow.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Admin");
             stage.setScene(new Scene(root1));
             stage.show();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }
@@ -158,15 +164,15 @@ public class loginWindowController
         try
         {
             Client client = TableManager.Instance().get_clientDAO().find(this._user.get_idClient());
-            customerWindowController.set_selectedClient(client);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerWindow.fxml"));
+            CustomerWindowController.set_selectedClient(client);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomerWindow.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle(client.get_prenomClient() + " " + client.get_nameClient());
             stage.setScene(new Scene(root1));
             stage.show();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }
@@ -180,15 +186,15 @@ public class loginWindowController
         try
         {
             Accompagnateur accompagnateur = TableManager.Instance().get_accompagnateurDAO().find(this._user.get_idAccompagnateur());
-            guideWindowController.set_selectedAccompagnateur(accompagnateur);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("guideWindow.fxml"));
+            GuideWindowController.set_selectedAccompagnateur(accompagnateur);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuideWindow.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle(accompagnateur.get_prenomAccompagnateur()+" "+accompagnateur.get_nameAccompagnateur());
             stage.setScene(new Scene(root1));
             stage.show();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }

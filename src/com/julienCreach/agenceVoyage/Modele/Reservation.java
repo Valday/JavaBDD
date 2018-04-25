@@ -9,201 +9,200 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Modele Reservation.
+ * @author Julien Creach
+ * @version 2.0
+ */
 public class Reservation
 {
     //region Private Attributs
 
+    /**
+     * index resservation.
+     */
     private SimpleIntegerProperty _idResevation;
 
-    private SimpleBooleanProperty _accompte;
+    /**
+     * Etat versement acompte.
+     */
+    private SimpleBooleanProperty _acompte;
 
+    /**
+     * Etat second versement.
+     */
     private SimpleBooleanProperty _secondPaiement;
 
-    private SimpleIntegerProperty _accompteValue;
+    /**
+     * Montant acompte.
+     */
+    private SimpleIntegerProperty _acompteValue;
 
+    /**
+     * Montant second versement.
+     */
     private SimpleIntegerProperty _secondPaiementValue;
 
+    /**
+     * date limite de paiement.
+     */
     private SimpleStringProperty _dateLimite;
 
+    /**
+     * Date de réservation.
+     */
     private SimpleStringProperty _dateReservation;
 
+    /**
+     * Etat de la reservation.
+     */
     private SimpleBooleanProperty _cancelResevation;
 
+    /**
+     * index du client.
+     */
     private SimpleIntegerProperty _idClient;
 
+    /**
+     * index du circuit.
+     */
     private SimpleIntegerProperty _idCircuit;
 
     //endregion Private Attributs
 
     //region Public Attributs
 
+    /**
+     * Getter index reservation.
+     * @return index reservation
+     */
     public int get_idResevation()
     {
         return _idResevation.get();
     }
 
-    public SimpleIntegerProperty _idResevationProperty()
-    {
-        return _idResevation;
-    }
-
+    /**
+     * Setter index reservation.
+     * @param _idResevation index reservation
+     */
     public void set_idResevation(int _idResevation)
     {
         this._idResevation.set(_idResevation);
     }
 
-    public boolean is_accompte()
+    /**
+     * Getter etat acompte.
+     * @return etat acompte
+     */
+    public boolean is_acompte()
     {
-        return _accompte.get();
+        return _acompte.get();
     }
 
-    public SimpleBooleanProperty _accompteProperty()
-    {
-        return _accompte;
-    }
-
-    public void set_accompte(boolean _accompte)
-    {
-        this._accompte.set(_accompte);
-    }
-
+    /**
+     * Getter etat second paiement.
+     * @return etat second paiement.
+     */
     public boolean is_secondPaiement()
     {
         return _secondPaiement.get();
     }
 
-    public SimpleBooleanProperty _secondPaiementProperty()
+    /**
+     * Getter montant acompte.
+     * @return montant acompte
+     */
+    public int get_acompteValue()
     {
-        return _secondPaiement;
+        return _acompteValue.get();
     }
 
-    public void set_secondPaiement(boolean _secondPaiement)
-    {
-        this._secondPaiement.set(_secondPaiement);
-    }
-
-    public int get_accompteValue()
-    {
-        return _accompteValue.get();
-    }
-
-    public SimpleIntegerProperty _accompteValueProperty()
-    {
-        return _accompteValue;
-    }
-
-    public void set_accompteValue(int _accompteValue)
-    {
-        this._accompteValue.set(_accompteValue);
-    }
-
+    /**
+     * Getter montant second paiement.
+     * @return montant second paiement
+     */
     public int get_secondPaiementValue()
     {
         return _secondPaiementValue.get();
     }
 
-    public SimpleIntegerProperty _secondPaiementValueProperty()
-    {
-        return _secondPaiementValue;
-    }
-
-    public void set_secondPaiementValue(int _secondPaiementValue)
-    {
-        this._secondPaiementValue.set(_secondPaiementValue);
-    }
-
+    /**
+     * Getter date limite.
+     * @return date limite
+     */
     public String get_dateLimite()
     {
         return _dateLimite.get();
     }
 
-    public SimpleStringProperty _dateLimiteProperty()
-    {
-        return _dateLimite;
-    }
-
-    public void set_dateLimite(String _dateLimite)
-    {
-        this._dateLimite.set(_dateLimite);
-    }
-
+    /**
+     * Getter date de réservation.
+     * @return date de reservation
+     */
     public String get_dateReservation()
     {
         return _dateReservation.get();
     }
 
-    public SimpleStringProperty _dateReservationProperty()
-    {
-        return _dateReservation;
-    }
-
-    public void set_dateReservation(String _dateReservation)
-    {
-        this._dateReservation.set(_dateReservation);
-    }
-
+    /**
+     * Getter etat reservation.
+     * @return etat reservation
+     */
     public boolean is_cancelResevation()
     {
         return _cancelResevation.get();
     }
 
-    public SimpleBooleanProperty _cancelResevationProperty()
-    {
-        return _cancelResevation;
-    }
-
-    public void set_cancelResevation(boolean _cancelResevation)
-    {
-        this._cancelResevation.set(_cancelResevation);
-    }
-
+    /**
+     * Getter index client.
+     * @return index client
+     */
     public int get_idClient()
     {
         return _idClient.get();
     }
 
-    public SimpleIntegerProperty _idClientProperty()
-    {
-        return _idClient;
-    }
-
-    public void set_idClient(int _idClient)
-    {
-        this._idClient.set(_idClient);
-    }
-
+    /**
+     * Getter index circuit.
+     * @return index circuit
+     */
     public int get_idCircuit()
     {
         return _idCircuit.get();
     }
-
-    public SimpleIntegerProperty _idCircuitProperty()
-    {
-        return _idCircuit;
-    }
-
-    public void set_idCircuit(int _idCircuit)
-    {
-        this._idCircuit.set(_idCircuit);
-    }
-
 
     //endregion Public Attributs
 
 
     //region Constructors
 
-    public Reservation()
+    /**
+     * Constructeur par defaut.
+     */
+    private Reservation()
     {
 
     }
 
+    /**
+     * Constructeur.
+     * @param id index reservation
+     * @param accompteOk accompte versé?
+     * @param secondPaiementOK second paiement versé?
+     * @param dateLimite date limite de paiement
+     * @param dateReservation date de réservation
+     * @param cancel Reservation effective ou non
+     * @param accompte montant de l'accompte
+     * @param secondPaiement montant du second paiement
+     * @param idClient index du client qui reserve
+     * @param idCircuit index du circuit
+     */
     public Reservation(int id, boolean accompteOk,boolean secondPaiementOK, String dateLimite, String dateReservation, boolean cancel, int accompte, int secondPaiement, int idClient, int idCircuit)
     {
         this._idResevation = new SimpleIntegerProperty(id);
-        this._accompte = new SimpleBooleanProperty(accompteOk);
+        this._acompte = new SimpleBooleanProperty(accompteOk);
         this._secondPaiement = new SimpleBooleanProperty(secondPaiementOK);
-        this._accompteValue = new SimpleIntegerProperty(accompte);
+        this._acompteValue = new SimpleIntegerProperty(accompte);
         this._secondPaiementValue = new SimpleIntegerProperty(secondPaiement);
         this._dateLimite = new SimpleStringProperty(dateLimite);
         this._dateReservation = new SimpleStringProperty(dateReservation);

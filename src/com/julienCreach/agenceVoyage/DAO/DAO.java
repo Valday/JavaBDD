@@ -123,7 +123,7 @@ public abstract class DAO<T>
      */
     public Passwd find(String userName, String passwd)
     {
-        Passwd newPasswd = new Passwd();
+        Passwd newPasswd = null;
 
         try
         {

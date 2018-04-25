@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.applyCircuitController"
+      fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.ApplyCircuitController"
       prefHeight="120.0" prefWidth="300.0" spacing="5">
     <padding><Insets left="5.0" top="15.0" /></padding>
 

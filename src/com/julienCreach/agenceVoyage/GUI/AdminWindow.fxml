@@ -10,7 +10,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane prefHeight="768" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.adminWindowController">
+<BorderPane prefHeight="768" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.AdminWindowController">
     <top>
         <VBox>
             <!-- MenuBar -->
@@ -24,6 +24,13 @@
                     </Menu>
 
                     <Menu mnemonicParsing="false" text="Statistics">
+                        <graphic>
+                            <ImageView fitHeight="20" fitWidth="20">
+                                <image>
+                                    <Image url="@../../ressources/images/stats-96.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
                         <items>
                             <MenuItem fx:id="menuItemStatisticsCircuits" mnemonicParsing="false" onAction="#menuItemStatisticsCircuitsClick" text="Show circuits statistics" />
                             <MenuItem fx:id="menuItemStatisticsClients" mnemonicParsing="false" onAction="#menuItemStatisticsClientClick" text="Show clients statistics" />
@@ -221,13 +228,13 @@
                                     <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="75" text="Accompte">
-                                    <cellValueFactory><PropertyValueFactory property="_accompte" /></cellValueFactory>
+                                    <cellValueFactory><PropertyValueFactory property="_acompte" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="75" text="Second paiement">
                                     <cellValueFactory><PropertyValueFactory property="_secondPaiement" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="125" text="Montant accompte">
-                                    <cellValueFactory><PropertyValueFactory property="_accompteValue" /></cellValueFactory>
+                                    <cellValueFactory><PropertyValueFactory property="_acompteValue" /></cellValueFactory>
                                 </TableColumn>
                                 <TableColumn prefWidth="175" text="Montant second paiement">
                                     <cellValueFactory><PropertyValueFactory property="_secondPaiementValue" /></cellValueFactory>

@@ -12,63 +12,129 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ajoutAccompagnateurController
+/**
+ * Controller vue ajout accompagnateur.
+ * @author Julien Creach
+ * @version 1.0
+ */
+public class AjoutAccompagnateurController
 {
 
+    /**
+     * Permet de d'utiliser la vue en creation et en edition d'accompagnateur.
+     */
     private static boolean isNewOrEdit;
 
-    public static boolean isIsNewOrEdit() {
+    /**
+     * Getter creation ou edition.
+     * @return true ou false (creation ou edition)
+     */
+    public static boolean isIsNewOrEdit()
+    {
         return isNewOrEdit;
     }
 
-    public static void setIsNewOrEdit(boolean isNewOrEdit) {
-        ajoutAccompagnateurController.isNewOrEdit = isNewOrEdit;
+    /**
+     * Setter creation ou edition.
+     * @param isNewOrEdit true ou false (creation ou edition)
+     */
+    public static void setIsNewOrEdit(boolean isNewOrEdit)
+    {
+        AjoutAccompagnateurController.isNewOrEdit = isNewOrEdit;
     }
 
+    /**
+     * En mode edition, accompagnateur a editer.
+     */
     private static Accompagnateur _selectedAccompagnateur;
 
+    /**
+     * Setter Accompagnateur a editer.
+     * @param _selectedAccompagnateur accompagnateur
+     */
     public static void set_selectedAccompagnateur(Accompagnateur _selectedAccompagnateur)
     {
-        ajoutAccompagnateurController._selectedAccompagnateur = _selectedAccompagnateur;
+        AjoutAccompagnateurController._selectedAccompagnateur = _selectedAccompagnateur;
     }
 
+    /**
+     * Bouton cancel.
+     */
     @FXML
     private Button butCancel;
 
+    /**
+     * Bouton valider.
+     */
     @FXML
     private Button butValider;
 
+    /**
+     * TExtfield nom.
+     */
     @FXML
     private TextField textFieldName;
 
+    /**
+     * Textfield prenom.
+     */
     @FXML
     private  TextField textFieldPrenom;
 
+    /**
+     * Textfield telephone.
+     */
     @FXML
     private TextField textFieldTelephone;
 
+    /**
+     * Textfield numero de rue.
+     */
     @FXML
     private TextField textFieldNumRue;
 
+    /**
+     * Trextfield rue.
+     */
     @FXML
     private TextField textFieldRue;
 
+    /**
+     * Textfield ville.
+     */
     @FXML
     private  TextField textFieldVille;
 
+    /**
+     * Textfield code postal.
+     */
     @FXML
     private TextField textFieldCodePostal;
 
+    /**
+     * Constructeur par defaut.
+     */
+    public AjoutAccompagnateurController()
+    {
+
+    }
+
+    /**
+     * Action sur le bouton annuler.
+     */
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
     }
 
+    /**
+     * Action sur le bouton valider.
+     */
     @FXML
     private void butValiderClick()
     {
@@ -88,7 +154,7 @@ public class ajoutAccompagnateurController
             {
                 System.out.println(" => Accompagnateur successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -101,29 +167,29 @@ public class ajoutAccompagnateurController
             {
                 System.out.println(" => Accompagnateur successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
             }
         }
-
-
-
-
-
-
     }
 
+    /**
+     * Initialisation de la vue.
+     */
     @FXML
     private void initialize()
     {
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedAccompagnateur != null)
         {
             this.loadEditValues();
         }
     }
 
+    /**
+     * Chargement des valeurs dans la vue.
+     */
     private void loadEditValues()
     {
         this.textFieldName.setText(_selectedAccompagnateur.get_nameAccompagnateur());

@@ -11,10 +11,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO reservation.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class ReservationDAO extends DAO<Reservation>
 {
     //region Constructeur
 
+    /**
+     * Constructeur.
+     * @param connect connexion
+     */
     public ReservationDAO(Connection connect)
     {
         super(connect);
@@ -33,12 +42,12 @@ public class ReservationDAO extends DAO<Reservation>
             ResultSet resultSet = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Reservations (acompteVerse,secondPaiement,dateLimitePaiement,dateReservation,annulation,acompteMontant,secondPaiementMontant,idClient,idCircuit) VALUES ("
-                    +(obj.is_accompte()? 1 : 0)+","
+                    +(obj.is_acompte()? 1 : 0)+","
                     +(obj.is_secondPaiement()? 1 : 0)+",'"
                     +obj.get_dateLimite()+"','"
                     +obj.get_dateReservation()+"',"
                     +(obj.is_cancelResevation()? 1 : 0)+","
-                    +obj.get_accompteValue()+","
+                    +obj.get_acompteValue()+","
                     +obj.get_secondPaiementValue()+","
                     +obj.get_idClient()+","
                     +obj.get_idCircuit()+")");
@@ -83,12 +92,12 @@ public class ReservationDAO extends DAO<Reservation>
         {
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Reservations SET acompteVerse = "+(obj.is_accompte()? 1 : 0)
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Reservations SET acompteVerse = "+(obj.is_acompte()? 1 : 0)
                     +", secondPaiement = "+(obj.is_secondPaiement()? 1 : 0)
                     +", dateLimitePaiement = '"+obj.get_dateLimite()
                     +"', dateReservation = '"+obj.get_dateReservation()
                     +"', annulation = "+(obj.is_cancelResevation()? 1 : 0)
-                    +", acompteMontant ="+obj.get_accompteValue()
+                    +", acompteMontant ="+obj.get_acompteValue()
                     +", secondPaiementMontant = "+obj.get_secondPaiementValue()
                     +", idClient = "+obj.get_idClient()
                     +", idCircuit = "+obj.get_idCircuit()
@@ -105,7 +114,7 @@ public class ReservationDAO extends DAO<Reservation>
     @Override
     public Reservation find(int id)
     {
-        Reservation reservation = new Reservation();
+        Reservation reservation = null;
 
         try
         {

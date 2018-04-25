@@ -23,20 +23,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class applyCircuitController
+public class ApplyCircuitController
 {
     /**
-     * Accompagnateur Selectionné
+     * Accompagnateur Selectionné.
      */
     private static Accompagnateur _actualAccompagnateur;
 
     /**
-     * Assesseur sur le client selectioné
+     * Assesseur sur le client selectioné.
      * @param _selectedAccompagnateur Accompagnateur a afficher
      */
     public static void set_actualAccompagnateur(Accompagnateur _selectedAccompagnateur)
     {
-        applyCircuitController._actualAccompagnateur = _selectedAccompagnateur;
+        ApplyCircuitController._actualAccompagnateur = _selectedAccompagnateur;
     }
 
     private ObservableList<String> _listNomCircuits;
@@ -60,11 +60,19 @@ public class applyCircuitController
     @FXML
     private Label lblFin;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public ApplyCircuitController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -93,7 +101,7 @@ public class applyCircuitController
             {
                 System.out.println(" => Circuit successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();

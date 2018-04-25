@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -24,23 +25,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ajoutReservationController
+public class AjoutReservationController
 {
     private static boolean isNewOrEdit;
 
-    public static boolean isIsNewOrEdit() {
+    public static boolean isIsNewOrEdit()
+    {
         return isNewOrEdit;
     }
 
-    public static void setIsNewOrEdit(boolean isNewOrEdit) {
-        ajoutReservationController.isNewOrEdit = isNewOrEdit;
+    public static void setIsNewOrEdit(boolean isNewOrEdit)
+    {
+        AjoutReservationController.isNewOrEdit = isNewOrEdit;
     }
 
     private static Reservation _selectedReservation;
 
     public static void set_selectedReservation(Reservation _selectedReservation)
     {
-        ajoutReservationController._selectedReservation = _selectedReservation;
+        AjoutReservationController._selectedReservation = _selectedReservation;
     }
 
     @FXML
@@ -81,11 +84,19 @@ public class ajoutReservationController
 
     private List<Circuit> _listCircuits;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public AjoutReservationController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -133,7 +144,7 @@ public class ajoutReservationController
             {
                 System.out.println(" => Reservation successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -146,7 +157,7 @@ public class ajoutReservationController
             {
                 System.out.println(" => Reservation successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -159,7 +170,7 @@ public class ajoutReservationController
     private void initialize()
     {
         this.loadComboBoxValues();
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedReservation != null)
         {
             this.loadEditValues();
         }
@@ -221,9 +232,9 @@ public class ajoutReservationController
 
     private void loadEditValues()
     {
-        this.checkBoxAccompteOk.setSelected(_selectedReservation.is_accompte());
+        this.checkBoxAccompteOk.setSelected(_selectedReservation.is_acompte());
         this.checkBoxSecondPaiementOk.setSelected(_selectedReservation.is_secondPaiement());
-        this.textFieldMontantAccompte.setText(Integer.toString(_selectedReservation.get_accompteValue()));
+        this.textFieldMontantAccompte.setText(Integer.toString(_selectedReservation.get_acompteValue()));
         this.textFieldMontantSecondPaiement.setText(Integer.toString(_selectedReservation.get_secondPaiementValue()));
         this.datePickerLimite.setValue(LocalDate.parse(_selectedReservation.get_dateLimite()));
         this.datePickerReservation.setValue(LocalDate.parse(_selectedReservation.get_dateReservation()));
@@ -234,8 +245,9 @@ public class ajoutReservationController
     @FXML
     private void butAddClientClick()
     {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutClient.fxml"));
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutClient.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Ajout Client");
@@ -243,7 +255,7 @@ public class ajoutReservationController
             stage.showAndWait();
             this.loadComboBoxValues();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }
@@ -252,8 +264,9 @@ public class ajoutReservationController
     @FXML
     private void butAddCircuitClick()
     {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCircuit.fxml"));
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutCircuit.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Ajout Client");
@@ -261,7 +274,7 @@ public class ajoutReservationController
             stage.showAndWait();
             this.loadComboBoxValues();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }

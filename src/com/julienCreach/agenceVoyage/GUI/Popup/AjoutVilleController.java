@@ -18,28 +18,31 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ajoutVilleController
+public class AjoutVilleController
 {
     private static boolean isNewOrEdit;
 
-    public static boolean isIsNewOrEdit() {
+    public static boolean isIsNewOrEdit()
+    {
         return isNewOrEdit;
     }
 
-    public static void setIsNewOrEdit(boolean isNewOrEdit) {
-        ajoutVilleController.isNewOrEdit = isNewOrEdit;
+    public static void setIsNewOrEdit(boolean isNewOrEdit)
+    {
+        AjoutVilleController.isNewOrEdit = isNewOrEdit;
     }
 
     private static Ville _selectedVille;
 
     public static void set_selectedVille(Ville _selectedVille)
     {
-        ajoutVilleController._selectedVille = _selectedVille;
+        AjoutVilleController._selectedVille = _selectedVille;
     }
 
     @FXML
@@ -58,11 +61,19 @@ public class ajoutVilleController
 
     private List<Hotel> _listHotels;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public AjoutVilleController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -90,7 +101,7 @@ public class ajoutVilleController
             {
                 System.out.println(" => Ville successfully add ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -103,7 +114,7 @@ public class ajoutVilleController
             {
                 System.out.println(" => Ville successfully updated ...");
                 // get a handle to the stage
-                Stage stage = (Stage) butValider.getScene().getWindow();
+                Stage stage = (Stage)butValider.getScene().getWindow();
 
                 // do what you have to do
                 stage.close();
@@ -117,7 +128,7 @@ public class ajoutVilleController
     private void initialize()
     {
         this.loadComboBoxValues();
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedVille != null)
         {
             this.loadEditValues();
         }
@@ -161,8 +172,9 @@ public class ajoutVilleController
         @FXML
     private void butAddHotelClick()
     {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutHotel.fxml"));
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutHotel.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Ajout Hotel");
@@ -170,7 +182,7 @@ public class ajoutVilleController
             stage.showAndWait();
             this.loadComboBoxValues();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }

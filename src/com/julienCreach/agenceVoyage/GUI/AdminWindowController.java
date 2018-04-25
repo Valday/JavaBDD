@@ -15,7 +15,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
@@ -28,7 +27,12 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class adminWindowController
+/**
+ * Controlleur de la vue admin.
+ * @author Julien Creach
+ * @version 1.0
+ */
+public class AdminWindowController
 {
     //region Private Attributs
 
@@ -79,6 +83,9 @@ public class adminWindowController
     @FXML
     private TableView<Reservation> tableViewReservations;
 
+    /**
+     * Textfield recherche.
+     */
     @FXML
     private TextField textFieldRequete;
     /**
@@ -96,9 +103,9 @@ public class adminWindowController
     //region Constructors / Initialisation
 
     /**
-     * Constructeur par defaut
+     * Constructeur par defaut.
      */
-    public adminWindowController()
+    public AdminWindowController()
     {
     }
 
@@ -144,12 +151,12 @@ public class adminWindowController
                 axeX.add(elem.get_nameCircuit());
             }
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));
-            statisticWindowController controller = fxmlLoader.getController();
+            StatisticWindowController controller = fxmlLoader.getController();
             controller.setBarChartStatSeries("Nombre de réservations par circuits", "Reservations", "Circuits",axeX,series);
             stage.showAndWait();
         }
@@ -190,12 +197,12 @@ public class adminWindowController
                 axeX.add(elem.get_nameClient()+" "+elem.get_prenomClient());
             }
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));
-            statisticWindowController controller = fxmlLoader.getController();
+            StatisticWindowController controller = fxmlLoader.getController();
             controller.setBarChartStatSeries("Nombre de réservations par client", "Reservations", "Clients", axeX,series);
             stage.showAndWait();
         }
@@ -210,7 +217,7 @@ public class adminWindowController
     }
 
     /**
-     * Actions sur bouton de suppression
+     * Actions sur bouton de suppression.
      */
     @FXML
     private void butSuprClick()
@@ -267,12 +274,14 @@ public class adminWindowController
                     TableManager.Instance().get_reservationDAO().Delete(newReservation);
                 }
                 break;
+            default:
+                break;
         }
         this.LoadTables();
     }
 
     /**
-     * Actions sur bouton d'ajout
+     * Actions sur bouton d'ajout.
      */
     @FXML
     private void butAjoutClick()
@@ -283,8 +292,8 @@ public class adminWindowController
                 System.out.println(" => Tab Circuits ...");
                 try
                 {
-                    ajoutCircuitController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutCircuit.fxml"));
+                    AjoutCircuitController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutCircuit.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -301,8 +310,8 @@ public class adminWindowController
                 System.out.println(" => Tab Clients ...");
                 try
                 {
-                    ajoutClientController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutClient.fxml"));
+                    AjoutClientController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutClient.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -319,8 +328,8 @@ public class adminWindowController
                 System.out.println(" => Tab Hotels ...");
                 try
                 {
-                    ajoutHotelController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutHotel.fxml"));
+                    AjoutHotelController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutHotel.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -337,8 +346,8 @@ public class adminWindowController
                 System.out.println(" => Tab Villes ...");
                 try
                 {
-                    ajoutVilleController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutVille.fxml"));
+                    AjoutVilleController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutVille.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -355,8 +364,8 @@ public class adminWindowController
                 System.out.println(" => Tab Accompagnateurs ...");
                 try
                 {
-                    ajoutAccompagnateurController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutAccompagnateur.fxml"));
+                    AjoutAccompagnateurController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutAccompagnateur.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -373,8 +382,8 @@ public class adminWindowController
                 System.out.println(" => Tab Reservations ...");
                 try
                 {
-                    ajoutReservationController.setIsNewOrEdit(true);
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutReservation.fxml"));
+                    AjoutReservationController.setIsNewOrEdit(true);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutReservation.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setResizable(false);
@@ -394,23 +403,21 @@ public class adminWindowController
     }
 
     /**
-     * Actions sur bouton d'edition
+     * Actions sur bouton d'edition.
      */
     @FXML
     private void butEditClick()
     {
-        try
+        switch (selectionModel.getSelectedIndex())
         {
-
-            switch (selectionModel.getSelectedIndex())
-            {
-                case 0:
-                    try
+            case 0:
+                try
+                {
+                    if(this.tableViewCircuits.getSelectionModel().getSelectedItem() != null)
                     {
-                        ajoutCircuitController.setIsNewOrEdit(false);
-                        ajoutCircuitController.set_selectedCircuit(tableViewCircuits.getSelectionModel().getSelectedItem());
-
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutCircuit.fxml"));
+                        AjoutCircuitController.setIsNewOrEdit(false);
+                        AjoutCircuitController.set_selectedCircuit(tableViewCircuits.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutCircuit.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -418,18 +425,21 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
 
-                    break;
-                case 1 :
-                    try
+                break;
+            case 1 :
+                try
+                {
+                    if(this.tableViewClients.getSelectionModel().getSelectedItem() != null)
                     {
-                        ajoutClientController.setIsNewOrEdit(false);
-                        ajoutClientController.set_selectedClient(tableViewClients.getSelectionModel().getSelectedItem());
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutClient.fxml"));
+                        AjoutClientController.setIsNewOrEdit(false);
+                        AjoutClientController.set_selectedClient(tableViewClients.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutClient.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -437,17 +447,20 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                            catch (LoadException e)
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+            case 2 :
+                try
+                {
+                    if(this.tableViewHotels.getSelectionModel().getSelectedItem() != null)
                     {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 2 :
-                    try
-                    {
-                        ajoutHotelController.setIsNewOrEdit(false);
-                        ajoutHotelController.set_selectedHotel(tableViewHotels.getSelectionModel().getSelectedItem());
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutHotel.fxml"));
+                        AjoutHotelController.setIsNewOrEdit(false);
+                        AjoutHotelController.set_selectedHotel(tableViewHotels.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutHotel.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -455,17 +468,20 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                     catch (IOException e)
+                }
+                 catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+            case 3 :
+                try
+                {
+                    if(this.tableViewVilles.getSelectionModel().getSelectedItem() != null)
                     {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 3 :
-                    try
-                    {
-                        ajoutVilleController.setIsNewOrEdit(false);
-                        ajoutVilleController.set_selectedVille(tableViewVilles.getSelectionModel().getSelectedItem());
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutVille.fxml"));
+                        AjoutVilleController.setIsNewOrEdit(false);
+                        AjoutVilleController.set_selectedVille(tableViewVilles.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutVille.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -473,17 +489,21 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (IOException e)
+
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+            case 4 :
+                try
+                {
+                    if(this.tableViewAccompagnateurs.getSelectionModel().getSelectedItem() != null)
                     {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 4 :
-                    try
-                    {
-                        ajoutAccompagnateurController.setIsNewOrEdit(false);
-                        ajoutAccompagnateurController.set_selectedAccompagnateur(tableViewAccompagnateurs.getSelectionModel().getSelectedItem());
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutAccompagnateur.fxml"));
+                        AjoutAccompagnateurController.setIsNewOrEdit(false);
+                        AjoutAccompagnateurController.set_selectedAccompagnateur(tableViewAccompagnateurs.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutAccompagnateur.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -491,17 +511,21 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (IOException e)
+
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+            case 5 :
+                try
+                {
+                    if(this.tableViewReservations.getSelectionModel().getSelectedItem() != null)
                     {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 5 :
-                    try
-                    {
-                        ajoutReservationController.setIsNewOrEdit(false);
-                        ajoutReservationController.set_selectedReservation(tableViewReservations.getSelectionModel().getSelectedItem());
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ajoutReservation.fxml"));
+                        AjoutReservationController.setIsNewOrEdit(false);
+                        AjoutReservationController.set_selectedReservation(tableViewReservations.getSelectionModel().getSelectedItem());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/AjoutReservation.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setResizable(false);
@@ -509,18 +533,16 @@ public class adminWindowController
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
+
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+
+            default:
+                break;
         }
         this.LoadTables();
     }
@@ -536,7 +558,7 @@ public class adminWindowController
 
     /**
      * Actions au double click sur un élément de la grid.
-     * @param event
+     * @param event event souris
      */
     @FXML
     private void tableViewDoubleClick(MouseEvent event)
@@ -549,8 +571,8 @@ public class adminWindowController
                     try
                     {
                         Client client = tableViewClients.getSelectionModel().getSelectedItem();
-                        customerWindowController.set_selectedClient(client);
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerWindow.fxml"));
+                        CustomerWindowController.set_selectedClient(client);
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomerWindow.fxml"));
                         Parent root1 = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setTitle(client.get_prenomClient() + " " + client.get_nameClient());
@@ -567,8 +589,8 @@ public class adminWindowController
                     try
                     {
                         Accompagnateur accompagnateur = tableViewAccompagnateurs.getSelectionModel().getSelectedItem();
-                        guideWindowController.set_selectedAccompagnateur(accompagnateur);
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("guideWindow.fxml"));
+                        GuideWindowController.set_selectedAccompagnateur(accompagnateur);
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuideWindow.fxml"));
                         Parent root1 = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setTitle(accompagnateur.get_prenomAccompagnateur()+" "+accompagnateur.get_nameAccompagnateur());
@@ -590,7 +612,7 @@ public class adminWindowController
     //endregion FXML
 
     /**
-     * Chargement du contenu des tables de la base de donnée
+     * Chargement du contenu des tables de la base de donnée.
      */
     private void LoadTables()
     {
@@ -632,7 +654,8 @@ public class adminWindowController
                 {
                     return true; // Filter matches name.
                 }
-                else return Client.get_prenomClient().toLowerCase().contains(lowerCaseFilter);
+
+                return Client.get_prenomClient().toLowerCase().contains(lowerCaseFilter);
             });
         });
 
@@ -681,7 +704,8 @@ public class adminWindowController
                 {
                     return true; // Filter matches name.
                 }
-                else return Accompagnateur.get_prenomAccompagnateur().toLowerCase().contains(lowerCaseFilter);
+
+                return Accompagnateur.get_prenomAccompagnateur().toLowerCase().contains(lowerCaseFilter);
             });
         });
 

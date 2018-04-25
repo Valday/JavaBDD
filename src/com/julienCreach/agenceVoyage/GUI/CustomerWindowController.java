@@ -5,7 +5,7 @@
 
 package com.julienCreach.agenceVoyage.GUI;
 
-import com.julienCreach.agenceVoyage.GUI.Popup.bookNowController;
+import com.julienCreach.agenceVoyage.GUI.Popup.BookNowController;
 import com.julienCreach.agenceVoyage.Modele.Client;
 import com.julienCreach.agenceVoyage.Modele.Reservation;
 import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
@@ -19,76 +19,77 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class customerWindowController
+public class CustomerWindowController
 {
     //region Private Attributs
 
     /**
-     * Client Selectionné
+     * Client Selectionné.
      */
     private static Client _selectedClient;
 
     /**
-     * Liste des réservations
+     * Liste des réservations.
      */
     private ObservableList<Reservation> _customerReservations;
 
     /**
-     * Champ de saisie nom
+     * Champ de saisie nom.
      */
     @FXML
     private TextField textFieldLastName;
 
     /**
-     * Champ de saisie prenom
+     * Champ de saisie prenom.
      */
     @FXML
     private TextField textFieldFirstName;
 
     /**
-     * Champ de saisie date de naissance
+     * Champ de saisie date de naissance.
      */
     @FXML
     private DatePicker datePickerBirthDate;
 
     /**
-     * Champ de saisie numero de telephone
+     * Champ de saisie numero de telephone.
      */
     @FXML
     private TextField textFieldPhoneNumber;
 
     /**
-     * Champ de saisie numero de rue
+     * Champ de saisie numero de rue.
      */
     @FXML
     private TextField textFieldStreetNumber;
 
     /**
-     * Champ de saisie rue
+     * Champ de saisie rue.
      */
     @FXML
     private TextField textFieldStreet;
 
     /**
-     * Champ de saisie code postal
+     * Champ de saisie code postal.
      */
     @FXML
     private TextField textFieldPostalCode;
 
     /**
-     * Champ de saisie Ville
+     * Champ de saisie Ville.
      */
     @FXML
     private TextField textFieldCity;
 
     /**
-     * Modele Permettant d'afficher les réserations du client
+     * Modele Permettant d'afficher les réserations du client.
      */
     @FXML
     private TableView<Reservation> tableViewReservations;
@@ -98,20 +99,29 @@ public class customerWindowController
     //region Public Attributs
 
     /**
-    * Assesseur sur le client selectioné
+    * Assesseur sur le client selectioné.
     * @param _selectedClient client a afficher
     */
     public static void set_selectedClient(Client _selectedClient)
     {
-        customerWindowController._selectedClient = _selectedClient;
+        CustomerWindowController._selectedClient = _selectedClient;
     }
 
     //endregion Public Attributs
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public CustomerWindowController()
+    {
+
+    }
+
+
     //region Private Services
 
     /**
-     * Initialisation du contenu de la fenetre
+     * Initialisation du contenu de la fenetre.
      */
     @FXML
     private void initialize()
@@ -120,15 +130,15 @@ public class customerWindowController
     }
 
     /**
-     * Actions sur click bouton butBook
+     * Actions sur click bouton butBook.
      */
     @FXML
     private void butBookClick()
     {
         try
         {
-            bookNowController.set_actualClient(_selectedClient);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/bookNow.fxml"));
+            BookNowController.set_actualClient(_selectedClient);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/BookNow.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -137,14 +147,14 @@ public class customerWindowController
             stage.showAndWait();
             this.LoadCustomerReservations();
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             e.printStackTrace();
         }
     }
 
     /**
-     * Actions sur click bouton butDelete
+     * Actions sur click bouton butDelete.
      */
     @FXML
     private void butDeleteClick()
@@ -160,7 +170,7 @@ public class customerWindowController
     }
 
     /**
-     * Actions sur click bouton butValid
+     * Actions sur click bouton butValid.
      */
     @FXML
     private void butValidModifClick()
@@ -193,7 +203,7 @@ public class customerWindowController
     }
 
     /**
-     * Action sur le menuItem quitter de la menu bar
+     * Action sur le menuItem quitter de la menu bar.
      */
     @FXML
     private void menuItemQuitClick()
@@ -202,7 +212,7 @@ public class customerWindowController
     }
 
     /**
-     * Charge les données pour l'affichage dans la page de profil
+     * Charge les données pour l'affichage dans la page de profil.
      */
     private void LoadValues()
     {
@@ -219,7 +229,7 @@ public class customerWindowController
     }
 
     /**
-     * Recherche toute les réservations pour le client connecté et met à jour la tableview
+     * Recherche toute les réservations pour le client connecté et met à jour la tableview.
      */
     private void LoadCustomerReservations()
     {

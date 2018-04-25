@@ -9,10 +9,19 @@ import com.julienCreach.agenceVoyage.Modele.Passwd;
 
 import java.sql.Connection;
 
+/**
+ * Passwd DAO.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class PasswdDAO extends DAO<Passwd>
 {
     //region Constructeur
 
+    /**
+     * Constructeur.
+     * @param connect objet connexion
+     */
     public PasswdDAO(Connection connect)
     {
         super(connect);

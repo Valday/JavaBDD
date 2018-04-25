@@ -10,7 +10,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<VBox prefHeight="810" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.customerWindowController">
+<VBox prefHeight="810" prefWidth="810" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.CustomerWindowController">
     <!-- MenuBar -->
     <MenuBar prefHeight="25" BorderPane.alignment="CENTER">
         <menus>
@@ -131,13 +131,13 @@
                 <cellValueFactory><PropertyValueFactory property="_idResevation" /></cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="75" text="Accompte">
-                <cellValueFactory><PropertyValueFactory property="_accompte" /></cellValueFactory>
+                <cellValueFactory><PropertyValueFactory property="_acompte" /></cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="75" text="Second paiement">
                 <cellValueFactory><PropertyValueFactory property="_secondPaiement" /></cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="125" text="Montant accompte">
-                <cellValueFactory><PropertyValueFactory property="_accompteValue" /></cellValueFactory>
+                <cellValueFactory><PropertyValueFactory property="_acompteValue" /></cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="175" text="Montant second paiement">
                 <cellValueFactory><PropertyValueFactory property="_secondPaiementValue" /></cellValueFactory>

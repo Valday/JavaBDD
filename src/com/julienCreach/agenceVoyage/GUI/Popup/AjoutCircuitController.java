@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ajoutCircuitController
+public class AjoutCircuitController
 {
     private static boolean isNewOrEdit;
 
@@ -35,14 +36,14 @@ public class ajoutCircuitController
 
     public static void setIsNewOrEdit(boolean isNewOrEdit)
     {
-        ajoutCircuitController.isNewOrEdit = isNewOrEdit;
+        AjoutCircuitController.isNewOrEdit = isNewOrEdit;
     }
 
     private static  Circuit _selectedCircuit;
 
     public static void set_selectedCircuit(Circuit _selectedCircuit)
     {
-        ajoutCircuitController._selectedCircuit = _selectedCircuit;
+        AjoutCircuitController._selectedCircuit = _selectedCircuit;
     }
 
     @FXML
@@ -76,11 +77,19 @@ public class ajoutCircuitController
 
     private List<Accompagnateur> _listAccompagnateurs;
 
+    /**
+     * Constructeur par defaut.
+     */
+    public AjoutCircuitController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -119,7 +128,7 @@ public class ajoutCircuitController
                     System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully add ...");
 
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -135,7 +144,7 @@ public class ajoutCircuitController
                     System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully updated ...");
 
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -151,8 +160,9 @@ public class ajoutCircuitController
     @FXML
     private void butAddAccClick()
     {
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutAccompagnateur.fxml"));
+        try
+        {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutAccompagnateur.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Ajout Accompagnateur");
@@ -160,7 +170,7 @@ public class ajoutCircuitController
             stage.showAndWait();
             this.loadComboxValue();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }
@@ -170,7 +180,7 @@ public class ajoutCircuitController
     private void initialize()
     {
         this.loadComboxValue();
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedCircuit != null)
         {
             this.loadEditValues();
         }

@@ -14,23 +14,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ajoutHotelController
+public class AjoutHotelController
 {
     private static boolean isNewOrEdit;
 
-    public static boolean isIsNewOrEdit() {
+    public static boolean isIsNewOrEdit()
+    {
         return isNewOrEdit;
     }
 
-    public static void setIsNewOrEdit(boolean isNewOrEdit) {
-        ajoutHotelController.isNewOrEdit = isNewOrEdit;
+    public static void setIsNewOrEdit(boolean isNewOrEdit)
+    {
+        AjoutHotelController.isNewOrEdit = isNewOrEdit;
     }
 
     private static Hotel _selectedHotel;
 
     public static void set_selectedHotel(Hotel _selectedHotel)
     {
-        ajoutHotelController._selectedHotel = _selectedHotel;
+        AjoutHotelController._selectedHotel = _selectedHotel;
     }
 
     @FXML
@@ -51,11 +53,19 @@ public class ajoutHotelController
     @FXML
     private TextField textFieldStreet;
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public AjoutHotelController()
+    {
+
+    }
+
     @FXML
     private void butAnnulerClick()
     {
         // get a handle to the stage
-        Stage stage = (Stage) butCancel.getScene().getWindow();
+        Stage stage = (Stage)butCancel.getScene().getWindow();
 
         // do what you have to do
         stage.close();
@@ -79,7 +89,7 @@ public class ajoutHotelController
                 {
                     System.out.println(" => Hotel successfully add ...");
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -92,7 +102,7 @@ public class ajoutHotelController
                 {
                     System.out.println(" => Hotel successfully updated ...");
                     // get a handle to the stage
-                    Stage stage = (Stage) butValider.getScene().getWindow();
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
                     // do what you have to do
                     stage.close();
@@ -103,19 +113,15 @@ public class ajoutHotelController
         {
             MessageBox.Show(Alert.AlertType.ERROR,"Erreur de saisie","Le contenu du champ -Street number- doit etre un nombre","");
         }
-
-
-
     }
 
     @FXML
     private void initialize()
     {
-        if(!isNewOrEdit)
+        if(!isNewOrEdit && _selectedHotel != null)
         {
             this.loadEditValues();
         }
-
     }
 
     private void loadEditValues()

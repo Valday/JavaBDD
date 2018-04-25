@@ -8,22 +8,27 @@ package com.julienCreach.agenceVoyage.Modele;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Modele ville.
+ * @author Julien Creach
+ * @version 2.0
+ */
 public class Ville
 {
     //region Private Attributs
 
     /**
-     * index de la ville
+     * index de la ville.
      */
     private SimpleIntegerProperty _idVille;
 
     /**
-     * nom de la ville
+     * nom de la ville.
      */
     private SimpleStringProperty _nameVille;
 
     /**
-     * index de l'hotel
+     * index de l'hotel.
      */
     private SimpleIntegerProperty _idHotel;
 
@@ -32,7 +37,7 @@ public class Ville
     //region Public Attributs
 
     /**
-     * Getter index ville
+     * Getter index ville.
      * @return l'index
      */
     public int get_idVille()
@@ -41,8 +46,8 @@ public class Ville
     }
 
     /**
-     * Setter index ville
-     * @param _idVille
+     * Setter index ville.
+     * @param _idVille index de la ville
      */
     public void set_idVille(int _idVille)
     {
@@ -50,7 +55,7 @@ public class Ville
     }
 
     /**
-     * Getter sur le nom de la ville
+     * Getter sur le nom de la ville.
      * @return le nom de la ville
      */
     public String get_nameVille()
@@ -59,7 +64,7 @@ public class Ville
     }
 
     /**
-     * Getter index de l'hotel
+     * Getter index de l'hotel.
      * @return l'index
      */
     public int get_idHotel()
@@ -72,7 +77,7 @@ public class Ville
     //region Constructors
 
     /**
-     * COnstructeur par defaut
+     * Constructeur par defaut.
      */
     public Ville()
     {
@@ -80,7 +85,7 @@ public class Ville
     }
 
     /**
-     * Constructeur
+     * Constructeur.
      * @param id index de la ville
      * @param name nom de la ville
      * @param idHotel index de l'hotel
@@ -95,7 +100,7 @@ public class Ville
     //endregion Constructors
 
     /**
-     * Override toString
+     * Override toString.
      * @return String contenant les datas de la ville
      */
     @Override

@@ -9,19 +9,23 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class xmlParser
+public class XmlParser
 {
     //region Constructors
 
     /**
-     * Constructeur par defaut
+     * Constructeur par defaut.
      */
-    private xmlParser ()
+    private XmlParser()
     {
 
     }
@@ -29,7 +33,7 @@ public class xmlParser
     //endregion Constructors
 
     /**
-     * Deserialize un fichier xml
+     * Deserialize un fichier xml.
      * @param path chemin d'acces au fichier
      * @return un document contenant les infos
      */
@@ -42,7 +46,20 @@ public class xmlParser
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             InputSource inputFile = new InputSource(new FileInputStream(path));
             doc = documentBuilder.parse(inputFile);
-        }catch (Exception e)
+        }
+        catch (ParserConfigurationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (SAXException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -50,7 +67,7 @@ public class xmlParser
     }
 
     /**
-     * Concatène les info du doc en une url de connexion jdbc
+     * Concatène les info du doc en une url de connexion jdbc.
      * @param doc doc a exploiter
      * @return url
      */

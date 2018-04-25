@@ -9,32 +9,46 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe de connexion a la base de donnée.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public final class JdbcConnectionManager
 {
+    /**
+     * Instance.
+     */
     private volatile static JdbcConnectionManager _instance;
 
     /**
-     * URL de connexion
+     * URL de connexion.
      */
     private static String _url;
 
     /**
-     * Nom du user
+     * Nom du user.
      */
     private static String _userName;
 
     /**
-     * Mot de passe du user
+     * Mot de passe du user.
      */
     private static String _passwd;
 
     /**
-     * Objet Connexion
+     * Objet Connexion.
      */
     private static Connection _connector;
 
+    /**
+     * Timeout.
+     */
     private static int _timeOut;
 
+    /**
+     * Constructeur par defaut.
+     */
     private JdbcConnectionManager()
     {
         _userName = "tutor";
@@ -43,9 +57,8 @@ public final class JdbcConnectionManager
     }
 
     /**
-     * Méthode qui va retourner notre instance
-     * et la créer si elle n'existe pas...
-     * @return
+     * Méthode qui va retourner notre instance et la créer si elle n'existe pas...
+     * @return Instance de classe
      */
     public static JdbcConnectionManager Instance()
     {
@@ -61,6 +74,12 @@ public final class JdbcConnectionManager
         return _instance;
     }
 
+    /**
+     * Ouverture d'une connexion.
+     * @param url url de connexion
+     * @param userName login
+     * @param passwd mot de passe
+     */
     public void Open(String url, String userName, String passwd)
     {
         _url = url;
@@ -80,6 +99,9 @@ public final class JdbcConnectionManager
         }
     }
 
+    /**
+     * Fermeture d'une connexion.
+     */
     public void Close()
     {
         try
@@ -98,6 +120,10 @@ public final class JdbcConnectionManager
         }
     }
 
+    /**
+     * Getter connexion.
+     * @return Connection
+     */
     public Connection get_connector()
     {
         return _connector;

@@ -5,7 +5,7 @@
 
 package com.julienCreach.agenceVoyage.GUI;
 
-import com.julienCreach.agenceVoyage.GUI.Popup.applyCircuitController;
+import com.julienCreach.agenceVoyage.GUI.Popup.ApplyCircuitController;
 import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
 import com.julienCreach.agenceVoyage.Modele.Circuit;
 import com.julienCreach.agenceVoyage.managers.JdbcConnectionManager;
@@ -22,69 +22,75 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class guideWindowController
+/**
+ * Controlleur pour la vue accompagnateur.
+ * @author Julien
+ * @version 1.0
+ */
+public class GuideWindowController
 {
 
     //region Private Attributs
 
     /**
-     * Accompagnateur sélectionné
+     * Accompagnateur sélectionné.
      */
     private static Accompagnateur _selectedAccompagnateur;
 
     /**
-     * Liste des circuits que l'acompagnateur sélectionné encadre
+     * Liste des circuits que l'acompagnateur sélectionné encadre.
      */
     private ObservableList<Circuit> _guideCircuits;
 
     /**
-     * Champ de saisie nom
+     * Champ de saisie nom.
      */
     @FXML
     private TextField textFieldLastName;
 
     /**
-     * Champ de saisie prenom
+     * Champ de saisie prenom.
      */
     @FXML
     private TextField textFieldFirstName;
 
     /**
-     * Champ de saisie numero de telephone
+     * Champ de saisie numero de telephone.
      */
     @FXML
     private TextField textFieldPhoneNumber;
 
     /**
-     * Champ de saisie numero de rue
+     * Champ de saisie numero de rue.
      */
     @FXML
     private TextField textFieldStreetNumber;
 
     /**
-     * Champ de saisie rue
+     * Champ de saisie rue.
      */
     @FXML
     private TextField textFieldStreet;
 
     /**
-     * Champ de saisie code postal
+     * Champ de saisie code postal.
      */
     @FXML
     private TextField textFieldPostalCode;
 
     /**
-     * Champ de saisie ville
+     * Champ de saisie ville.
      */
     @FXML
     private TextField textFieldCity;
 
     /**
-     * Modele Permettant d'afficher les circuits de l'accompagnateur
+     * Modele Permettant d'afficher les circuits de l'accompagnateur.
      */
     @FXML
     private TableView<Circuit> tableViewCircuits;
@@ -99,15 +105,23 @@ public class guideWindowController
      */
     public static void set_selectedAccompagnateur(Accompagnateur _selectedAccompagnateur)
     {
-        guideWindowController._selectedAccompagnateur = _selectedAccompagnateur;
+        GuideWindowController._selectedAccompagnateur = _selectedAccompagnateur;
     }
 
     //endregion Public Attributs
 
+    /**
+     * Constructeur pardefaut.
+     */
+    public GuideWindowController()
+    {
+
+    }
+
     //region  Private Services
 
     /**
-     * Action sur le menuItem quitter de la menu bar
+     * Action sur le menuItem quitter de la menu bar.
      */
     @FXML
     private void menuItemQuitClick()
@@ -116,7 +130,7 @@ public class guideWindowController
     }
 
     /**
-     * Initialisation du contenu de la fenetre
+     * Initialisation du contenu de la fenetre.
      */
     @FXML
     private void initialize()
@@ -125,15 +139,15 @@ public class guideWindowController
     }
 
     /**
-     * Action sur click boutton ApplyJob
+     * Action sur click boutton ApplyJob.
      */
     @FXML
     private void butApplyJobClick()
     {
         try
         {
-            applyCircuitController.set_actualAccompagnateur(_selectedAccompagnateur);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/applyCircuit.fxml"));
+            ApplyCircuitController.set_actualAccompagnateur(_selectedAccompagnateur);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Popup/ApplyCircuit.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -142,14 +156,14 @@ public class guideWindowController
             stage.showAndWait();
             this.LoadGuideCircuits();
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             e.printStackTrace();
         }
     }
 
     /**
-     * Action sur click boutton validModif
+     * Action sur click boutton validModif.
      */
     @FXML
     private void butValidModifClick()
@@ -179,7 +193,7 @@ public class guideWindowController
     }
 
     /**
-     * Action sur click boutton delete
+     * Action sur click boutton delete.
      */
     @FXML
     private void butDeleteClick()
@@ -195,7 +209,7 @@ public class guideWindowController
     }
 
     /**
-     * Charge les données pour l'affichage dans la page de profil
+     * Charge les données pour l'affichage dans la page de profil.
      */
     private void LoadValues()
     {
@@ -211,7 +225,7 @@ public class guideWindowController
     }
 
     /**
-     * Recherche tous les circuits pour l'accompagnateur sélectionné et met à jour la tableview
+     * Recherche tous les circuits pour l'accompagnateur sélectionné et met à jour la tableview.
      */
     private void LoadGuideCircuits()
     {

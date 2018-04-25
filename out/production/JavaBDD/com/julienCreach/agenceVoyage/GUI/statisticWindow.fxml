@@ -9,7 +9,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.*?>
-<GridPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.statisticWindowController">
+<GridPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.StatisticWindowController">
       <BarChart fx:id="barChartStat" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xAxis" />

@@ -11,10 +11,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DAO user.
+ * @author Julien Creach
+ * @version 1.0
+ */
 public class UserDAO extends DAO<User>
 {
     //region Constructeur
 
+    /**
+     * Constructeur.
+     * @param connect connexion
+     */
     public UserDAO(Connection connect)
     {
         super(connect);
