@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~  Author : Julien Creach.
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="290" prefWidth="260" spacing="5" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.julienCreach.agenceVoyage.GUI.Popup.AjoutClientController">
+    <padding><Insets left="5.0" top="15.0" /></padding>
+    <HBox spacing="5">
+        <VBox spacing="5">
+            <Label prefHeight="25" text="Last name : " />
+            <Label prefHeight="25" text="First name : " />
+            <Label prefHeight="25" text="Phone number : " />
+            <Label prefHeight="25" text="Street number : " />
+            <Label prefHeight="25" text="Street : " />
+            <Label prefHeight="25" text="Postal code : " />
+            <Label prefHeight="25" text="City : " />
+            <Label prefHeight="25" text="Birth date : " />
+        </VBox>
+
+        <VBox spacing="5" prefWidth="150">
+            <TextField fx:id="textFieldLName" prefHeight="25" prefWidth="100" promptText="Last name" />
+            <TextField fx:id="textFieldFName" prefHeight="25" prefWidth="100" promptText="First name" />
+            <TextField fx:id="textFieldPhone" prefHeight="25" prefWidth="100" promptText="Phone number" />
+            <TextField fx:id="textFieldStreetNumber" prefHeight="25" prefWidth="100" promptText="Street number" />
+            <TextField fx:id="textFieldStreet" prefHeight="25" prefWidth="100" promptText="Street" />
+            <TextField fx:id="textFieldPostalCode" prefHeight="25" prefWidth="100" promptText="Postal code" />
+            <TextField fx:id="textFieldCity" prefHeight="25" prefWidth="100" promptText="City" />
+            <DatePicker fx:id="datePickerBirthDate" prefHeight="25" prefWidth="150" promptText="Birth date" />
+        </VBox>
+    </HBox>
+
+    <VBox spacing="35">
+        <HBox alignment="CENTER" spacing="5">
+            <Button fx:id="butValider" onAction="#butValiderClick" prefHeight="25" prefWidth="75" text="Valider" />
+            <Button fx:id="butCancel" onAction="#butAnnulerClick" prefHeight="25" prefWidth="75" text="Annuler" />
+        </HBox>
+    </VBox>
+</VBox>

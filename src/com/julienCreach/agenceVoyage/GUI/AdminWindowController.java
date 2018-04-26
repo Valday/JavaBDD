@@ -139,9 +139,7 @@ public class AdminWindowController
         {
             for (Circuit elem : allCircuits)
             {
-                ResultSet resultSet = null;
-
-                resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
                         ResultSet.TYPE_SCROLL_INSENSITIVE,
                         ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idCircuit = "+elem.get_idCircuit());
 
@@ -167,6 +165,51 @@ public class AdminWindowController
         catch (SQLException eSql)
         {
             eSql.printStackTrace();
+        }
+    }
+
+    /**
+     * Generation d'un graph des reservations par circuit.
+     */
+    @FXML
+    private void menuItemStatisticsCircuits2Click()
+    {
+        ObservableList<Circuit> allCircuits = TableManager.Instance().LoadCircuits();
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        ObservableList<String> axeX = FXCollections.observableArrayList();
+        series.setName("Reservations");
+
+        try
+        {
+            for (Circuit elem : allCircuits)
+            {
+                ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT nom, COUNT(*) FROM Circuits, Reservations WHERE Reservations.idCircuit = Circuits.idCircuit GROUP BY nom");
+
+                while(resultSet.next())
+                {
+                    series.getData().add(new XYChart.Data<>(resultSet.getString(1),resultSet.getInt(2)));
+                    axeX.add(resultSet.getString(1));
+                }
+            }
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Statistiques");
+            stage.setScene(new Scene(root));
+            StatisticWindowController controller = fxmlLoader.getController();
+            controller.setBarChartStatSeries("Nombre de réservations par circuits", "Reservations", "Circuits",axeX,series);
+            stage.showAndWait();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
         }
     }
 
