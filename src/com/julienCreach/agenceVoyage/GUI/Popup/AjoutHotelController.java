@@ -54,7 +54,7 @@ public class AjoutHotelController
     private TextField textFieldStreet;
 
     /**
-     * Constructeur pardefaut.
+     * Constructeur par defaut.
      */
     public AjoutHotelController()
     {
@@ -77,36 +77,46 @@ public class AjoutHotelController
     {
         try
         {
-            Hotel newHotel = new Hotel(-1,
-                this.textFieldName.getText(),
-                this.textFieldPhone.getText(),
-                this.textFieldStreet.getText(),
-                Integer.parseInt(this.textFieldStreetNumber.getText()));
-
-            if(isNewOrEdit)
+            if((!this.textFieldName.getText().isEmpty())
+                    && (!this.textFieldPhone.getText().isEmpty())
+                    && (!this.textFieldStreet.getText().isEmpty())
+                    && (!this.textFieldStreetNumber.getText().isEmpty()))
             {
-                if(TableManager.Instance().get_hotelDAO().Add(newHotel))
-                {
-                    System.out.println(" => Hotel successfully add ...");
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
+                Hotel newHotel = new Hotel(-1,
+                    this.textFieldName.getText(),
+                    this.textFieldPhone.getText(),
+                    this.textFieldStreet.getText(),
+                    Integer.parseInt(this.textFieldStreetNumber.getText()));
 
-                    // do what you have to do
-                    stage.close();
+                if(isNewOrEdit)
+                {
+                    if(TableManager.Instance().get_hotelDAO().Add(newHotel))
+                    {
+                        System.out.println(" => Hotel successfully add ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
+                }
+                else
+                {
+                    newHotel.set_idHotel(_selectedHotel.get_idHotel());
+                    if(TableManager.Instance().get_hotelDAO().Edit(newHotel))
+                    {
+                        System.out.println(" => Hotel successfully updated ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
                 }
             }
-            else
+                else
             {
-                newHotel.set_idHotel(_selectedHotel.get_idHotel());
-                if(TableManager.Instance().get_hotelDAO().Edit(newHotel))
-                {
-                    System.out.println(" => Hotel successfully updated ...");
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
-
-                    // do what you have to do
-                    stage.close();
-                }
+                MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
             }
         }
         catch (NumberFormatException e)

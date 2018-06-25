@@ -8,11 +8,13 @@ package com.julienCreach.agenceVoyage.GUI.Popup;
 import com.julienCreach.agenceVoyage.Modele.Hotel;
 import com.julienCreach.agenceVoyage.Modele.Ville;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import com.julienCreach.utils.MessageBox;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -82,46 +84,54 @@ public class AjoutVilleController
     @FXML
     private void butValiderClick()
     {
-        int idHotel = 0;
-        for(int i = 0; i < this._listHotels.size();i++)
+        String str = this.textFieldName.getText();
+        if((!this.textFieldName.getText().isEmpty())
+                && (this.comboBoxHotel.getSelectionModel().getSelectedItem() != null))
         {
-            if(this._listHotels.get(i).get_nameHotel() == this.comboBoxHotel.getSelectionModel().getSelectedItem().toString())
+            int idHotel = 0;
+            for(int i = 0; i < this._listHotels.size();i++)
             {
-                idHotel = this._listHotels.get(i).get_idHotel();
+                if(this._listHotels.get(i).get_nameHotel() == this.comboBoxHotel.getSelectionModel().getSelectedItem().toString())
+                {
+                    idHotel = this._listHotels.get(i).get_idHotel();
+                }
             }
+
+            Ville newVille = new Ville(-1,
+                    this.textFieldName.getText(),
+                    idHotel);
+
+            if(isNewOrEdit)
+            {
+                if(TableManager.Instance().get_villeDAO().Add(newVille))
+                {
+                    System.out.println(" => Ville successfully add ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage)butValider.getScene().getWindow();
+
+                    // do what you have to do
+                    stage.close();
+                }
+            }
+            else
+            {
+                newVille.set_idVille(_selectedVille.get_idVille());
+                if(TableManager.Instance().get_villeDAO().Edit(newVille))
+                {
+                    System.out.println(" => Ville successfully updated ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage)butValider.getScene().getWindow();
+
+                    // do what you have to do
+                    stage.close();
+                }
+            }
+
         }
-
-        Ville newVille = new Ville(-1,
-                this.textFieldName.getText(),
-                idHotel);
-
-        if(isNewOrEdit)
+                else
         {
-            if(TableManager.Instance().get_villeDAO().Add(newVille))
-            {
-                System.out.println(" => Ville successfully add ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
-
-                // do what you have to do
-                stage.close();
-            }
+            MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
         }
-        else
-        {
-            newVille.set_idVille(_selectedVille.get_idVille());
-            if(TableManager.Instance().get_villeDAO().Edit(newVille))
-            {
-                System.out.println(" => Ville successfully updated ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
-
-                // do what you have to do
-                stage.close();
-            }
-        }
-
-
     }
 
     @FXML

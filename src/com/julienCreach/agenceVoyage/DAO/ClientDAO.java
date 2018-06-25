@@ -91,14 +91,15 @@ public class ClientDAO extends DAO<Client>
             this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Clients SET nom='"+obj.get_nameClient()
-                        +"', prenom='"+obj.get_prenomClient()
-                        +"', telephone='"+obj.get_telephoneClient()
-                        +"',ville='"+obj.get_villeClient()
-                        +"',rue='"+obj.get_rueClient()
-                        +"', numRue="+obj.get_numRueClient()
-                        +", codePostal="+obj.get_codePostalClient()
-                        +", dateNaissance='"+obj.get_dateNaissanceClient()
+                        +"', prenom = '"+obj.get_prenomClient()
+                        +"', telephone = '"+obj.get_telephoneClient()
+                        +"',ville = '"+obj.get_villeClient()
+                        +"',rue = '"+obj.get_rueClient()
+                        +"', numRue = "+obj.get_numRueClient()
+                        +", codePostal = "+obj.get_codePostalClient()
+                        +", dateNaissance = '"+obj.get_dateNaissanceClient()
                         +"' WHERE idClient = " +obj.get_idClient());
+
             toReturn = true;
         }
         catch (SQLException e)

@@ -83,7 +83,6 @@ public class ApplyCircuitController
     {
         try
         {
-
             SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
             Circuit newCircuit = new Circuit(
                     resultSet.getInt("idCircuit"),

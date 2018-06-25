@@ -107,6 +107,7 @@ public class AdminWindowController
      */
     public AdminWindowController()
     {
+
     }
 
     //endregion Constructors / Initialisation
@@ -130,23 +131,20 @@ public class AdminWindowController
     @FXML
     private void menuItemStatisticsCircuitsClick()
     {
-        ObservableList<Circuit> allCircuits = TableManager.Instance().LoadCircuits();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         ObservableList<String> axeX = FXCollections.observableArrayList();
         series.setName("Reservations");
 
         try
         {
-            for (Circuit elem : allCircuits)
+            ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT nom, COUNT(*) FROM Circuits, Reservations WHERE Reservations.idCircuit = Circuits.idCircuit GROUP BY nom");
+
+            while(resultSet.next())
             {
-                ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
-                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idCircuit = "+elem.get_idCircuit());
-
-                resultSet.first();
-                series.getData().add(new XYChart.Data<>(elem.get_nameCircuit(),resultSet.getInt(1)));
-
-                axeX.add(elem.get_nameCircuit());
+                series.getData().add(new XYChart.Data<>(resultSet.getString(1),resultSet.getInt(2)));
+                axeX.add(resultSet.getString(1));
             }
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
@@ -155,52 +153,7 @@ public class AdminWindowController
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));
             StatisticWindowController controller = fxmlLoader.getController();
-            controller.setBarChartStatSeries("Nombre de réservations par circuits", "Reservations", "Circuits",axeX,series);
-            stage.showAndWait();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (SQLException eSql)
-        {
-            eSql.printStackTrace();
-        }
-    }
-
-    /**
-     * Generation d'un graph des reservations par circuit.
-     */
-    @FXML
-    private void menuItemStatisticsCircuits2Click()
-    {
-        ObservableList<Circuit> allCircuits = TableManager.Instance().LoadCircuits();
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        ObservableList<String> axeX = FXCollections.observableArrayList();
-        series.setName("Reservations");
-
-        try
-        {
-            for (Circuit elem : allCircuits)
-            {
-                ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
-                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT nom, COUNT(*) FROM Circuits, Reservations WHERE Reservations.idCircuit = Circuits.idCircuit GROUP BY nom");
-
-                while(resultSet.next())
-                {
-                    series.getData().add(new XYChart.Data<>(resultSet.getString(1),resultSet.getInt(2)));
-                    axeX.add(resultSet.getString(1));
-                }
-            }
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Statistiques");
-            stage.setScene(new Scene(root));
-            StatisticWindowController controller = fxmlLoader.getController();
-            controller.setBarChartStatSeries("Nombre de réservations par circuits", "Reservations", "Circuits",axeX,series);
+            controller.setBarChartStatSeries("Nombre de réservations par circuits", "Circuits", "Reservations",axeX,series);
             stage.showAndWait();
         }
         catch (IOException e)
@@ -219,25 +172,20 @@ public class AdminWindowController
     @FXML
     private void menuItemStatisticsClientClick()
     {
-        ObservableList<Client> allClients = TableManager.Instance().LoadClients();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         ObservableList<String> axeX = FXCollections.observableArrayList();
         series.setName("Reservations");
 
         try
         {
-            for (Client elem : allClients)
+            ResultSet resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT prenom, nom, COUNT(*) FROM Clients, Reservations WHERE Reservations.idClient =  Clients.idClient GROUP BY prenom, nom");
+
+            while(resultSet.next())
             {
-                ResultSet resultSet = null;
-
-                resultSet = JdbcConnectionManager.Instance().get_connector().createStatement(
-                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) FROM Reservations WHERE idClient = "+elem.get_idClient());
-
-                resultSet.first();
-                series.getData().add(new XYChart.Data<>(elem.get_nameClient()+" "+elem.get_prenomClient(),resultSet.getInt(1)));
-
-                axeX.add(elem.get_nameClient()+" "+elem.get_prenomClient());
+                series.getData().add(new XYChart.Data<>(resultSet.getString(1)+" "+resultSet.getString(2),resultSet.getInt(3)));
+                axeX.add(resultSet.getString(1)+" "+resultSet.getString(2));
             }
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatisticWindow.fxml"));
@@ -246,7 +194,7 @@ public class AdminWindowController
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));
             StatisticWindowController controller = fxmlLoader.getController();
-            controller.setBarChartStatSeries("Nombre de réservations par client", "Reservations", "Clients", axeX,series);
+            controller.setBarChartStatSeries("Nombre de réservations par client", "Clients", "Reservations", axeX,series);
             stage.showAndWait();
         }
         catch (IOException e)
@@ -682,7 +630,8 @@ public class AdminWindowController
             });
         });
 
-        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) -> {
+        textFieldRequete.textProperty().addListener((observable, oldValue, newValue) ->
+        {
             filteredClientData.setPredicate(Client -> {
                 // If filter text is empty, display all Circuits.
                 if (newValue == null || newValue.isEmpty())

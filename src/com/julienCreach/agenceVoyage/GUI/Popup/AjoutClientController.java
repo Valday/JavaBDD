@@ -90,43 +90,59 @@ public class AjoutClientController
     @FXML
     private void butValiderClick()
     {
+        SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         try
         {
-            SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-            Client newClient = new Client(-1,
-                this.textFieldLName.getText(),
-                this.textFieldFName.getText(),
-                this.textFieldPhone.getText(),
-                this.textFieldCity.getText(),
-                this.textFieldStreet.getText(),
-                Integer.parseInt(this.textFieldStreetNumber.getText()),
-                this.textFieldPostalCode.getText(),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerBirthDate.getValue())));
 
-            if(isNewOrEdit)
+
+            if((!this.textFieldFName.getText().isEmpty())
+                    && (!this.textFieldFName.getText().isEmpty())
+                    && (!this.textFieldPhone.getText().isEmpty())
+                    && (!this.textFieldCity.getText().isEmpty())
+                    && (!this.textFieldStreet.getText().isEmpty())
+                    && (!this.textFieldStreetNumber.getText().isEmpty())
+                    && (! this.textFieldPostalCode.getText().isEmpty())
+                    && (this.datePickerBirthDate.getValue() != null))
             {
-                if(TableManager.Instance().get_clientDAO().Add(newClient))
-                {
-                    System.out.println(" => Client successfully add ...");
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
+                Client newClient = new Client(-1,
+                        this.textFieldLName.getText(),
+                        this.textFieldFName.getText(),
+                        this.textFieldPhone.getText(),
+                        this.textFieldCity.getText(),
+                        this.textFieldStreet.getText(),
+                        Integer.parseInt(this.textFieldStreetNumber.getText()),
+                        this.textFieldPostalCode.getText(),
+                        simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerBirthDate.getValue())));
 
-                    // do what you have to do
-                    stage.close();
+                if(isNewOrEdit)
+                {
+                    if(TableManager.Instance().get_clientDAO().Add(newClient))
+                    {
+                        System.out.println(" => Client successfully add ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
+                }
+                else
+                {
+                    newClient.set_idClient(_selectedClient.get_idClient());
+                    if(TableManager.Instance().get_clientDAO().Edit(newClient))
+                    {
+                        System.out.println(" => Client successfully updated ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
                 }
             }
             else
             {
-                newClient.set_idClient(_selectedClient.get_idClient());
-                if(TableManager.Instance().get_clientDAO().Edit(newClient))
-                {
-                    System.out.println(" => Client successfully updated ...");
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
-
-                    // do what you have to do
-                    stage.close();
-                }
+                MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
             }
         }
         catch (NumberFormatException e)

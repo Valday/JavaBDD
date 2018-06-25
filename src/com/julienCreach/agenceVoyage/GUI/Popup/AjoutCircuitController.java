@@ -98,57 +98,67 @@ public class AjoutCircuitController
     @FXML
     private void butValiderClick()
     {
+        SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
         try
         {
-
-            SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-            int idAcc = -1;
-            for(int i = 0; i < this._listAccompagnateurs.size();i++)
+            if((!this.textFieldName.getText().isEmpty())
+                    && (!this.textFieldPlaceDispo.getText().isEmpty())
+                    && (!this.textFieldPrix.getText().isEmpty())
+                    && (this.datePickDepart.getValue() != null)
+                    && (this.datePickArrivee.getValue() != null))
             {
-                if(this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_nameAccompagnateur())
-                        && this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_prenomAccompagnateur()))
+                int idAcc = -1;
+                for(int i = 0; i < this._listAccompagnateurs.size();i++)
                 {
-                    idAcc = this._listAccompagnateurs.get(i).get_idAccompagnateur();
+                    if(this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_nameAccompagnateur())
+                            && this.comboBoxAccompagnateurs.getSelectionModel().getSelectedItem().toString().contains(this._listAccompagnateurs.get(i).get_prenomAccompagnateur()))
+                    {
+                        idAcc = this._listAccompagnateurs.get(i).get_idAccompagnateur();
+                    }
                 }
-            }
 
 
-            Circuit newCircuit = new Circuit(-1,
-                    this.textFieldName.getText(),
-                    Integer.parseInt(this.textFieldPlaceDispo.getText()),
-                    Integer.parseInt(this.textFieldPrix.getText()),
-                    simpleDateFormater.format(java.sql.Date.valueOf(this.datePickDepart.getValue())),
-                    simpleDateFormater.format(java.sql.Date.valueOf(this.datePickArrivee.getValue())),
-                    this.checkBoxCircuitOpen.isSelected(),
-                    idAcc);
-            if(isNewOrEdit)
-            {
-                if(TableManager.Instance().get_circuitDAO().Add(newCircuit))
+                Circuit newCircuit = new Circuit(-1,
+                        this.textFieldName.getText(),
+                        Integer.parseInt(this.textFieldPlaceDispo.getText()),
+                        Integer.parseInt(this.textFieldPrix.getText()),
+                        simpleDateFormater.format(java.sql.Date.valueOf(this.datePickDepart.getValue())),
+                        simpleDateFormater.format(java.sql.Date.valueOf(this.datePickArrivee.getValue())),
+                        this.checkBoxCircuitOpen.isSelected(),
+                        idAcc);
+                if(isNewOrEdit)
                 {
-                    System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully add ...");
+                    if(TableManager.Instance().get_circuitDAO().Add(newCircuit))
+                    {
+                        System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully add ...");
 
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
 
-                    // do what you have to do
-                    stage.close();
+                        // do what you have to do
+                        stage.close();
+                    }
+                }
+                else
+                {
+
+                    newCircuit.set_idCircuit(_selectedCircuit.get_idCircuit());
+
+                    if(TableManager.Instance().get_circuitDAO().Edit(newCircuit))
+                    {
+                        System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully updated ...");
+
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
                 }
             }
             else
             {
-
-                newCircuit.set_idCircuit(_selectedCircuit.get_idCircuit());
-
-                if(TableManager.Instance().get_circuitDAO().Edit(newCircuit))
-                {
-                    System.out.println(" => Circuit "+newCircuit.get_idCircuit()+" successfully updated ...");
-
-                    // get a handle to the stage
-                    Stage stage = (Stage)butValider.getScene().getWindow();
-
-                    // do what you have to do
-                    stage.close();
-                }
+                MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
             }
         }
             catch (NumberFormatException e)

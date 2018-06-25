@@ -1,0 +1,8 @@
+id admin : admin
+psswd admin : root
+
+id accompagnateur : acc
+psswd accompagnateur : acc
+
+id client : client
+psswd client : client

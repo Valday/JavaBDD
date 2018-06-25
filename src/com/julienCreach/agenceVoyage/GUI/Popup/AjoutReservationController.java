@@ -9,6 +9,7 @@ import com.julienCreach.agenceVoyage.Modele.Circuit;
 import com.julienCreach.agenceVoyage.Modele.Client;
 import com.julienCreach.agenceVoyage.Modele.Reservation;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import com.julienCreach.utils.MessageBox;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -106,64 +107,76 @@ public class AjoutReservationController
     private void butValiderClick()
     {
         SimpleDateFormat simpleDateFormater = new SimpleDateFormat("dd/MM/yy");
-        int idClient = -1;
-        int idCircuit = -1;
 
-        for(int i = 0; i < this._listClients.size();i++)
+        if((this.datePickerLimite.getValue() != null)
+                && (this.datePickerReservation.getValue() != null)
+                && (!this.textFieldMontantAccompte.getText().isEmpty())
+                && (!this.textFieldMontantSecondPaiement.getText().isEmpty())
+                && (this.comboBoxClient.getSelectionModel().getSelectedItem() != null)
+                && (this.comboBoxCircuit.getSelectionModel().getSelectedItem() != null))
         {
-            if(this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_nameClient())
-                    && this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_prenomClient()))
+            int idClient = -1;
+            int idCircuit = -1;
+
+            for(int i = 0; i < this._listClients.size();i++)
             {
-                idClient = this._listClients.get(i).get_idClient();
+                if(this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_nameClient())
+                        && this.comboBoxClient.getSelectionModel().getSelectedItem().toString().contains(this._listClients.get(i).get_prenomClient()))
+                {
+                    idClient = this._listClients.get(i).get_idClient();
+                }
             }
-        }
 
-        for(int i = 0; i < this._listCircuits.size();i++)
-        {
-            if(this.comboBoxCircuit.getSelectionModel().getSelectedItem().toString().contains(this._listCircuits.get(i).get_nameCircuit()))
+            for(int i = 0; i < this._listCircuits.size();i++)
             {
-                idCircuit = this._listCircuits.get(i).get_idCircuit();
+                if(this.comboBoxCircuit.getSelectionModel().getSelectedItem().toString().contains(this._listCircuits.get(i).get_nameCircuit()))
+                {
+                    idCircuit = this._listCircuits.get(i).get_idCircuit();
+                }
             }
-        }
 
-        Reservation newReservation = new Reservation(-1,
-                this.checkBoxAccompteOk.isSelected(),
-                this.checkBoxSecondPaiementOk.isSelected(),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerLimite.getValue())),
-                simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerReservation.getValue())),
-                false,
-                Integer.parseInt(this.textFieldMontantAccompte.getText()),
-                Integer.parseInt(this.textFieldMontantSecondPaiement.getText()),
-                idClient,
-                idCircuit);
+            Reservation newReservation = new Reservation(-1,
+                    this.checkBoxAccompteOk.isSelected(),
+                    this.checkBoxSecondPaiementOk.isSelected(),
+                    simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerLimite.getValue())),
+                    simpleDateFormater.format(java.sql.Date.valueOf(this.datePickerReservation.getValue())),
+                    false,
+                    Integer.parseInt(this.textFieldMontantAccompte.getText()),
+                    Integer.parseInt(this.textFieldMontantSecondPaiement.getText()),
+                    idClient,
+                    idCircuit);
 
 
-        if(isNewOrEdit)
-        {
-            if(TableManager.Instance().get_reservationDAO().Add(newReservation))
+            if(isNewOrEdit)
             {
-                System.out.println(" => Reservation successfully add ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
+                if(TableManager.Instance().get_reservationDAO().Add(newReservation))
+                {
+                    System.out.println(" => Reservation successfully add ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage)butValider.getScene().getWindow();
 
-                // do what you have to do
-                stage.close();
+                    // do what you have to do
+                    stage.close();
+                }
+            }
+            else
+            {
+                newReservation.set_idResevation(_selectedReservation.get_idResevation());
+                if(TableManager.Instance().get_reservationDAO().Add(newReservation))
+                {
+                    System.out.println(" => Reservation successfully updated ...");
+                    // get a handle to the stage
+                    Stage stage = (Stage)butValider.getScene().getWindow();
+
+                    // do what you have to do
+                    stage.close();
+                }
             }
         }
         else
         {
-            newReservation.set_idResevation(_selectedReservation.get_idResevation());
-            if(TableManager.Instance().get_reservationDAO().Add(newReservation))
-            {
-                System.out.println(" => Reservation successfully updated ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
-
-                // do what you have to do
-                stage.close();
-            }
+            MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
         }
-
     }
 
     @FXML
@@ -217,8 +230,11 @@ public class AjoutReservationController
                         allCircuits.getBoolean(7),
                         allCircuits.getInt(8));
 
-                this._listCircuits.add(newCircuit);
-                this._listNomCircuits.add(newCircuit.get_nameCircuit());
+                if(newCircuit.is_open())
+                {
+                    this._listCircuits.add(newCircuit);
+                    this._listNomCircuits.add(newCircuit.get_nameCircuit());
+                }
             }
 
             this.comboBoxClient.setItems(this._listNomClients);

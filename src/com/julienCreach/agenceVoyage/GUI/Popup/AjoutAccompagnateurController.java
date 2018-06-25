@@ -7,7 +7,9 @@ package com.julienCreach.agenceVoyage.GUI.Popup;
 
 import com.julienCreach.agenceVoyage.Modele.Accompagnateur;
 import com.julienCreach.agenceVoyage.managers.TableManager;
+import com.julienCreach.utils.MessageBox;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -138,40 +140,59 @@ public class AjoutAccompagnateurController
     @FXML
     private void butValiderClick()
     {
-
-        Accompagnateur newAccompagnateur = new Accompagnateur(-1,
-                this.textFieldName.getText(),
-                this.textFieldPrenom.getText(),
-                this.textFieldTelephone.getText(),
-                Integer.parseInt(this.textFieldNumRue.getText()),
-                this.textFieldRue.getText(),
-                this.textFieldVille.getText(),
-                this.textFieldCodePostal.getText());
-
-        if(isNewOrEdit)
+        try
         {
-            if(TableManager.Instance().get_accompagnateurDAO().Add(newAccompagnateur))
+            if((this.textFieldName.getText().isEmpty())
+                    && (!this.textFieldPrenom.getText().isEmpty())
+                    && (!this.textFieldTelephone.getText().isEmpty())
+                    && (!this.textFieldNumRue.getText().isEmpty())
+                    && (!this.textFieldRue.getText().isEmpty())
+                    && (!this.textFieldVille.getText().isEmpty())
+                    && (!this.textFieldCodePostal.getText().isEmpty()))
             {
-                System.out.println(" => Accompagnateur successfully add ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
+                Accompagnateur newAccompagnateur = new Accompagnateur(-1,
+                        this.textFieldName.getText(),
+                        this.textFieldPrenom.getText(),
+                        this.textFieldTelephone.getText(),
+                        Integer.parseInt(this.textFieldNumRue.getText()),
+                        this.textFieldRue.getText(),
+                        this.textFieldVille.getText(),
+                        this.textFieldCodePostal.getText());
 
-                // do what you have to do
-                stage.close();
+                if(isNewOrEdit)
+                {
+                    if(TableManager.Instance().get_accompagnateurDAO().Add(newAccompagnateur))
+                    {
+                        System.out.println(" => Accompagnateur successfully add ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
+                }
+                else
+                {
+                    newAccompagnateur.set_idAccompagnateur(_selectedAccompagnateur.get_idAccompagnateur());
+                    if(TableManager.Instance().get_accompagnateurDAO().Edit(newAccompagnateur))
+                    {
+                        System.out.println(" => Accompagnateur successfully updated ...");
+                        // get a handle to the stage
+                        Stage stage = (Stage)butValider.getScene().getWindow();
+
+                        // do what you have to do
+                        stage.close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(Alert.AlertType.WARNING, "Champ(s) de saisie vide", "Merci de remplir tous les champs","");
             }
         }
-        else
+                catch (NumberFormatException e)
         {
-            newAccompagnateur.set_idAccompagnateur(_selectedAccompagnateur.get_idAccompagnateur());
-            if(TableManager.Instance().get_accompagnateurDAO().Edit(newAccompagnateur))
-            {
-                System.out.println(" => Accompagnateur successfully updated ...");
-                // get a handle to the stage
-                Stage stage = (Stage)butValider.getScene().getWindow();
-
-                // do what you have to do
-                stage.close();
-            }
+            MessageBox.Show(Alert.AlertType.ERROR,"Erreur de saisie","Le contenu du champ -Nombre de places- et -prix- doivent etre un nombre","");
         }
     }
 
